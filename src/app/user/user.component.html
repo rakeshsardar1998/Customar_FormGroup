@@ -1,0 +1,21 @@
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+  <div *ngFor="let field of formFields">
+    <mat-label>{{field.label}}</mat-label>
+    <mat-form-field appearance="fill">
+      <input matInput [formControlName]="field.name" [placeholder]="field.placeHolder" [type]="field.input_type" />
+      <mat-error *ngIf="dynamicForm.get(field.name)?.invalid && (dynamicForm.get(field.name)?.dirty || dynamicForm.get(field.name)?.touched)">
+        <div *ngIf="dynamicForm.get(field.name)?.errors?.['required']">{{field.label}} is required</div>
+        <div *ngIf="dynamicForm.get(field.name)?.errors?.['minlength']">Minimum length is {{dynamicForm.get(field.name)?.errors?.['minlength'].requiredLength}}</div>
+        <div *ngIf="dynamicForm.get(field.name)?.errors?.['maxlength']">Maximum length is {{dynamicForm.get(field.name)?.errors?.['maxlength'].requiredLength}}</div>
+        <div *ngIf="dynamicForm.get(field.name)?.errors?.['email']">Invalid email address</div>
+        <div *ngIf="dynamicForm.get(field.name)?.errors?.['pattern']">Invalid format</div>
+        <div *ngIf="dynamicForm.get(field.name)?.errors?.['length']">Must be exactly {{dynamicForm.get(field.name)?.errors?.['length'].requiredLength}} characters</div>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="button-container">
+    <button type="button">No Thanks</button>
+    <button type="submit">Submit</button>
+  </div>
+</form>
