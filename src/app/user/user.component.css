@@ -1,146 +1,35 @@
-/* Container for the form */
-form {
+/* Center the form container */
+.form-container {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* Space between form fields */
-    max-width: 600px;
-    margin: 0 auto;
-    /* Center the form */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Form box styling */
+  .form-box {
     padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    /* Ensure a white background */
-}
-
-/* Material form field styling */
-mat-form-field {
+    max-width: 500px;
     width: 100%;
-}
-
-/* Ensure label is above the input box */
-mat-form-field .mat-form-field-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translateY(-50%);
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-/* Adjust label position on focus */
-mat-form-field.mat-focused .mat-form-field-label {
-    transform: translateY(-100%);
-    color: #3f51b5;
-    /* Color when focused */
-}
-
-/* Custom styling for the submit button */
-.button-container {
+  }
+  
+  /* Full width for form fields */
+  .full-width {
+    width: 100%;
+  }
+  
+  /* Button actions styling */
+  .form-actions {
     display: flex;
     justify-content: space-between;
-    /* Space between buttons */
     margin-top: 1rem;
-}
-
-.button-container button[type="button"] {
-    padding: 0.5rem 1rem;
-    background-color: #f44336;
-    /* Red color for No Thanks button */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button-container button[type="button"]:hover {
-    background-color: #c62828;
-    /* Darker red on hover */
-    transform: translateY(-2px);
-    /* Slight lift effect */
-}
-
-.button-container button[type="button"]:active {
-    transform: translateY(1px);
-    /* Pressed effect */
-}
-
-.button-container button[type="submit"] {
-    padding: 0.75rem 2rem;
-    background-color: #3f51b5;
-    /* Primary button color */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button-container button[type="submit"]:hover {
-    background-color: #303f9f;
-    /* Darker color on hover */
-    transform: translateY(-2px);
-    /* Slight lift effect */
-}
-
-.button-container button[type="submit"]:active {
-    transform: translateY(1px);
-    /* Pressed effect */
-}
-
-/* Error message styling */
-mat-error {
-    font-size: 12px;
-    color: #f44336;
-    text-align: right;
-}
-
-/* Form label styling */
-mat-label {
-    font-weight: bold;
-    color: #333;
-}
-
-/* Input placeholder styling */
-::placeholder {
-    color: #999;
-}
-
-/* Input styling for better readability */
-input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
-}
-
-input:focus {
-    border-color: #3f51b5;
-    /* Change border color on focus */
-    outline: none;
-    /* Remove default outline */
-}
-
-/* Responsive design for mobile devices */
-@media (max-width: 600px) {
-    form {
-        padding: 1rem;
-    }
-
-    .button-container {
-        flex-direction: column;
-        /* Stack buttons vertically on small screens */
-        gap: 1rem;
-        /* Space between buttons */
-    }
-
-    button[type="submit"],
-    button[type="button"] {
-        width: 100%;
-    }
-}
+  }
+  button {
+    display: flex;
+    align-items: center;
+  }
+  
+  mat-spinner {
+    margin-left: 8px; /* Adjust spacing between text and spinner */
+  }
+  

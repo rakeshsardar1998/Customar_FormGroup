@@ -105,8 +105,8 @@
         },
         {
           "validator": "length",
-          "value": 6,
-          "message": "Customer country code must be exactly 10 characters long."
+          "value": 3  ,
+          "message": "Customer country code must be exactly 3 characters long."
         },
         {
           "validator": "pattern",
