@@ -1,4 +1,4 @@
-<div class="form-container">
+<!-- <div class="form-container">
   <mat-card class="form-box">
     <form *ngIf="dynamicForm" [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
       <div class="form-row" *ngFor="let field of formFields">
@@ -28,4 +28,50 @@
       </div>
     </form>
   </mat-card>
-</div>
+</div> -->
+
+<!--  -->
+<!-- submitProposalForm() {
+  if (this.firstFormGroup.invalid && this.secondFormGroup.invalid) {
+    return;
+  } else {
+    this.proposalSubmitBtn = !this.proposalSubmitBtn;
+    this.quoteJson = { ...this.quoteJson, ...this.firstFormGroup.value };
+    const proposalJson = {
+      custName: this.quoteJson.custName,
+      custEmail: this.quoteJson.custEmail,
+      custCuntryCode: this.quoteJson.custCuntryCode,
+      custMob: this.quoteJson.custMob,
+      customerFormatDOB: this.quoteJson.customerFormatDOB,
+      customerGender: this.quoteJson.customerGender,
+      customerEmpStatus: this.quoteJson.customerEmpStatus,
+      custPinCode: this.secondFormGroup.get('custPinCode').value,
+      educationalQualification: this.secondFormGroup.get('educationalQualification').value,
+      occupation: this.secondFormGroup.get('occupation').value,
+      custPremiumAmount: this.quoteJson.premiumJson.net_premium,
+    };
+
+    this.quoteJson.proposalJson = proposalJson;
+    console.log("proposal",proposalJson);
+    this.subscribeList.add(
+      this.localStorage.setItem('quoteJson', this.quoteJson).subscribe(() => {
+        this.subscribeList.add(
+          this.apiService.updateQuoteTerm(this.quoteJson).subscribe((insertResponse) => {
+            if (typeof insertResponse == "number" && insertResponse > 0) {
+              this.subscribeList.add(
+                this.apiService.getAegonProposal(this.quoteJson).subscribe((proposalRes) => {
+                  if (proposalRes.status === 'success' && proposalRes.redirect_url !== '') {
+                    window.location.href = proposalRes.redirect_url;
+                  } else {
+                    this.openErrorMessage(proposalRes.messages, 'Close');
+                  }
+                  this.proposalSubmitBtn = !this.proposalSubmitBtn;
+                })
+              );
+            }
+          })
+        );
+      })
+    );
+  }
+} -->
