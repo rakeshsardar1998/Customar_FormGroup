@@ -1,0 +1,160 @@
+{
+  "form_field_list": [
+    {
+      "name": "custName",
+      "label": "Customer Name",
+      "placeHolder": "Enter customer name",
+      "options": [],
+      "input_type": "text",
+      "default_value": "",
+      "validations": [
+        {
+          "validator": "required",
+          "value": true,
+          "message": "Customer name is required."
+        },
+        {
+          "validator": "pattern",
+          "value": "^[a-zA-Z]+ [a-zA-Z]+$",
+          "message": "Customer name must include both first and last name, separated by a space."
+        },
+        {
+          "validator": "minLength",
+          "value": 3,
+          "message": "Customer name must be at least 3 characters long."
+        },
+        {
+          "validator": "maxLength",
+          "value": 15,
+          "message": "Customer name must not exceed 20 characters."
+        }
+      ],
+      "visible": true
+    },
+    {
+      "name": "custEmail",
+      "label": "Customer Email",
+      "placeHolder": "Enter customer email address",
+      "options": [],
+      "input_type": "email",
+      "default_value": "",
+      "validations": [
+        {
+          "validator": "required",
+          "value": true,
+          "message": "Customer email address is required."
+        },
+        {
+          "validator": "pattern",
+          "value": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "message": "Please enter a valid email format."
+        },
+        {
+          "validator": "email",
+          "value": true,
+          "message": "Please enter a valid email address."
+        },
+        {
+          "validator": "minLength",
+          "value": 3,
+          "message": "Customer email must be at least 3 characters long."
+        },
+        {
+          "validator": "maxLength",
+          "value": 20,
+          "message": "Customer email must not exceed 20 characters."
+        }
+      ],
+      "visible": true
+    },
+    {
+      "name": "custMob",
+      "label": "Customer Mobile",
+      "placeHolder": "Enter customer mobile number",
+      "options": [],
+      "input_type": "number",
+      "default_value": "",
+      "validations": [
+        {
+          "validator": "required",
+          "value": true,
+          "message": "Customer mobile number is required."
+        },
+        {
+          "validator": "pattern",
+          "value": "^[1-9]\\d{9}$",
+          "message": "Customer mobile number must only contain digits."
+        },
+        {
+          "validator": "minLength",
+          "value": 10,
+          "message": "Customer name must be at least 10 characters long."
+        },
+        {
+          "validator": "maxLength",
+          "value": 10,
+          "message": "Customer name must not exceed 10 characters."
+        }
+      ],
+      "visible": true
+    },
+    {
+      "name": "custCuntryCode",
+      "label": "Customer Country Code",
+      "placeHolder": "Enter customer country code",
+      "options": [],
+      "input_type": "number",
+      "default_value": "",
+      "validations": [
+        {
+          "validator": "required",
+          "value": true,
+          "message": "Customer country code is required."
+        },
+        {
+          "validator": "pattern",
+          "value": "^[0-9]+$",
+          "message": "Customer country code must only contain digits."
+        },
+        {
+          "validator": "minLength",
+          "value": 3,
+          "message": "Customer name must be at least 3 characters long."
+        },
+        {
+          "validator": "maxLength",
+          "value": 10,
+          "message": "Customer name must not exceed 10 characters."
+        }
+      ],
+      "visible": true,
+      "disabled": true
+    },
+    {
+      "name": "custPincode",
+      "label": "Customer Pincode",
+      "placeHolder": "Enter customer pincode",
+      "options": [],
+      "input_type": "number",
+      "default_value": "",
+      "validations": [
+        {
+          "validator": "required",
+          "value": true,
+          "message": "Customer pincode is required."
+        },
+        {
+          "validator": "pattern",
+          "value": "^[0-9]+$",
+          "message": "Customer pincode must only contain digits."
+        },
+        {
+          "validator": "length",
+          "value": 6,
+          "message": "Customer pincode must be exactly 6 digits long."
+        }
+      ],
+      "visible": true
+    }
+  ]
+}

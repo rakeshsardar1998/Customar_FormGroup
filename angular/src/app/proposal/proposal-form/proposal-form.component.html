@@ -1,0 +1,72 @@
+<div class="form-container">
+  <mat-card class="form-box">
+    <form *ngIf="dynamicForm" [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+      <div class="form-row" *ngFor="let field of formFields">
+        <div class="form-group col-md-12" [ngSwitch]="field.input_type">
+          <mat-form-field *ngSwitchCase="'text'" appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <input matInput
+                   [formControlName]="field.name"
+                   [placeholder]="field.placeHolder"
+                   [type]="field.input_type"
+                   id="{{field.name}}"/>
+            <mat-error *ngIf="dynamicForm.get(field.name)?.invalid && dynamicForm.get(field.name)?.touched">
+              <div *ngFor="let error of getValidationErrors(dynamicForm.get(field.name), field.validations)">
+                {{ error }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field *ngSwitchCase="'email'" appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <input matInput
+                   [formControlName]="field.name"
+                   [placeholder]="field.placeHolder"
+                   [type]="field.input_type"
+                   id="{{field.name}}"/>
+            <mat-error *ngIf="dynamicForm.get(field.name)?.invalid && dynamicForm.get(field.name)?.touched">
+              <div *ngFor="let error of getValidationErrors(dynamicForm.get(field.name), field.validations)">
+                {{ error }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field *ngSwitchCase="'number'" appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <input matInput
+                   [formControlName]="field.name"
+                   [placeholder]="field.placeHolder"
+                   [type]="field.input_type"
+                   id="{{field.name}}"/>
+            <mat-error *ngIf="dynamicForm.get(field.name).invalid && dynamicForm.get(field.name).touched">
+              <div *ngFor="let error of getValidationErrors(dynamicForm.get(field.name), field.validations)">
+                {{ error }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field *ngSwitchCase="'radio'" appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <mat-radio-group [formControlName]="field.name">
+              <mat-radio-button *ngFor="let option of field.options" [value]="option">
+                {{ option }}
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="dynamicForm.get(field.name).invalid && dynamicForm.get(field.name).touched">
+              <div *ngFor="let error of getValidationErrors(dynamicForm.get(field.name), field.validations)">
+                {{ error }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+          
+        </div>
+      </div>
+      <div class="form-actions">
+        <button mat-raised-button color="warn" type="button" (click)="NoThanks()">No Thanks</button>
+        <button mat-raised-button color="warn" type="submit">
+          <span *ngIf="!isLoading">Submit</span>
+          <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

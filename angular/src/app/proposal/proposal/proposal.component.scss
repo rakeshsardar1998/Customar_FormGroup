@@ -1,0 +1,24 @@
+.mat-button {
+  background-color: #cc2327  !important;
+  color: #fff !important;
+  margin-left: 15px !important;
+  margin-top: 38px !important;
+  justify-content: space-between !important;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+background-color: #cc2327;
+
+}
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+  font-family: "Avenir-Book" !important;
+  margin: 10px !important;
+  padding: 26px 150px !important;
+  height: 277px  !important;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #cc2327 !important;
+  color: #fff;
+}

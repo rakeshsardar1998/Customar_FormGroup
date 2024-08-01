@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="quotes-area">
+    <div class="wrapper">
+      <div class="quotes-area-left-container">
+        <div class="quotes-area-left hide-l-sm">
+          <div class="quotes-summary_edit ">
+            <span class="quotes-edit-text">Filter Plans</span>
+            <!-- <div class="quotes-details-edit">
+              <button mat-button color="primary" (click)="onBackBtnClick()">Edit</button>
+            </div> -->
+          </div>
+          <div class="filter-box">
+            <mat-form-field appearance="outline">
+              <mat-label>Total Payout</mat-label>
+              <input matInput autocomplete="off" type="text" min="2500000" max="1000000000" [value]="selSumAssured"
+                #sumAssured (change)="recalculateQuote(sumAssured.value, coverUpto.value, paymentMode.value)">
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Cover Upto</mat-label>
+              <mat-select [(value)]="selTermAge" #coverUpto
+                (selectionChange)="recalculateQuote(sumAssured.value, coverUpto.value, paymentMode.value)">
+                <mat-option *ngFor="let tAge of termRange" [value]="tAge">
+                  {{ tAge > 85 ? 'Whole Life' : tAge }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Payment Mode</mat-label>
+              <mat-select [(value)]="selPaymentMode" #paymentMode
+                (selectionChange)="recalculateQuote(sumAssured.value, coverUpto.value, paymentMode.value)">
+                <mat-option *ngFor="let frequency of paymentFrequencies" [value]="frequency.value">
+                  {{ frequency.option  }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="quotes-area-right-container">
+        <div *ngFor="let item of loaderList" class="loader-box">
+          <app-loader></app-loader>
+        </div>
+        <div *ngFor="let premiumItem of premiumItemArr">
+          <app-insurers-plan [premiumData]="premiumItem" [loadingStatus]="loadingStatus"
+            [allRidersStatus]="allRidersStatus">
+          </app-insurers-plan>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

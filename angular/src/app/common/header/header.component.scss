@@ -1,0 +1,35 @@
+.main {
+    mat-toolbar {
+        background-color: #ffffff;
+    }
+}
+
+a.mat-menu-item {
+    line-height: 30px !important;
+    height: 30px !important;
+
+    &:hover {
+        color: #fff !important;
+        background-color: #cc0001 !important;
+    }
+}
+
+.title {
+    font-family: "Avenir-Book" !important;
+    padding: 21px 15px;
+    font-size: 17px;
+}
+
+.mat-toolbar {
+    color: #000;
+}
+
+.pinc img {
+    width: 150px;
+    height: 27px;
+    margin-top: 21px;
+}
+
+.pinc {
+    color: #000 !important;
+}

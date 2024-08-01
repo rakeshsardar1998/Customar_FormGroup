@@ -1,0 +1,86 @@
+{
+    "form_field_list": [
+        {
+            "name": "full_name",
+            "label": "Full Name",
+            "placeHolder": "Select Address Proof",
+            "options": [],
+            "input_type": "select",
+            "default_value": "",
+            "validations": [
+                {
+                    "validator": "required",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "name": "email_id",
+            "label": "Email id",
+            "placeHolder": "Your email id",
+            "options": [],
+            "input_type": "email",
+            "default_value": "",
+            "validations": [
+                {
+                    "validator": "required",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "name": "city",
+            "label": "City",
+            "placeHolder": "Select your city",
+            "options": [
+                {
+                    "label": "Kolkata",
+                    "value": "kolkata"
+                },
+                {
+                    "label": "Mumbai",
+                    "value": "mumbai"
+                },
+                {
+                    "label": "Pune",
+                    "value": "pune"
+                }
+            ],
+            "input_type": "select",
+            "default_value": "Kolkata",
+            "validations": [
+                {
+                    "validator": "required",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "name": "gender",
+            "label": "Gender",
+            "placeHolder": "Select your gender",
+            "options": [
+                {
+                    "label": "Male",
+                    "value": "m"
+                },
+                {
+                    "label": "Female",
+                    "value": "f"
+                },
+                {
+                    "label": "Other",
+                    "value": "o"
+                }
+            ],
+            "input_type": "radio",
+            "default_value": "",
+            "validations": [
+                {
+                    "validator": "required",
+                    "value": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+<div class="insurers-plan">
+  <div class="insurers-plan-top">
+    <div class="supp-holder">
+      <picture>
+        <img [alt]="premiumData.company_name" [src]="'assets/listing/company_logo/' + premiumData.company_logo">
+      </picture>
+
+      <!-- <div class="plan-label mobile hide-g-xs">
+          {{premiumData.product_name}}
+      </div> -->
+    </div>
+    <div class="Plan-details-wrapper">
+      <div class="Plan-details">
+        <div class="plan-info">
+          <div class="plan-label hide-l-xs">
+            <span>Plan name</span>
+            <p>
+              {{premiumData.product_name}}
+            </p>
+          </div>
+          <div class="product-feature">
+            <ul class="features-list">
+              <li><span>Plan Type: {{ premiumData.db_type}}</span></li>
+              <li><span>Claim Settled: {{ premiumData.claim_settled | number:'1.0-2'}}%</span></li>
+              <li>
+                <a (click)="showPdfFromUrl(premiumData.premium_pdf)"
+                  *ngIf="premiumData.premium_pdf && premiumData.premium_pdf !== ''"
+                  style="padding-left: 0px !important">
+                  {{ 'View Brochure' | titlecase }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-actions">
+          <div class="warper-top">
+            <div class="plan-label">
+              <span>Cover Upto</span>
+              {{ premiumData.cover_upto }} Yrs
+            </div>
+            <div class="plan-label" style="padding-left: 5px;">
+              <span>Sum insured</span>
+              {{ premiumData. sum_assured |
+              currency:'INR':'symbol-narrow':'1.0' }}
+            </div>
+          </div>
+          <div class="warper-middle">
+            <button mat-raised-button color="warn" class="insurers-plan-bottom" style="background-color: #cc0001;"
+              (click)="buyNow()">
+              <span class="hide-l-xs">Buy for</span>
+              {{ premiumData.net_premium | currency:'Rs. ':'code':'1.0' }}
+            </button>
+          </div>
+          <div class="warper-bottom">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

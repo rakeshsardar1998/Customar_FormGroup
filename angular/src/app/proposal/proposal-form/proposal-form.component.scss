@@ -1,0 +1,60 @@
+/* Center the form container */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form box styling */
+.form-box {
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Full width for form fields */
+.full-width {
+  width: 100%;
+}
+
+/* Button actions styling */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+button {
+  display: flex;
+  align-items: center;
+}
+
+mat-spinner {
+  margin-left: 8px; /* Adjust spacing between text and spinner */
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 300px; /* Adjust this value as needed */
+  padding: 0 10px;  /* Adjust for desired spacing */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.red-progress-bar {
+  .mat-progress-bar-fill::after {
+    background-color: #f44336 !important;
+  }
+}
