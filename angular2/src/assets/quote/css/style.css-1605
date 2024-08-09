@@ -1,0 +1,160 @@
+body{margin:0; padding: 0;background: url(../img/city.jpg); 
+}
+
+/* ::ng-deep.mat-dialog-container{padding:0 !important;} */
+h4{font-weight: bold;}
+
+::ng-deep #visitor .mat-form-field-label-wrapper {
+    top: -1.7em;}
+    .list li{font-size: 12px;}
+    .card-body{margin: 12px 15px !important;}
+    .table-striped{ padding:30px; font-size: 15px; border: 0;} 
+    h1, h2, h3, h4, h5{ font-size: 21px;}
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+    
+    /* .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        font-size: 13px;
+        line-height: 21px;
+    } */
+
+    .table{
+        width: 84%;
+        margin-bottom: 1rem;
+        color: #212529;
+        font-size: 12px;
+        line-height: 21px;
+    }
+    
+    table {
+        border-collapse: collapse;
+    }
+    .table-bordered thead th, .table-bordered thead td {
+        border-bottom-width: 2px;
+    }
+    
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+    }
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #dee2e6;
+    }    
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #dee2e6;
+        padding: 7px;
+    }
+    .table th{background: rgb(5, 91, 169); width:15%; color: #fff;}
+    .table-bordered th, .table-bordered td{border: 1px solid #dee2e6;
+        padding: 1%;
+        text-align: left;}
+
+        h3{font-size:20px !important;}
+
+
+       ::ng-deep input.mat-input-element {
+            margin-top:0em !important;
+        }
+        ::ng-deep  .mat-form-field-appearance-outline .mat-form-field-flex{    padding: 0.2em 0.9em 0.5em !important;}
+        .mat-form-field {
+            font-size:14px !important;
+        }
+
+        #mat-dialog-8{ padding-bottom: 20px;}
+        ::ng-deep   .mat-chip-list{float:right  !important;}
+        ::ng-deep  .mat-dialog-actions{display: block  !important; text-align: center;}
+
+        @media(max-width:699px){
+
+            .containerX{min-height: 700px;}
+
+
+        }
+
+        .single-catagory-area {
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 27px 15px;
+            transition-duration: 500ms;
+            margin-bottom: 15px;
+            box-shadow: 2px 1px 5px #ccc;
+        }
+        .new-car{display:inline-block !important;}
+
+        .newcar h2 {
+            font-size: 15px;
+            text-align: left;
+            padding: 15px;
+            color: #000;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .new-car h2 {
+            font-size: 15px;
+            text-align: left;
+            padding: 15px;
+            color: #000;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .new-car-b h2, h3{font-size: 15px !important;
+            text-align: left;
+            padding: 15px;
+            color: #000;
+            margin-top: 15px;
+            font-weight: bold;}
+        .newcar p {
+            font-size: 13px;
+            color: #463f3f;
+            font-weight: normal;
+            text-align: left;
+            padding: 5px 15px;
+            line-height: 20px;
+        }
+        .new-car-b p {
+            font-size: 13px;
+            color: #463f3f;
+            font-weight: normal;
+            text-align: left;
+            padding: 5px 15px;
+            line-height: 20px;
+        }
+
+        .nav-companies-tab h2,h3{font-size: 15px !important;
+            text-align: left;
+            padding: 15px;
+            color: #000;
+            margin-top: 15px;
+            font-weight: bold;}
+        .new-car p {
+            font-size: 13px;
+            color: #463f3f;
+            font-weight: normal;
+            text-align: left;
+            padding: 5px 15px;
+            line-height: 20px;
+        }
+
+
+        .tp-car{max-width: 50%;    padding: 15px;
+            font-size: 13px;}
+
+            .tp-car p{ font-size: 13px;}
+
+            .new-car img{width: 25%;}
+
+            .new-car p{font-size: 12px;}
+
+            #nav-companies p{font-size:12px;}
+            @media (min-width: 992px){
+            .single-catagory-area {
+                min-height: 277px;
+            }}
+
+            .catagory-content p{font-size: 13px;}
+            .new-car{margin-right: 10px;}
+            .new-car-b {margin-right: 10px;}

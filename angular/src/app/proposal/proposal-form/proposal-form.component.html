@@ -1,8 +1,31 @@
 <div class="form-container">
+
+  <div  class="details-div">
+    <a class="back-btn">
+      <mat-icon> arrow_back </mat-icon>
+      Change details
+    </a>
+    <div class="details-inner-div">
+      <img src="assets/listing/company_logo/aegon-life.png" alt="">
+     
+        <p class="plan-name">Plan Name<span>Bandhan Life iTerm Comfort</span></p>
+        <p>Plan Type<span>Regular pay</span></p>
+        <p>Claim Settled<span>99.37%</span></p>
+        <p>Cover Upto<span>70 Yrs</span></p>
+        <p>Sum insured<span>₹5,000,000</span></p>
+      
+      <div class="total-premium">
+        <p>Total Premium:</p>
+        <p class="total-value">₹1,624</p>
+      </div>
+    </div>
+  </div>
+
   <mat-card class="form-box">
-    <form *ngIf="dynamicForm" [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+    <p class="form-text">Please provide the details to your <span>Life insurance</span></p>
+    <form *ngIf="dynamicForm" [formGroup]="dynamicForm" (ngSubmit)="submitProposalForm()">
       <div class="form-row" *ngFor="let field of formFields">
-        <div class="form-group col-md-12" [ngSwitch]="field.input_type">
+        <div class="form-group " [ngSwitch]="field.input_type">
           <mat-form-field *ngSwitchCase="'text'" appearance="outline" class="full-width">
             <mat-label>{{ field.label }}</mat-label>
             <input matInput
@@ -61,7 +84,7 @@
         </div>
       </div>
       <div class="form-actions">
-        <button mat-raised-button color="warn" type="button" (click)="NoThanks()">No Thanks</button>
+        <!-- <button mat-raised-button color="warn" type="button" (click)="NoThanks()">No Thanks</button> -->
         <button mat-raised-button color="warn" type="submit">
           <span *ngIf="!isLoading">Submit</span>
           <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
@@ -69,4 +92,5 @@
       </div>
     </form>
   </mat-card>
+
 </div>

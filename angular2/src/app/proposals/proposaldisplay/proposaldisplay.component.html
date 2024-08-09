@@ -1,0 +1,897 @@
+<header>
+   <div fxFlexFill  class="proposal-header">
+      <div fxLayout="row" class="container">
+         <mat-toolbar color="primary">
+            <header fxFlexFill fxFlex.lt-sm="100%" style="justify-content: space-between;color:#000000; font-weight: 600;">
+               <div fxLayoutAlign="left" fxFlex="20" class="one" (click)="homepage()">
+                  <img *ngIf="white_label==0" src="assets/ginteja-logo.svg" alt="logo"
+                     height="67">
+                  <!-- <span fxLayoutAlign="right" style="padding-left: 10px;"> CAR INSURANCE </span> -->
+               </div>
+               <div fxFlex fxLayout fxFlex="70"  fxShow.gt-sm>
+                  <!-- <div *ngIf="white_label==0" fxLayout="row" fxLayout.xs="column" fxShow.gt-sm>
+                     <button target="_top" fxShow.gt-sm mat-button>email: info@ginteja.in</button>
+                     <button style="cursor: default;" fxShow.gt-sm mat-button fxHide.xs>Ph: +91 6289901320</button>
+                  </div> -->
+                  <div class="backToHomedivOuter">
+
+                     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxFlex="85" fxHide fxShow.gt-sm style="margin-top: 5px;">
+                        <div fxLayout="row" fxHide fxShow.gt-sm>
+                        <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menu" style="font-weight: 600;">
+                           Insurance Products
+                           <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                              keyboard_arrow_down
+                           </mat-icon>
+                        </button>
+                        <button fxHide fxShow.gt-sm mat-button style="font-weight: 600;"> Claim </button>
+                        <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button style="font-weight: 600;">Support</button>
+                        <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button style="font-weight: 600;">Blog</button>
+                        </div>
+                     </div>
+                     <div class="backToHomediv" >
+
+                        <a [href]="POSP_URL"  *ngIf="isRollType8" class="backToHome">  
+                        <img  src="assets/backtohome.png">
+                        Back To Home</a>
+                     </div>
+                     <div class="backToHomediv" *ngIf="isRollType8">
+                        <img class="profile" *ngIf="isPospImg" [src]="POSP_img" onerror="this.onerror=null; this.src='assets/utill/user-dummy.png';" alt="Profile Image">
+                        <span *ngIf="!isPospImg" class="profile"> {{this.POSPshortname}}</span>
+                      </div>
+                  </div>
+               </div>
+               <ng-template #moo3>
+                  <mat-dialog-actions>
+                     <div fxLayout="row" fxFlex="100">
+                        <button mat-button [matMenuTriggerFor]="menu">Support</button>
+                        <button mat-button (click)="openDialog(moo3)">Login</button>
+                        <button mat-button [matMenuTriggerFor]="menu">Register</button>
+                     </div>
+                  </mat-dialog-actions>
+               </ng-template>
+            </header>
+            <mat-menu x-position="before" #life="matMenu">
+               <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/term-plans/">Term
+                   Insurance</a></button>
+               <button mat-menu-item><a
+                   href="https://www.gibl.in/life-insurance/life-insurance-plans/retirement-plans/">Retirement
+                   Plans</a></button>
+               <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/child-plans/">Child
+                   Plans</a></button>
+               <button mat-menu-item><a
+                   href="https://www.gibl.in/life-insurance/life-insurance-plans/ulip-plans/">ULIPS</a></button>
+               <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/group-plans/">Group
+                   Plans</a></button>
+             </mat-menu>
+         </mat-toolbar>
+      </div>
+   </div>
+</header>
+<mat-menu x-position="before" #menu="matMenu">
+   <button mat-menu-item><a [href]="carInsurUrl">Car Insurance</a></button>
+   <button mat-menu-item><a [href]="healthInsurUrl">Health Insurance</a></button>
+   <button mat-menu-item><a [href]="bikeInsurUrl">Two Wheeler
+       Insurance</a></button>
+   <button mat-menu-item><a [href]="travelInsurUrl">Travel Insurance</a></button>
+   <button mat-menu-item><a [href]="cvInsurUrl">Commercial Vehicle
+     Insurance</a></button>
+     <button mat-menu-item><a [href]="termInsurUrl">Term Insurance</a></button>
+     <!-- <button mat-menu-item><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident
+         Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/life-insurance/">Life Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical
+       Illness
+       Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></button> -->
+ </mat-menu>
+<div class="container">
+   <div fxLayout="row wrap" fxLayoutGap="10px" fxLayout="column" style="margin: auto;">
+      <div fxLayoutAlign="center" style="flex-basis:100%;">
+         <div *ngIf="showData" class="container no-padding" fxLayout="row" fxLayout.xs="column" fxFlexFill fxFlex=""
+            fxFlex.xs="100">
+            <div fxLayout.xs="row" fxFlex="100" fxLayout="row" style="flex-basis:50%;">
+            </div>
+         </div>
+      </div>
+      <div class="container space" fxLayout="row" fxLayout.xs="row" fxHide.lg fxHide.md fxHide.sm>
+         <div fxFlex="30" class="sec3 insurer" fxFlex.xs="50" fxLayout.xs="column" fxFlex.sm="50"
+            style=" background: #fff;padding:6px;border-radius: 10px; " fxLayout="column">
+            <div fxFlex="70" fxFlex.xs="100" class="sec2  logo-panel" fxLayout.xs="column">
+               <h5>Insurer : <span>{{COMPANY_NAME}}</span></h5>
+               <div fxFlex="100" style="text-align: center;">
+                  <img style="max-width:80%; margin:auto;" src="assets/company_logo/{{COMPANY_LOGO}}"
+                     alt="{{COMPANY_LOGO}}">
+                  <!-- <a style="font-size:12px;text-align: center; margin: 0; display: inherit;" routerLink="/quote-compare" *ngIf="affiliateParam==''"> -->
+                  <a style="font-size:12px;text-align: center; margin: 0;display: inherit;"
+                     (click)="redirectTo('/quote-compare');">
+                     <mat-icon class="no-icon" style="position:relative;" aria-hidden="false"
+                        aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left
+                     </mat-icon>
+                     <strong>Change Insurer</strong>
+                  </a>
+               </div>
+            </div>
+            <span class="material-icons" fxHide.xs style="font-size:50px; color: #cc0001;">
+               directions_car
+            </span>
+            <p style="font-size:11px; text-align: center;">{{car_fullname}}</p>
+         </div>
+         <div class="space newpp" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="10px"
+            fxLayoutGap.xs="0" fxFlex="38" fxFlex.xs="50" style="border-radius: 10px;">
+            <div *ngIf="prev_policy_type=='Comprehensive'" class="item" fxFlex.xs="90">
+               <span class="key" style="color: #fff;">IDV:
+                  <small>Rs. {{idv | commaSeperator}} </small> </span>
+            </div>
+            <div class="item" fxFlex="35%" fxFlex.xs="100" style="margin-right:0px;">
+               <span class="key">Premium:
+                  <small style="font-size: 11px !important;">{{NET_PREMIUM | currency:'Rs. ' : 'symbol' : '1.0'}}
+                  </small> </span><br>
+               <span class="key">(+) GST: <small>{{SERVICE_TAX | currency:'Rs. ' : 'symbol' : '1.0'}}</small> </span>
+            </div>
+            <div class="item" style="float:right;place-content: flex-end;color: #cc0001 !important;margin-right:0px; "
+               fxFlex="30%" fxFlex.xs="100"><span class="key"
+                  style="color:#cc0001 !important;font-size:12px; font-weight:bold;">Total Premium: <small
+                     style="color:#cc0001; font-size:10px ; font-weight:bold; padding-top:2px;">{{TOTAL_PREMIUM |
+                     currency:'Rs. ' : 'symbol' : '1.0'}}</small> </span>
+            </div>
+         </div>
+
+      </div>
+      <div fxHide.xs>
+         <!-- <div class="wrap-contact101 no-padding mt-10">
+         </div> -->
+         <div class="container space" fxLayout="row" fxLayout.xs="column">
+            <div class="first-row" fxFlex="100%">
+               <div fxFlex="50" style="display: flex;" >
+                  <img style="margin-right: 10%;object-fit: contain" src="assets/company_logo/{{COMPANY_LOGO}}" alt="{{COMPANY_LOGO}}" width="25%">
+                  <div>
+                     <h3 style="color:#cc0001" >Your Insurer</h3>
+                     <h5><span>{{COMPANY_NAME}}</span></h5>
+
+                     <a class="change-insurer" style="" (click)="redirectTo('/quote-compare');">
+                        <mat-icon class="no-icon" style="position:relative;" aria-hidden="false"
+                           aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left
+                        </mat-icon>
+                        <strong>Change Insurer</strong>
+                     </a> 
+                  </div>
+               </div>
+               <div fxFlex="50"  style="display: block !important;text-align: end;">
+                  <h3 style="color:#cc0001">Your Car Name</h3>
+                  <p style="font-size: 13px">{{car_fullname}}</p>
+               </div>
+            </div>
+            
+           
+         </div>
+         <div class="second-row">
+            <div *ngIf="prev_policy_type=='Comprehensive'"  fxFlex="30%" fxFlex.xs="90"> 
+               <h3>IDV</h3>
+               <h5><span>Rs. {{idv | commaSeperator}} </span></h5>
+             
+            </div>
+            <div  fxFlex="40%" fxFlex.xs="100" style="margin-right:0px;">
+               <h3><span>Premium</span> <span>(+) GST</span></h3>
+               <h5><span>{{NET_PREMIUM | currency:'Rs. ' : 'symbol' : '1.0'}}</span> <span>{{SERVICE_TAX | currency:'Rs. ' : 'symbol' : '1.0'}}</span></h5>
+            </div>
+            <div  fxFlex="30%"  fxFlex.xs="100">
+                  <h3>Total Premium</h3>
+                  <h5>{{TOTAL_PREMIUM | currency:'Rs. ' : 'symbol' :
+                     '1.0'}}</h5>
+                  
+               </div>
+         </div>
+      </div>
+      <div fxFlex="100" class="btn-tab">
+         <button fxFlex="25%" class="personal-details" style="border-radius:6px 0 0 6px" (click)="activepersonalDetail();"
+         [ngClass]="{'active':personalDetailTab,'complete':personalDetailComplete}">Your Personal Detail <i class="material-icons">check_circle</i></button>
+         <button fxFlex="25%" class="personal-details" (click)="activecarDetail();"
+         [ngClass]="{'active':carDetailTab,'complete':carDetailComplete}" id="carDetail">Your Car Detail<i class="material-icons">check_circle</i> </button>
+         <button fxFlex="25%" class="personal-details" (click)="activeaddressDetail();"
+         [ngClass]="{'active':addressDetailTab,'complete':addressDetailComplete}" id="addressDetail">Your Address <i class="material-icons">check_circle</i></button>
+         <button fxFlex="25%" class="" style="border-radius:0 6px 6px 0" (click)="activenomineeDetail();"
+         [ngClass]="{'active':nomineeDetailTab,'complete':nomineeDetailComplete}" id="nomineeDetail">Nominee  Detail</button>
+      </div>
+      <div class="wrap-contact101  no-padding mt-10" style="background: transparent; box-shadow:none;">
+         <mat-tab-group (selectedTabChange)="tabChanged($event)" [selectedIndex]="selectedIndex" #tabs>
+            <mat-tab label="Your Personal Detail">
+               <form [formGroup]="personalDetailForm" fxLayout="column" (ngSubmit)="personalDetailSubmit(0)">
+                  <h2>Enter Your Personal Detail</h2>
+                  <div fxFlex="100" fxLayout fxLayout.xs="column" class="input-row"
+                     *ngIf="premiumJson?.PROVIDER_ID=='29' || premiumJson?.PROVIDER_ID=='28' || premiumJson?.PROVIDER_ID=='7' || premiumJson?.PROVIDER_ID=='8' || premiumJson?.PROVIDER_ID=='4'">
+                     <mat-radio-group formControlName="isOwnerCompany" aria-label="Select an option"
+                        style="margin-top: 10px; padding-bottom: 10px;">
+                        <h2 style="display:flex;">Car Registered In Company Name?</h2>
+                        <mat-radio-button (click)="isOwnerCompanyVm(1)" value="1">Yes</mat-radio-button>
+                        <mat-radio-button (click)="isOwnerCompanyVm(0)" value="0">No</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+                  <div fxFlex="100%" fxLayout="row" fxLayout.xs="row" *ngIf="isOwnerCompanyTitleShow" class="input-row">
+                     <div fxFlex="20%" class="pull-left" style="margin-right:20px;">
+                        <mat-form-field>
+                           <mat-select formControlName="companyTitle" placeholder="Choose Title">
+                              <mat-option value="M/S">M/S</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="40%" class="pull-left" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="nope" formControlName="companyName"
+                              [ngModel]="proposalJson1?proposalJson1?.personalDetailForm?.companyName:null" matInput
+                              placeholder="Enter Company Name">
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="40%" class="pull-left" style="margin-right:20px;"
+                        *ngIf="premiumJson?.PROVIDER_ID =='6' || premiumJson?.PROVIDER_ID =='28' ">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="nope"
+                              formControlName="OrganizationContactPersonName"
+                              [ngModel]="proposalJson1?proposalJson1?.personalDetailForm?.OrganizationContactPersonName:null"
+                              matInput placeholder="{{name_place_holder}}">
+                        </mat-form-field>
+                     </div>
+
+                  </div>
+
+                  <h2 *ngIf="isOwnerCompanyTitleShow && premiumJson?.PROVIDER_ID=='8'">Select Date of Incorporation
+                     <span *ngIf="showCustDobError" [ngStyle]="{'color': 'red'}">{{errorCustDobmsg}}</span>
+                  </h2>
+
+
+                  <div fxFlex="100%" *ngIf="isOwnerCompanyTitleShow && premiumJson?.PROVIDER_ID=='8'">
+                     <div fxFlex.xs="24%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field>
+                           <mat-select formControlName="panINCOPDD" placeholder="Date"
+                              (selectionChange)="checkAgeRestriction()">
+                              <mat-option [value]="item" *ngFor="let item of custDOBDD">{{item}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex.xs="24%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field>
+                           <mat-select formControlName="panINCOPMM" placeholder="Month"
+                              (selectionChange)="getMonthAndYear($event)">
+                              <mat-option [value]="item" *ngFor="let item of custDOBMM">{{item}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex.xs="43%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field>
+                           <mat-select formControlName="panINCOPYY" placeholder="Year"
+                              (selectionChange)="getMonthAndYear($event)">
+                              <mat-option [value]="item" *ngFor="let item of PANYY">{{item}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <!--<span *ngIf="showCustDobError" class="invalid-feedback">
+                  <span class="pull-left input-group formerror-msg">{{errorCustDobmsg}}</span>
+                   </span>-->
+                  </div>
+
+                  <div fxFlex="100%" fxLayout="row" fxLayout.xs="row" *ngIf="!isOwnerCompanyTitleShow" class="input-row">
+                     <div fxFlex="20%" class="pull-left" style="margin-right:20px;">
+                        <mat-form-field>
+                           <mat-select formControlName="custTitle" placeholder="Choose Title">
+                              <mat-option value="Mr.">Mr.</mat-option>
+                              <mat-option value="Mrs.">Mrs.</mat-option>
+                              <mat-option value="Ms.">Ms.</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="80%" class="pull-left" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="nope" formControlName="custName"
+                              [ngModel]="refferJson?refferJson.cust_name:null" matInput
+                              placeholder="{{name_place_holder}}">
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <h2 *ngIf="!isOwnerCompanyTitleShow">Select Date of Birth
+                     <span *ngIf="showCustDobError" [ngStyle]="{'color': 'red'}">{{errorCustDobmsg}}</span>
+                  </h2>
+
+
+                  <div fxFlex="100%" *ngIf="!isOwnerCompanyTitleShow" class="input-row">
+                     <div fxFlex.xs="24%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field>
+                           <mat-select formControlName="custDOBDD" placeholder="Date"
+                              (selectionChange)="checkAgeRestriction()">
+                              <mat-option [value]="item" *ngFor="let item of custDOBDD">{{item}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex.xs="24%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field>
+                           <mat-select formControlName="custDOBMM" placeholder="Month"
+                              (selectionChange)="getMonthAndYear($event)">
+                              <mat-option [value]="item" *ngFor="let item of custDOBMM">{{item}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex.xs="43%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field>
+                           <mat-select formControlName="custDOBYY" placeholder="Year"
+                              (selectionChange)="getMonthAndYear($event)">
+                              <mat-option [value]="item" *ngFor="let item of custDOBYY">{{item}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <!--<span *ngIf="showCustDobError" class="invalid-feedback">
+                  <span class="pull-left input-group formerror-msg">{{errorCustDobmsg}}</span>
+                   </span>-->
+                  </div>
+                  <!-- <div fxFlex="100" fxLayout fxLayout.xs="column">
+                     <div fxFlex="20 10 calc(40% - 30px)" class="pull-left" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="custGstNo"
+                              matInput placeholder="Enter Your GST Number (Optional)">
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="20 10 calc(40% - 30px)" class="pull-left" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" formControlName="custPancard" matInput
+                              placeholder="{{pan_place_holder}}">
+                        </mat-form-field>
+                     </div>
+                  </div> -->
+                  <div fxFlex="100" fxLayout fxLayout.xs="column">
+                     
+                      <div fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                          <mat-select formControlName="custDocType" placeholder="Document Type" [(ngModel)]="custDocType"
+                              (selectionChange)="changecustDocType()">
+                              <mat-option [value]="doc" *ngFor="let doc of docTypeArr">{{doc | titlecase}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;" *ngIf="custDocType!='Pan card'">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" formControlName="custOtherDoc" matInput
+                              placeholder="Type Your {{custDocType|titlecase}}">
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:0px;" *ngIf="custDocType=='Pan card'">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" formControlName="custPancard" matInput
+                              placeholder="{{pan_place_holder}}">
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div fxFlex="100" fxLayout fxLayout.xs="column">
+                     <div fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="custGstNo"
+                              matInput placeholder="Enter Your GST Number (Optional)">
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:0px;">
+                        <mat-form-field>
+                           <input formControlName="custPhone" autocomplete="off" maxlength="10" matInput
+                              placeholder="Enter Your Mobile Number">
+                        </mat-form-field>
+                     </div>
+                    
+                  </div>
+                  <div fxFlex="100" fxLayout fxLayout.xs="column" class="email-row">
+                     <div fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input autocomplete="off" formControlName="custEmail" matInput
+                              placeholder="Enter your email">
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <button (click)="track_button('personal-detail-btn')" type="submit" fxFlex="100"
+                     class="contact100-form-btn" style="border-radius: 10px;" id="perionalDetailBtn">
+                     <span>Continue to Your Car Detail
+                        <!-- <i aria-hidden="true" class="fa fa-long-arrow-right m-l-7"></i> -->
+                     </span>
+                  </button>
+               </form>
+            </mat-tab>
+            <mat-tab [disabled]="personalDetailForm.invalid" label="Your Car Detail">
+
+               <form [formGroup]="carDetailForm" fxLayout="column" (ngSubmit)="carDetailSubmit()">
+                  <div fxFlex="100">
+                     <h2 fxFlex="50">Enter Your Car Detail</h2>
+                     <div fxFlex="50" style="display: flex;justify-content: end;" (click)="backTopersonalDetail();"><span class="back">Back to Personal Detail</span></div>
+                  </div>
+                  <div fxFlex="100" fxLayout fxLayout.xs="column" class="input-row" *ngIf="isNew==0">
+                  <mat-radio-group formControlName="newCar" aria-label="Select an option"
+                     style="margin-top: 10px; padding-bottom: 10px;">
+                     <h2 style="display:flex;">Do you have any registration number?</h2>
+                     <mat-radio-button (click)="isNewCar(1)" value="1">Yes</mat-radio-button>
+                     <mat-radio-button (click)="isNewCar(0)" value="0">No (New Bike)</mat-radio-button>
+                  </mat-radio-group>
+               </div>
+                  <div fxFlex="100%" fxLayout fxLayout.xs="column" class="input-row" *ngIf="showRegistrationNumber">
+                     <div fxFlex="50%" class="pull-left" style="margin-right:20px;margin-bottom: 15px">
+                        <mat-form-field>
+                           <mat-label>Enter Registration Number</mat-label>
+                           <span matPrefix>{{rtoCodeTmp}} &nbsp;</span>
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="rtoregNumber"
+                              matInput placeholder="placeholder">
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div *ngIf="(isNew!=0 && PROVIDER_ID !='10') && (quoteJson?.dont_have_prev_policy==false)"
+                     fxFlex="100" fxLayout fxLayout.xs="column">
+                     <div fxFlex="50" class="pull-left" style="margin-right:20px;" class="input-row">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="prevPolicyNo"
+                              matInput placeholder="Enter Previous Policy Number">
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="50" class="pull-left" style="margin-right:0px;" class="input-row">
+                        <mat-form-field>
+                           <mat-label [ngClass]="{'setLabelRed':prevInsuErr==true}">Select Previous Insurer</mat-label>
+                           <input autocomplete="off" matInput [formControl]="myControl" [matAutocomplete]="auto"
+                              (input)="keyinputPrevInsurer($event.target.value)">
+                           <mat-autocomplete #auto="matAutocomplete">
+                              <mat-option *ngFor="let option of filteredOptionsPrevInsurer | async"
+                                 [value]="option.name" (click)="setInsurer(option.name,option.id)">
+                                 {{option.name}}
+                              </mat-option>
+                           </mat-autocomplete>
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div *ngIf="isNew!=0 && PROVIDER_ID =='10'" fxFlex="100" fxLayout fxLayout.xs="column">
+                     <div fxFlex="50" class="pull-left" style="margin-right:20px;" class="input-row">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="prevPolicyNo"
+                              matInput placeholder="Enter Previous Policy Number">
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="50" class="pull-left" style="margin-right:0px;" class="input-row">
+                        <mat-form-field>
+                           <mat-label [ngClass]="{'setLabelRed':prevInsuErr==true}">Select Previous Insurer</mat-label>
+                           <input autocomplete="off" matInput [formControl]="myControl" [matAutocomplete]="auto"
+                              (input)="keyinputPrevInsurer($event.target.value)">
+                           <mat-autocomplete #auto="matAutocomplete">
+                              <mat-option *ngFor="let option of filteredOptionsPrevInsurer | async"
+                                 [value]="option.name" (click)="setInsurer(option.name,option.id)">
+                                 {{option.name}}
+                              </mat-option>
+                           </mat-autocomplete>
+                        </mat-form-field>
+                     </div>
+                     <!-- <div fxFlex="50" class="pull-left" style="margin-right:20px;">
+
+                  <mat-form-field>
+                     <mat-label [ngClass]="{'setLabelRed':setNationalErr==true}">Select Previous Insurer Location</mat-label>
+                     <input autocomplete="off" matInput [formControl]="myNationalControl" [matAutocomplete]="autonational"
+                     (input)="resetNationalErr($event.target.value)">
+                     <mat-autocomplete #autonational="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptionsNational | async" [value]="option.branch_name"
+                        (click)="setNational(option.role_id,option.branch_name)">
+                        {{option.branch_name}}
+                        </mat-option>
+                     </mat-autocomplete>
+                  </mat-form-field>
+               </div> -->
+                  </div>
+                  <div fxFlex="100" fxLayout fxLayout.xs="column">
+                     <div fxFlex="50" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field *ngIf="PROVIDER_ID !='28'">
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="engineNo"
+                              matInput placeholder="Enter Car Enginee Number">
+                        </mat-form-field>
+                        <mat-form-field *ngIf="PROVIDER_ID =='28'">
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="engineNo"
+                              matInput placeholder="Enter Car Enginee Number" minlength="8">
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="50" class="pull-left input-row" style="margin-right:0px;">
+                        <mat-form-field *ngIf="PROVIDER_ID =='28' || PROVIDER_ID =='5' || PROVIDER_ID =='10'">
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="chassisNo"
+                              minlength="17" maxlength="17" matInput placeholder="Enter Car 17 digit Chassis Number ">
+                        </mat-form-field>
+                        <mat-form-field *ngIf="PROVIDER_ID !='28' && PROVIDER_ID !='5' && PROVIDER_ID !='10'">
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="chassisNo"
+                              maxlength="25" matInput placeholder="Enter Car Chassis Number ">
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div fxFlex="100" fxLayout fxLayout.xs="column" *ngIf="PROVIDER_ID =='3'">
+                     <mat-form-field>
+                        <mat-select formControlName="pucStatus" placeholder="PUC Status">
+                           <mat-option value="1">Yes</mat-option>
+                           <mat-option value="0">No</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="c.pucStatus.errors?.puc_error">
+                           Valid PUC required.
+                        </mat-error>
+                     </mat-form-field>
+                  </div>
+                  <div fxFlex="100" fxLayout fxLayout.xs="column" *ngIf="(premiumJson?.PROVIDER_ID=='8') && premiumJson?.PREMIUM_TYPE=='3'">
+                     <mat-radio-group formControlName="isOD" name="radioo" aria-label="Select an option"
+                        style="margin-top: 10px;">
+                        <h2 style="display:flex;">TP COVERAGE PROVIDER AND POLICY NUMBER SAME AS ABOVE?</h2>
+                        <mat-radio-button (click)="isODVm(1)" value="1">Yes</mat-radio-button>
+                        <mat-radio-button (click)="isODVm(0)" value="0">No</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+                  
+                  <div fxFlex="100%"  *ngIf="c.isOD.value==0 && (premiumJson?.PROVIDER_ID=='8') && premiumJson?.PREMIUM_TYPE=='3'">
+                     <div fxFlex.xs="24%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field appearance="outline" style="margin-top: 20px;">
+                           <mat-label>Expiry Date</mat-label>
+                           <input [min]="expireMinDate" [max]="expireMaxDate" formControlName="TPpolicyExpiryDate" matInput [matDatepicker]="picker" date=true (focus)="picker.open()"
+                           placeholder="Please Select Policy Expiry Date">
+                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                           <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex.xs="24%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off"
+                              formControlName="tpPolicyNo" matInput placeholder="TP Policy No.">
+                           
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex.xs="43%" fxFlex="33%" fxLayout="row" class="pull-left" style="margin-right:10px;">
+                        <mat-form-field>
+                           <mat-label [ngClass]="{'setLabelRed':prevInsuErr==true}">TP Prev. Insurer</mat-label>
+                              <input autocomplete="off" matInput formControlName="prevTPInsurer" [matAutocomplete]="auto"
+                                 (input)="keyinputPrevInsurer($event.target.value)">
+                              <mat-autocomplete #auto="matAutocomplete">
+                                 <mat-option *ngFor="let option of filteredOptionsPrevInsurer | async"
+                                    [value]="option.name" (click)="setInsurer(option.name,option.id)">
+                                    {{option.name}}
+                                 </mat-option>
+                              </mat-autocomplete>
+                        </mat-form-field>
+                     </div>
+                   
+                  </div>
+
+
+
+
+
+                  <div fxFlex="100" fxLayout fxLayout.xs="column">
+                     <mat-radio-group formControlName="isLoan" name="radio" aria-label="Select an option"
+                        style="margin-top: 10px;">
+                        <h2 style="display:flex;">Is your car on loan?</h2>
+                        <mat-radio-button (click)="isLoanVm(1)" value="1">Yes</mat-radio-button>
+                        <mat-radio-button (click)="isLoanVm(0)" value="0">No</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+                 
+                  <div
+                     *ngIf="c.isLoan.value==1 && (premiumJson.PROVIDER_ID!='28' && premiumJson.PROVIDER_ID!='6' && premiumJson.PROVIDER_ID!='21' && premiumJson.PROVIDER_ID!='7'  && premiumJson.PROVIDER_ID!='4')"
+                     fxFlex="100" fxLayout fxLayout.xs="column" style="margin-top:20px;">
+                     <div fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="financierName"
+                              matInput placeholder="Name Of Financier">
+                           <mat-hint ><strong>Who is your car hypothecated to on RC?</strong> </mat-hint>
+                        </mat-form-field>
+                     </div>
+                     <div  fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off"
+                              formControlName="financierBranchName" matInput placeholder="Branch Name">
+                           <mat-hint ><strong>City where loan was taken ?</strong> </mat-hint>
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div  *ngIf="c.isLoan.value==1 && premiumJson.PROVIDER_ID=='28'" fxFlex="100" fxLayout
+                     fxLayout.xs="column" style="margin-top:20px;">
+                     <div  fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <mat-select formControlName="financierName" placeholder="Choose Financier Name">
+                              <mat-option *ngFor="let type of kotakJson"
+                                 value="{{type.insurer_name}}~{{type.insurer_code}}">{{type.insurer_name}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div  fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off"
+                              formControlName="financierBranchName" matInput placeholder="Branch Address">
+                           <mat-hint ><strong>City where loan was taken ?</strong> </mat-hint>
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div *ngIf="c.isLoan.value==1 && premiumJson.PROVIDER_ID=='6'" fxFlex="100" fxLayout
+                     fxLayout.xs="column" style="margin-top:20px;">
+                     <div  fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <mat-select formControlName="financierName" placeholder="Choose Financier Name">
+                              <mat-option *ngFor="let type of hdfcJson" value="{{type.name}}" (click)="financierCode(type.id)">{{type.name}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div *ngIf="c.isLoan.value==1 && premiumJson.PROVIDER_ID=='21'" fxFlex="100" fxLayout
+                     fxLayout.xs="column" style="margin-top:20px;">
+                     <div  fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <mat-select formControlName="financierName" placeholder="Choose Financier Name">
+                              <mat-option *ngFor="let type of totalMagmaHypoList"
+                                 value="{{type.insurer_name}}~{{type.insurer_code}}">{{type.insurer_name}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div  fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off"
+                              formControlName="financierBranchName" matInput placeholder="Branch Address">
+                           <mat-hint align="start"><strong>City where loan was taken ?</strong> </mat-hint>
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div *ngIf="c.isLoan.value==1 && (premiumJson.PROVIDER_ID=='7' || premiumJson.PROVIDER_ID=='4')"
+                     fxFlex="100" fxLayout fxLayout.xs="column" style="margin-top:20px;">
+                     <div  fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <mat-select formControlName="financierName" placeholder="Choose Financier Name">
+                              <mat-option *ngFor="let type of totalMagmaHypoList"
+                                 value="{{type.insurer_name}}~{{type.insurer_code}}">{{type.insurer_name}}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div  fxFlex="20 10 calc(40% - 30px)" class="pull-left input-row" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off"
+                              formControlName="financierBranchName" matInput placeholder="Branch Address">
+                           <mat-hint align="start"><strong>City where loan was taken ?</strong> </mat-hint>
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <button (click)="track_button('bike-detail-btn')" fxFlex="100" class="contact100-form-btn"
+                     id="perionalDetailBtn" type="submit" style="border-radius: 10px;">
+                     <span>Continue to Your Address
+                        <i aria-hidden="true" class="fa fa-long-arrow-right m-l-7"></i>
+                     </span>
+                  </button>
+               </form>
+            </mat-tab>
+            <mat-tab [disabled]="carDetailForm.invalid || personalDetailForm.invalid" label="Your Address">
+               <form [formGroup]="addressDetailForm" fxLayout="column" (ngSubmit)="addressDetailSubmit()">
+                  <!-- <h2>Enter Your Address</h2> -->
+                 
+                  <div fxFlex="100">
+                     <h2 fxFlex="50">Enter Your Address</h2>
+                     <div fxFlex="50" style="display: flex;justify-content: end;" (click)="backToCarDetail();"><span class="back">Back to Car Detail</span></div>
+                     <!-- <div class="back" (click)="backToCarDetail();">Back to Car Detail</div> -->
+                  </div>
+                  <div fxFlex="100" fxLayout fxLayout.xs="column">
+                     <div fxFlex="100" class="pull-left input-row">
+                        <mat-form-field *ngIf="PROVIDER_ID =='29'">
+                           <textarea style="text-transform: capitalize;font-weight:500;" autocomplete="off" formControlName="custAddress"
+                              matInput placeholder="Enter Your Current address for further communication"
+                              maxlength="79"></textarea>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="PROVIDER_ID !='29'">
+                           <textarea style="text-transform: capitalize;font-weight:500;" autocomplete="off" formControlName="custAddress"
+                              matInput placeholder="Enter Your Current address for further communication"></textarea>
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div fxFlex="100" fxLayout.xs="column">
+                     <div fxFlex="50" fxFlex.xs="100" fxLayout="row" class="pull-left input-row" style="margin-right: 15px;">
+                        <mat-form-field>
+                           <mat-label [ngClass]="{'setLabelRed':setStateErr==true}">Select State</mat-label>
+                           <input autocomplete="off" matInput [formControl]="myStateControl" [matAutocomplete]="auto"
+                              (input)="resetStateErr($event.target.value)">
+                           <mat-autocomplete #auto="matAutocomplete">
+                              <mat-option *ngFor="let option of filteredOptionsState | async" [value]="option.sname"
+                                 (click)="setState(option.id,option.sname);getCity(option.id)">
+                                 {{option.sname}}
+                              </mat-option>
+                           </mat-autocomplete>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="50%" fxLayout="row" class="pull-left input-row" style="margin-right: 15px;" fxFlex.xs="100%">
+                        <input type="hidden" formControlName="custCityLabel">
+                        <mat-form-field>
+                           <mat-label [ngClass]="{'setLabelRed':setCityErr==true}">Select City</mat-label>
+                           <input autocomplete="off" matInput [formControl]="myCityControl" [matAutocomplete]="auto2"
+                              (input)="resetCityErr($event.target.value)">
+                           <mat-autocomplete #auto2="matAutocomplete">
+                              <mat-option *ngFor="let option of filteredOptionsCity | async" [value]="option.city_name"
+                                 (click)="setCity(option.city_id,option.city_name);">
+                                 {{option.city_name}}
+                              </mat-option>
+                           </mat-autocomplete>
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div fxFlex="100" fxLayout.xs="column" class="">
+                     <div fxFlex="50%" fxLayout="row" class="pull-left input-row" fxFlex.xs="100%">
+                        <mat-form-field>
+                           <input autocomplete="off" formControlName="custPincode"
+                              (input)="checkLength($event.target.value,6)" type="text" matInput
+                              placeholder="Enter Your Pincode">
+                        </mat-form-field>
+                     </div>
+                  </div>  
+                  <span class="error" *ngIf="pincodeValid">
+                     Oops, this pincode does not exist!
+                  </span>
+                  <button (click)="track_button('address-detail-btn')" fxFlex="100" class="contact100-form-btn"
+                     id="perionalDetailBtn" type="submit" style="border-radius: 10px;">
+                     <span>Continue to Your Nominee Detail
+                        <!-- <i aria-hidden="true" class="fa fa-long-arrow-right m-l-7"></i> -->
+                     </span>
+                  </button>
+               </form>
+            </mat-tab>
+            <mat-tab [disabled]="addressDetailForm.invalid || carDetailForm.invalid || personalDetailForm.invalid"
+               label="Nominee  Detail">
+               <form [formGroup]="nomineeDetailForm" fxLayout="column" (ngSubmit)="nomineeDetailSubmit()">
+                  <div fxFlex="100">
+                     <h2 fxFlex="50">Enter Your  Nominee Detail</h2>
+                     <div fxFlex="50" style="display: flex;justify-content: end;" (click)="backToAddress();"><span class="back">Back to Address</span></div>
+                  </div>
+                  <div fxFlex="100%" fxLayout fxLayout.xs="row" class="input-row">
+                     <div fxFlex="20%" fxFlex.xs="30%" class="pull-left" style="margin-right:20px;">
+                        <mat-form-field>
+                           <mat-select formControlName="nomineeTitle" placeholder="Choose Title">
+                              <mat-option value="Mr.">Mr.</mat-option>
+                              <mat-option value="Mrs.">Mrs.</mat-option>
+                              <mat-option value="Ms.">Ms.</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div fxFlex="80%" fxFlex.xs="70%" class="pull-left" style="margin-right:20px;">
+                        <mat-form-field>
+                           <input style="text-transform: uppercase;" autocomplete="off" formControlName="nomineeName"
+                              matInput placeholder="Enter Nominee Name">
+                        </mat-form-field>
+                     </div>
+                  </div>
+                  <div fxFlex="100%" fxLayout.xs="column">
+                     <div *ngIf="PROVIDER_ID !='21'" fxFlex="50%" fxLayout="row" class="pull-left input-row"
+                        style="margin-right:20px;" fxFlex.xs="100">
+                        <mat-form-field>
+                           <mat-select formControlName="nomineeRelation" placeholder="Choose Relationship">
+                              <mat-option value="Father">Father</mat-option>
+                              <mat-option value="Mother">Mother</mat-option>
+                              <mat-option value="Daughter">Daughter</mat-option>
+                              <mat-option value="Son">Son</mat-option>
+                              <mat-option value="Spouse">Spouse</mat-option>
+                              <mat-option value="Sibling">Sister</mat-option>
+                              <mat-option value="Sibling">Brother</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div *ngIf="PROVIDER_ID =='21'" fxFlex="50%" fxLayout="row" class="pull-left input-row"
+                        style="margin-right:20px;" fxFlex.xs="100">
+                        <mat-form-field>
+                           <mat-select formControlName="nomineeRelation" placeholder="Choose Relationship">
+                              <mat-option value="Father">Father</mat-option>
+                              <mat-option value="Mother">Mother</mat-option>
+                              <mat-option value="Daughter">Daughter</mat-option>
+                              <mat-option value="Son">Son</mat-option>
+                              <mat-option value="Spouse">Spouse</mat-option>
+                              <mat-option value="Sister">Sister</mat-option>
+                              <mat-option value="Brother">Brother</mat-option>
+                           </mat-select>
+                        </mat-form-field>
+                     </div>
+                     <div *ngIf="PROVIDER_ID !='21'" fxFlex="50%" fxLayout="row" class="pull-left input-row"
+                        style="margin-right:20px;" fxFlex.xs="100">
+                        <mat-form-field>
+                           <input autocomplete="off" (input)="checkLength($event.target.value,2)"
+                              formControlName="nomineeAge" matInput placeholder="Enter nominee age" type="text">
+                           <mat-error *ngIf="n.nomineeAge.invalid">
+                              Nominee must be more than 18 years old
+                           </mat-error>
+                        </mat-form-field>
+                     </div>
+                     <div *ngIf="PROVIDER_ID == '21'" fxFlex="50%" fxLayout="row" class="pull-left input-row"
+                        style="margin-right:20px;" fxFlex.xs="100">
+                        <div fxFlex="100%">
+                           <!-- <span *ngIf="showMonineeDobError" [ngStyle]="{'color': 'red'}">Nominee must be more than 18 years old</span> -->
+                           <div fxFlex.xs="24%" fxFlex="33%" fxLayout="row" class="pull-left"
+                              style="margin-right:10px;">
+                              <mat-form-field>
+                                 <mat-select formControlName="nomineeDOBDD" placeholder="Date"
+                                    (selectionChange)="checkNomineeAgeRestriction()">
+                                    <mat-option [value]="item" *ngFor="let item of nomineeDOBDD">{{item}}</mat-option>
+                                 </mat-select>
+                              </mat-form-field>
+                           </div>
+                           <div fxFlex.xs="24%" fxFlex="33%" fxLayout="row" class="pull-left"
+                              style="margin-right:10px;">
+                              <mat-form-field>
+                                 <mat-select formControlName="nomineeDOBMM" placeholder="Month"
+                                    (selectionChange)="getMonthAndYearNominee($event)">
+                                    <mat-option [value]="item" *ngFor="let item of nomineeDOBMM">{{item}}</mat-option>
+                                 </mat-select>
+                              </mat-form-field>
+                           </div>
+                           <div fxFlex.xs="43%" fxFlex="33%" fxLayout="row" class="pull-left"
+                              style="margin-right:10px;">
+                              <mat-form-field>
+                                 <mat-select formControlName="nomineeDOBYY" placeholder="Year"
+                                    (selectionChange)="getMonthAndYearNominee($event)">
+                                    <mat-option [value]="item" *ngFor="let item of nomineeDOBYY">{{item}}</mat-option>
+                                 </mat-select>
+                              </mat-form-field>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div *ngIf="showNomineeDobError " fxFlex="100%" fxLayout="column" fxLayout.xs="row">
+                     <h2>Enter Your Appointee Detail</h2>
+                     <div fxLayout="row">
+                        <div fxFlex="20%" fxLayout="row" class="pull-left" style="margin-right:20px;" fxFlex.xs="30%">
+                           <mat-form-field>
+                              <input style="text-transform: uppercase;" autocomplete="off"
+                                 formControlName="appointeeName" matInput placeholder="Enter Appointee Name">
+                           </mat-form-field>
+                        </div>
+                        <div fxFlex="20%" fxLayout="row" class="pull-left" style="margin-right:20px;" fxFlex.xs="30%">
+                           <mat-form-field>
+                              <mat-select formControlName="appointeeRelation" placeholder="Choose Relationship">
+                                 <mat-option value="Father">Father</mat-option>
+                                 <mat-option value="Mother">Mother</mat-option>
+                                 <mat-option value="Daughter">Daughter</mat-option>
+                                 <mat-option value="Son">Son</mat-option>
+                                 <mat-option value="Spouse">Spouse</mat-option>
+                                 <mat-option value="Sister">Sister</mat-option>
+                                 <mat-option value="Brother">Brother</mat-option>
+                              </mat-select>
+                           </mat-form-field>
+                        </div>
+                        <div fxFlex="60%" fxLayout="row" class="pull-left" style="margin-right:20px;" fxFlex.xs="30%">
+                           <div fxFlex.xs="50%" fxFlex="33%" fxLayout="row" class="pull-left"
+                              style="margin-right:10px;">
+                              <mat-form-field>
+                                 <mat-select formControlName="appointeeDOBDD" placeholder="Date"
+                                    (selectionChange)="checkAppointeeAgeRestriction()">
+                                    <mat-option [value]="item" *ngFor="let item of appointeeDOBDD">{{item}}</mat-option>
+                                 </mat-select>
+                              </mat-form-field>
+                           </div>
+                           <div fxFlex.xs="50%" fxFlex="33%" fxLayout="row" class="pull-left"
+                              style="margin-right:10px;">
+                              <mat-form-field>
+                                 <mat-select formControlName="appointeeDOBMM" placeholder="Month"
+                                    (selectionChange)="getMonthAndYearAppointee($event)">
+                                    <mat-option [value]="item" *ngFor="let item of appointeeDOBMM">{{item}}</mat-option>
+                                 </mat-select>
+                              </mat-form-field>
+                           </div>
+                           <div fxFlex.xs="50%" fxFlex="33%" fxLayout="row" class="pull-left"
+                              style="margin-right:10px;">
+                              <mat-form-field>
+                                 <mat-select formControlName="appointeeDOBYY" placeholder="Year"
+                                    (selectionChange)="getMonthAndYearAppointee($event)">
+                                    <mat-option [value]="item" *ngFor="let item of appointeeDOBYY">{{item}}</mat-option>
+                                 </mat-select>
+                              </mat-form-field>
+                           </div>
+                           {{errorCustDobmsg}}
+                        </div>
+                     </div>
+                  </div>
+                  <span *ngIf="agediffDobError" [ngStyle]="{'color': 'red'}">Nominee age should not be greater then the
+                     today's date.</span>
+                  <button *ngIf="!nomineeDetailSubmitted" (click)="nextStep();track_button('nominee-detail-btn')"
+                     fxFlex="100" class="contact100-form-btn" id="perionalDetailBtn" type="submit" style="border-radius: 10px;">
+                     <span>Submit Proposal
+                        <!-- <i aria-hidden="true" class="fa fa-long-arrow-right m-l-7"></i> -->
+                     </span>
+                  </button>
+                  <div class="wrab-div">
+                     <div *ngIf="nomineeDetailSubmitted" class="loader-wrap">
+                        <div class="loader">Loading...</div>
+                     </div>
+                  </div>
+               </form>
+            </mat-tab>
+         </mat-tab-group>
+      </div>
+   </div>
+</div>
+<div class="container-fluid footer-new" *ngIf="white_label==0">
+   <p>
+      ©Copyright 2014 - till now | www.gintejainsurance.com | All Rights Reserved | Insurance is the subject matter of solicitation.
+   </p>
+   
+</div>

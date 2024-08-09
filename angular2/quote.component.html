@@ -1,0 +1,606 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="quoteBodyBackground" [style.background]="'url(assets/quote/img/CVcity.jpg)'">
+  <header>
+    <div fxFlexFill style="background: #055ba9;">
+      <div fxLayout="row" class="container">
+        <mat-toolbar color="primary">
+
+          <header fxFlexFill fxFlex.lt-sm="50%">
+
+            <div style="cursor: pointer;" (click)="mainPage()" fxLayoutAlign="left" fxFlex="20" class="one">
+
+              <img *ngIf="white_label==0" src="assets/quote/img/logo.png" alt="logo" height="67">
+              <span fxLayoutAlign="right"> Commercial Vehicle</span>
+            </div>
+
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxFlex="85" fxHide fxShow.gt-sm>
+              <div fxLayout="row" fxHide fxShow.gt-sm>
+
+                <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menu">Insurance Type
+                  <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                    keyboard_arrow_down
+                  </mat-icon>
+                </button>
+                <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menu">Insurance Company
+                  <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                    keyboard_arrow_down
+                  </mat-icon>
+                </button>
+                <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button>Support</button>
+                <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn" (click)="openDialogLongin()">Login</button>
+                <button fxHide fxShow.gt-sm mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+                <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn">Register</button>
+
+
+              </div>
+            </div>
+            <a class="nav-mob" fxHide (click)="openDialog()"><i class="material-icons">
+                storage
+              </i></a>
+            <ng-template #moo3>
+              <mat-dialog-actions>
+                <div fxLayout="row" fxFlex="100">
+                  <button mat-button [matMenuTriggerFor]="menu">Insurance Type
+                    <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                      keyboard_arrow_down
+                    </mat-icon>
+                  </button>
+                  <button mat-button [matMenuTriggerFor]="menu">Insurance Company
+                    <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                      keyboard_arrow_down
+                    </mat-icon>
+                  </button>
+                  <button mat-button [matMenuTriggerFor]="menu">Support</button>
+                  <button mat-button (click)="openDialogLongin()">Login</button>
+                  <button mat-button [matMenuTriggerFor]="menu">Register</button>
+                </div>
+              </mat-dialog-actions>
+            </ng-template>
+
+          </header>
+
+        </mat-toolbar>
+      </div>
+
+    </div>
+  </header>
+  <mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></button>
+
+  </mat-menu>
+
+  <div class="containerX">
+
+    <div class="container" fxLayout fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="left" fxLayoutGap=""
+      fxLayoutGap.xs="0">
+      <div class="item item-2" *ngIf="makeActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Save upto 50% on Car Insurance
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Your choosing of the right car model will
+          help us find the right coverage for you.
+        </p>
+        <form class="example-container" [formGroup]="quoteForm">
+
+          <div class="pdding-bottom-1">
+            <mat-radio-group formControlName="isRenewal" >
+              <div *ngIf="IS_LIVE==0 || IS_LIVE==1">
+                <mat-radio-button (click)="isNewCar(0)" value="0" >I've bought a new Vehicle</mat-radio-button>
+                <mat-radio-button (click)="isNewCar(1)" value="1" >Renewal</mat-radio-button>
+              </div>
+              <div *ngIf="IS_LIVE==2">
+                <mat-radio-button (click)="isNewCar(1)" value="1" checked="checked">TP only</mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </div>
+        </form>
+      </div>
+
+      <div class="item item-3" *ngIf="modelActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Save upto 50% on Car Insurance
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Online Purchase Discount
+          You can save up to 75% on premium when you purchase
+          car insurance policy from GIBL.
+        </p>
+        <!--       <form class="example-container" [formGroup]="options">
+      </form> -->
+      </div>
+      <div class="item item-4" *ngIf="fuelActive" fxFlex="50%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Choose the correct variant of your car from the list.
+
+          You can manually type your car’s <br> variant if it’s not visible in the list.
+        </p>
+
+      </div>
+      <div class="item item-5" *ngIf="variantActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Save upto 50% on Car Insurance
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>We’re almost there!
+
+          The city or town that your car is registered in can affect <br> the amount of car insurance premium.
+
+          Make sure you select the right RTO from the list.
+        </p>
+        <!--       <form class="example-container" [formGroup]="options">
+      </form> -->
+      </div>
+      <div class="item item-6" *ngIf="registrationActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Save upto 50% on Car Insurance
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Compare bike insurance quotes from all the major players in
+          a
+          matter of a few clicks and instantly see the best price.
+        </p>
+        <!--       <form class="example-container" [formGroup]="options">
+      </form> -->
+      </div>
+      <div class="item item-7" *ngIf="contactActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Save upto 50% on Car Insurance
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">Add-on Coverage</h4>
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Choose the correct variant of your car from the list.
+
+          You can manually type your car’s <br> variant if it’s not visible in the list.</p>
+
+      </div>
+      <div fxFlex="80" class="wrap-contact100" style="order:2;">
+          <h1>
+              Buy or Renew Commercial Vehicle Insurance Online
+And Save upto 80% on Premium
+          </h1>
+      <mat-tab-group>
+         
+          <mat-tab label="Goods carrier" id="new-tab"> 
+            
+              <form >
+                 
+                  <div class="new-tab">
+                    <label>Vehicle Sub class* </label>
+                    <br>
+                    <mat-radio-group >
+                      <mat-radio-button value="auto">Other than 3 Wheelers</mat-radio-button>
+                      <mat-radio-button value="always">3 Wheelers</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  </form>  
+          </mat-tab>
+          <mat-tab label="Passenger carrier">
+              <form>
+                 
+                  <div class="new-tab">
+                    <label>Vehicle Sub class* </label>
+                    <br>
+                    <mat-radio-group>
+                      <mat-radio-button value="auto">Taxi</mat-radio-button>
+                      <mat-radio-button value="always">Auto Rikshaw</mat-radio-button>
+                      <mat-radio-button value="auto">2 Wheelers</mat-radio-button>
+                      <mat-radio-button value="always">Buses/ Shuttle</mat-radio-button>
+                      <mat-radio-button value="auto">E-Rikshaw</mat-radio-button>
+                     
+                    </mat-radio-group>
+                  </div>
+                  </form>  
+          </mat-tab>
+          <mat-tab label="Miscellaneous"> 
+              <form >
+                 
+                  
+                  <div  class="new-tab" fxFlex="100" fxLayout="row"  fxLayout.xs="column" *ngIf="!show">
+                      <div fxFlex="35" fxflex.xs="50" >
+                          <mat-radio-group >
+                             
+                              <mat-radio-button value="auto">Agricultar Tractor</mat-radio-button>
+                              <mat-radio-button value="always">Ambulance</mat-radio-button>
+                              <mat-radio-button value="auto">Drilling Rigs</mat-radio-button>
+                              <mat-radio-button value="always">Transit Mixer</mat-radio-button>
+                              <mat-radio-button value="auto">Plane Loaders & Other Vehicles</mat-radio-button>
+                              <mat-radio-button value="always">Crane</mat-radio-button>
+                              <mat-radio-button value="always">Excavators</mat-radio-button>
+                              <mat-radio-button value="always">Compressors</mat-radio-button>
+                              <mat-radio-button value="always">Generator Van</mat-radio-button>
+                              <mat-radio-button value="always">Harvester</mat-radio-button>
+                          </mat-radio-group>
+                      </div>
+                    <div fxFlex="25"  fxflex.xs="50">
+                        <mat-radio-group>
+                            <mat-radio-button value="auto">Garbage Van</mat-radio-button>
+                            <mat-radio-button value="always">	Fork Lift Trucks
+                              </mat-radio-button>
+                            <mat-radio-button value="auto">Bulldozers/graders</mat-radio-button>
+                            <mat-radio-button value="always">Cash Van</mat-radio-button>
+                            <mat-radio-button value="auto">Prision van</mat-radio-button>
+                            <mat-radio-button value="always">Recovery Van</mat-radio-button>
+                            <mat-radio-button value="always">Levellers</mat-radio-button>
+                            <mat-radio-button value="always">Road Rollers</mat-radio-button>
+                            <mat-radio-button value="always">Tower Wagons</mat-radio-button>
+                            <mat-radio-button value="always">Trailer</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div fxFlex="20" fxflex.xs="50">
+                        <mat-radio-group>
+                            <mat-radio-button value="auto">Breakdown Vehicles</mat-radio-button>
+                            <mat-radio-button value="always">Road Sweeper</mat-radio-button>
+                            <mat-radio-button value="auto">Military Tea Vans</mat-radio-button>
+                            <mat-radio-button value="always">Ladder Carrier Carts</mat-radio-button>
+                            <mat-radio-button value="auto">Tar Sprayers (Self Propelled)</mat-radio-button>
+                            <mat-radio-button value="always">Spraying Plant</mat-radio-button>
+                            <mat-radio-button value="auto">Rippers</mat-radio-button>
+                            <mat-radio-button value="always">Mobile Plant</mat-radio-button>
+                            <mat-radio-button value="always">Grabs</mat-radio-button>
+                            <mat-radio-button value="always">Scapers</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                
+                  </div>
+                  <div fxFlex="100">
+                      <a class="viewmore" (click)="show=!show">View More</a>
+                   </div> 
+                  <div  class="new-tab" fxFlex="100" fxLayout="row" *ngIf="show" fxLayout.xs="column">
+                      <div fxFlex="40" fxflex.xs="100">
+                          <mat-radio-group >
+                             
+                              <mat-radio-button value="auto">Fire Fighter</mat-radio-button>
+                              <mat-radio-button value="always">Gritting Machines</mat-radio-button>
+                              <mat-radio-button value="auto">Hearses</mat-radio-button>
+                              <mat-radio-button value="always">Horse Boxes</mat-radio-button>
+                              <mat-radio-button value="auto">Mobile Shops And Canteens</mat-radio-button>
+                              <mat-radio-button value="always">Scientific Vans</mat-radio-button>
+                              <mat-radio-button value="always">Pre-Mix Laying Equipment</mat-radio-button>
+                              <mat-radio-button value="always">Refrigeration/Pre-Cooling Un</mat-radio-button>
+                              <mat-radio-button value="always">Fire Brigade 
+                                </mat-radio-button>
+                               
+                          </mat-radio-group>
+                      </div>
+                    <div fxFlex="80"  fxflex.xs="50">
+                        <mat-radio-group>
+                            <mat-radio-button value="always">Cinema Film Recording</mat-radio-button>
+                            <mat-radio-button value="auto">Delivery Trucks
+                              </mat-radio-button>
+                            <mat-radio-button value="always">Dust Carts Water Carts Road Sweeper And Tower Wagons
+                              </mat-radio-button>
+                            <mat-radio-button value="auto">Road Sprinklers Used Also As Fire Fighting Vehicles</mat-radio-button>
+                            <mat-radio-button value="auto">Road Sprinklers Used Also As Fire Fighting Vehicles
+                              </mat-radio-button>
+                            <mat-radio-button value="always">Cash Van</mat-radio-button>
+                            <mat-radio-button value="auto">Prision van</mat-radio-button>
+                            <mat-radio-button value="always">Recovery Van</mat-radio-button>
+                            <mat-radio-button value="always">Levellers</mat-radio-button>
+                            
+                        </mat-radio-group>
+                    </div>
+                  
+                  
+                  </div>
+                  </form>  
+                
+          </mat-tab>
+
+        
+        </mat-tab-group>
+
+       <div style="text-align:center;">
+
+          <button mat-raised-button color="warn"  style="margin:auto; margin-top:25px; font-size:18px;
+          height: 49px" fxFlex="29">Next</button>
+        
+       </div> 
+       <small class="tandc">By clicking on Next Button, you agree to our <a href="https://www.gibl.in/UI/Pages/TermsOfUse.aspx">Terms & conditions</a></small>
+      </div>
+      <mat-horizontal-stepper fxFlexOrder="1" fxHide fxFlex="50%" style="width: 100%"
+        (selectionChange)="selectionChange($event)" [linear]="isLinear" #stepper>
+    
+        
+        <mat-step [stepControl]="brandFormGroup">
+          
+          <div>
+            <h1>What's the brand of your car?</h1>
+          </div>
+
+          <form [formGroup]="brandFormGroup">
+
+            <ng-template matStepLabel matTabContent>
+              <span [ngClass]="{'mat-step-label-selected-color':selectedStepperIndex!=1}"
+                [ngClass.lt-md]="{'hideme':true}" *ngIf="brandName.length>12;else brandNameTooltip"
+                matTooltipClass="example-tooltip-red" matTooltip="{{brandName}}" [matTooltipPosition]="'above'"
+                class="example-button">{{brandName|slice:0:12}}..</span>
+              <ng-template #brandNameTooltip>
+                <div [ngClass]="{'mat-step-label-selected-color':selectedStepperIndex!=1}">{{brandName}}</div>
+              </ng-template>
+            </ng-template>
+
+            <div fxFlex="100%" fxFlexFill>
+              <ng-select style="margin-top: 50px;padding-right: 10x;font-size: 15px;text-align: left;"
+                [virtualScroll]=true [items]="totalBrandList" bindLabel="name" (change)="brandChanged($event.id)"
+                dropdownPosition="bottom" [appendTo]="'body'" placeholder="Not in the list? Find your car's brand here">
+              </ng-select>
+            </div>
+          </form>
+          <div class="good-make" id="top-brand" style="margin-top:30px">
+
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center">
+              <ng-container *ngFor="let item of topBrandList">
+                <div class="img-wrap" fxFlex="0 1 calc(20.3% - 5px)" fxFlex.lt-md="0 1 calc(40% - 10x)"
+                  fxLayout.lt-sm="row" fxFlex.xs="30%" fxLayout.xs="column">
+                  <a (click)="move(2);makeTapped(item.brand_name,item.brand_code,'',item.id)" href="JavaScript:void(0);">
+                    <div class="good-make-wrap" [ngClass]="{'is-selected':item.brand_code === form_brand}">
+                      <img mat-card-image src='assets/quote/logo/{{item.brand_logo}}' alt='{{item.brand_name}}'>
+                      <div class="brand-name">{{item.brand_name}}</div>
+                    </div>
+                  </a>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="modelFormGroup" [editable]="isEditable">
+          <a href="JavaScript:void(0);" (click)="goBackward()">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <h1>What is your car’s model?</h1>
+          <form [formGroup]="modelFormGroup">
+
+            <ng-template matStepLabel matTabContent>
+              <span [ngClass.lt-md]="{'hideme':true}" *ngIf="modelName.length>12;else modelNameTooltip"
+                matTooltipClass="example-tooltip-red" matTooltip="{{modelName}}" [matTooltipPosition]="'above'"
+                class="example-button">{{modelName| slice:0:12}}..</span>
+              <ng-template #modelNameTooltip>
+                <div>{{modelName}}</div>
+              </ng-template>
+            </ng-template>
+            <div fxFlex="100%" fxFlexFill>
+              <ng-select #modelSelect style="margin-top: 50px;padding-right: 10x;font-size: 15px;text-align: left;"
+                [virtualScroll]=true [items]="totalModelList" bindLabel="name"
+                (change)="modelTapped($event.model_name,$event.model_code);" dropdownPosition="bottom"
+                [appendTo]="'body'" placeholder="Not in the list? Find your car's model here"></ng-select>
+            </div>
+          </form>
+          <div class="good-make" id="top-model" style="margin-top: 10px">
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item" data-txt="AVEO"
+              id="model_AVEO" data-val="undefined" style="margin-top:30px">
+
+              <div *ngFor="let item of topModelList" [ngClass]="{'is-selected':item.model_code === form_model}"
+                style="width: 110px" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="50%"
+                (click)="move(3);modelTapped(item.model_name,item.model_code)">
+                <span class="example-button">{{item.model_name}}</span>
+              </div>
+
+            </div>
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+              <div (click)="focusModle()" style="width: 100%" class="good-make-wrap img-wrap"
+                fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">
+                Others
+              </div>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="fuelFormGroup" [editable]="isEditable">
+          <a href="JavaScript:void(0);" (click)="goBackward()">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <h1>What's type of fuel ?</h1>
+          <form [formGroup]="fuelFormGroup">
+            <ng-template matStepLabel matTabContent>
+              <span [ngClass.lt-md]="{'hideme':true}" class="example-button">{{fuelName}}</span>
+            </ng-template>
+
+            <div class="good-make" id="Fuel">
+
+              <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="22px" fxLayoutAlign="center"
+                class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+
+                <div *ngFor="let item of totalFuelList">
+                  <div *ngIf="item.fuel_logo!=''" [ngClass]="{'is-selected':item.fuel_type_text === form_fuel}" class="good-make-wrap img-wrap"
+                    fxFlex="0 1 calc(22% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%"
+                    (click)="move(4);fuelTapped(item.fuel_type_text,item.fuel_type,item.model_code,item.is_non_battery)">
+                    <div class="good-make-wrap"><img alt="Chevrolet"
+                        src="assets/quote/img/{{item.fuel_logo}}">
+                      <div style="text-align: center">{{item.fuel_type_text}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="variantFormGroup" [editable]="isEditable">
+          <a href="JavaScript:void(0);" (click)="goBackward()">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <h1>What's your car's variant?</h1>
+          <form [formGroup]="variantFormGroup">
+            <ng-template matStepLabel matTabContent>
+              <!-- <span fxHide fxShow.gt-sm>{{variantName| slice:0:10}}<span *ngIf="variantName.length>10">..</span></span> -->
+              <span [ngClass.lt-md]="{'hideme':true}" *ngIf="variantName.length>12;else variantNameTooltip"
+                matTooltipClass="example-tooltip-red" matTooltip="{{variantName}}" [matTooltipPosition]="'above'"
+                class="example-button">{{variantName| slice:0:12}}..</span>
+              <ng-template #variantNameTooltip>
+                <div>{{variantName}}</div>
+              </ng-template>
+            </ng-template>
+            <div fxFlex="100%" fxFlexFill>
+              <ng-select #variantSelect style="margin-top: 50px;padding-right: 10x;font-size: 15px;text-align: left;"
+                [virtualScroll]=true [items]="totalVariantList" bindLabel="name" dropdownPosition="bottom"
+                [appendTo]="'body'" (change)="variantTapped($event.id,$event.variant_name,$event.cubic_capacity);"
+                placeholder="Not in the list? Find your car's Variant"></ng-select>
+            </div>
+          </form>
+          <div class="good-make" id="variant" style="margin-top: 10px">
+
+            <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="22px" fxLayoutAlign="center"
+              class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+              <div *ngFor="let item of topVariantList" style="width: 100%"
+                [ngClass]="{'is-selected':item.variant_code === form_variant}" class="good-make-wrap img-wrap"
+                fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%"
+                (click)="move(5);variantTapped(item.id,item.variant_name,item.variant_code,item.cubic_capacity)">
+                <span class="example-button">{{item.variant_name}} ({{item.cubic_capacity}} CC)</span>
+              </div>
+            </div>
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+              <div (click)="focusVariant()" style="width: 100%" class="good-make-wrap img-wrap"
+                class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)"
+                fxFlex.lt-sm="100%">
+                Others
+              </div>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="regisFormGroup" [editable]="isEditable">
+          <a href="JavaScript:void(0);" (click)="goBackward()">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <h1>What is your car registration location?</h1>
+          <form [formGroup]="regisFormGroup">
+            <ng-template matStepLabel matTabContent>
+              <span [ngClass.lt-md]="{'hideme':true}" class="example-button">{{registrationName}}</span>
+            </ng-template>
+            <ng-select formControlName="regisCtrl" #rtoSelect [selectOnTab]=false [appendTo]="'body'"
+              style="margin-top: 60px;padding-right: 10x;font-size: 15px;text-align: left;" [virtualScroll]=true
+              [items]="totalRtoList" bindLabel="name" (change)="registrationTapped($event.id);"
+              dropdownPosition="bottom" placeholder="Not in the list? Find car's registration location" (close)="get_rto_list()" required>
+            </ng-select>
+
+            <div class="good-make" id="Registration" style="margin-top: 10px">
+
+              <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="22px" fxLayoutAlign="center"
+                class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+                <div (click)="focusRto('5550')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.xs="0 1 calc(33% - 10px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Delhi
+                </div>
+                <div (click)="focusRto('2526')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Kolkata
+                </div>
+                <div (click)="focusRto('5355')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Mumbai
+                </div>
+                <div (click)="focusRto('5603')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Bangalore
+                </div>
+                <div (click)="focusRto('1819')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Hyderabad
+                </div>
+                <div (click)="focusRto('4395')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Shimla
+                </div>
+                <div (click)="focusRto('3873')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Pune
+                </div>
+                <div (click)="focusRto('931')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Chandigarh
+                </div>
+                <div (click)="focusRto('1890')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Jaipur
+                </div>
+              </div>
+              <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+                <div (click)="focusRto('')" style="width: 100%" class="good-make-wrap img-wrap"
+                  fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">
+                  Others
+                </div>
+              </div>
+            </div>
+            <div *ngIf="form_premium_type==1">
+              <h1>What is your car registration Year?</h1>
+              <p>
+                <mat-form-field appearance="outline" fxFlex id="remove-margin">
+                  <!-- style="margin-top: -3.2em !important" -->
+                  <mat-label>Find your year of registration here</mat-label>
+                  <mat-select #rtoYrSelect formControlName="regisYrCtrl" placeholder="Select your registration year" #singleSelect>
+                    <mat-option *ngFor="let item of regYearDropdown" (click)="goForward();contactTapped(item)" [value]="item">
+                      {{item}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+            </div>
+            <!-- </div> -->
+            <div>
+              <button mat-button class="contact100-form-btn" type="submit" matStepperNext>
+                &nbsp; &nbsp;&nbsp; Save &
+                Continue &nbsp;&nbsp;&nbsp;</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="contactFormGroup" id="last-s" completed="false">
+          <a (click)="goBackward()" href="JavaScript:void(0);">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <!-- <ng-template matStepLabel>Done</ng-template> -->
+          <h1>Please Provide the Information</h1>
+          <form [formGroup]="contactFormGroup" (ngSubmit)="contactFormSubmit()">
+            <mat-form-field appearance="outline" class="mat-form-field-select-margin"
+              style="margin-top:3.8em !important;">
+              <mat-label>Your Mobile Number</mat-label>
+              <input formControlName="mobileNoCtrl" matInput placeholder="Please Enter Your Mobile Number" maxlength="10" type="number" (input)="checkLength($event.target.value,10)">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Your Email Id</mat-label>
+              <input formControlName="emailCtrl" matInput placeholder="Please Enter Your Email Id">
+            </mat-form-field>
+            <div *ngIf="form_premium_type==1">
+              <mat-form-field appearance="outline">
+                <mat-label>Expiry Date</mat-label>
+                <input [min]="expireMinDate" formControlName="expiryDate" matInput [matDatepicker]="picker" date=true (focus)="picker.open()" placeholder="Please Select Policy Expiry Date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Have you made any claim on last year?</mat-label>
+                <mat-select formControlName="lastClaim" placeholder="Last Claim Taken?">
+                  <mat-option value="1">Yes</mat-option>
+                  <mat-option value="0">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!contactSubmitLoader">
+              <div>
+                <button mat-button class="contact100-form-btn" type="submit">&nbsp;&nbsp;&nbsp;Continue to View
+                  Quotes&nbsp;&nbsp;&nbsp;</button>
+              </div>
+            </div>
+            <div fxLayout="row" style="height: 80px;margin-top: -45px" fxLayoutAlign="center center"
+              *ngIf="contactSubmitLoader">
+              <div id="registration-loader" style="text-align:center">
+                <div class="loader">Loading...</div>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+
+
+  </div>
+
+</div>

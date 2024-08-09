@@ -20,12 +20,13 @@
           </div>
           <div class="product-feature">
             <ul class="features-list">
-              <li><span>Plan Type: {{ premiumData.db_type}}</span></li>
-              <li><span>Claim Settled: {{ premiumData.claim_settled | number:'1.0-2'}}%</span></li>
+              <li><span>Plan Type:</span> {{ premiumData.db_type}}</li>
+              <li><span>Claim Settled:</span> {{ premiumData.claim_settled | number:'1.0-2'}}%</li>
               <li>
+                <img src="assets\quote\img\brochure.png" alt="brochure icon">
                 <a (click)="showPdfFromUrl(premiumData.premium_pdf)"
                   *ngIf="premiumData.premium_pdf && premiumData.premium_pdf !== ''"
-                  style="padding-left: 0px !important">
+                 >
                   {{ 'View Brochure' | titlecase }}
                 </a>
               </li>
@@ -34,11 +35,11 @@
         </div>
         <div class="product-actions">
           <div class="warper-top">
-            <div class="plan-label">
+            <div class="plan-label premium-label">
               <span>Cover Upto</span>
               {{ premiumData.cover_upto }} Yrs
             </div>
-            <div class="plan-label" style="padding-left: 5px;">
+            <div class="plan-label premium-label" style="padding-left: 5px;">
               <span>Sum insured</span>
               {{ premiumData. sum_assured |
               currency:'INR':'symbol-narrow':'1.0' }}

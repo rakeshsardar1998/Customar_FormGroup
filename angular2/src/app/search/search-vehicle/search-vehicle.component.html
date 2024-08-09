@@ -1,0 +1,409 @@
+<div class="quoteBodyBackground" >
+
+  <mat-toolbar style="color: #000000;
+  background-color: #fff;
+  padding: 15px 0px 15px;
+  font-weight: 600;
+  height: 95px;" color="primary">
+    <header class="container">
+      <div style="background-color: #fff;" fxLayoutAlign="left" fxFlex="20" class="one" *ngIf="showlogo">
+        <img [routerLink]="['']" src="assets/ginteja-logo.svg"
+          alt="logo" height="67">
+        <!-- <span fxLayoutAlign="right"> CAR INSURANCE </span> -->
+      </div>
+      
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxFlex="85" fxHide fxShow.gt-sm style="gap: 1rem;">
+        <div fxLayout="row"  fxHide fxShow.gt-sm     style="align-items: center;" >
+          <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menu" style="font-weight: 600;">
+            Insurance Products
+            <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+              keyboard_arrow_down
+            </mat-icon>
+          </button>
+
+          <button fxHide fxShow.gt-sm mat-button style="font-weight: 600;">
+           Claim
+
+          </button>
+
+          <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button style="font-weight: 600;">Support</button>
+          <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button style="font-weight: 600;">Blog</button>
+          <!-- <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn" (click)="openDialogLongin()">
+            LOGIN
+          </button> -->
+
+          <!-- <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn"
+          Style="color: #fff!important; background: #fb542f; border-radius: 5px; font-size: 11px; padding: 9px 10px 10px; margin-right: 5px;">
+          </button> -->
+
+          <!-- <a href="" fxHide fxShow.gt-sm mat-button
+            Style="color: #fff!important; background: #cc0001; border-radius: 5px; font-size: 11px; padding: 9px 10px 10px; margin-right: 5px;">
+           Login
+          </a> -->
+
+          <!-- <a href="" fxHide fxShow.gt-sm mat-button *ngIf="isLoggedIn" (click)="logout()"
+            Style="border-radius: 5px;font-size: 11px;padding:9px 10px 10px; margin-right:5px;">
+           Logout
+          </a> -->
+
+          <!-- <button (click)="registrationPage()"></button> -->
+
+        </div>
+        <div class="backToHomediv" *ngIf="isRollType8">
+          <a [href]="POSP_URL" class="backToHome">  
+            <img  src="assets/backtohome.png">
+            Back To Home</a>
+        </div>
+        <div class="backToHomediv" *ngIf="isRollType8">
+          <img class="profile" *ngIf="isPospImg" [src]="POSP_img" onerror="this.onerror=null; this.src='assets/utill/user-dummy.png';" alt="Profile Image">
+          <span *ngIf="!isPospImg" class="profile"> {{this.POSPshortname}}</span>
+        </div>
+      </div>
+
+      <ng-template #moo3>
+        <mat-dialog-actions>
+          <div fxLayout="row" fxFlex="100" class="mat-primary">
+            <button mat-button [matMenuTriggerFor]="menu">
+              Insurance Type
+              <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                keyboard_arrow_down
+              </mat-icon>
+            </button>
+            <button mat-button [matMenuTriggerFor]="menuCom">
+              Insurance Company
+              <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                keyboard_arrow_down
+              </mat-icon>
+            </button>
+            <button mat-button [matMenuTriggerFor]="menu">Support</button>
+            <button mat-button *ngIf="!isLoggedIn">
+              <a href="https://www.gibl.in/login.php" mat-button>Login</a>
+            </button>
+            <button mat-button (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+            <button mat-button [matMenuTriggerFor]="menu" *ngIf="!isLoggedIn">Register</button>
+          </div>
+        </mat-dialog-actions>
+      </ng-template>
+    </header>
+    <mat-menu x-position="before" #life="matMenu">
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/term-plans/">Term
+          Insurance</a></button>
+      <button mat-menu-item><a
+          href="https://www.gibl.in/life-insurance/life-insurance-plans/retirement-plans/">Retirement
+          Plans</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/child-plans/">Child
+          Plans</a></button>
+      <button mat-menu-item><a
+          href="https://www.gibl.in/life-insurance/life-insurance-plans/ulip-plans/">ULIPS</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/group-plans/">Group
+          Plans</a></button>
+    </mat-menu>
+    <mat-menu x-position="before" #menu="matMenu">
+      <button mat-menu-item><a [href]="carInsurUrl">Car Insurance</a></button>
+      <button mat-menu-item><a [href]="healthInsurUrl">Health Insurance</a></button>
+      <button mat-menu-item><a [href]="bikeInsurUrl">Two Wheeler
+          Insurance</a></button>
+      <button mat-menu-item><a [href]="travelInsurUrl">Travel Insurance</a></button>
+      <button mat-menu-item><a [href]="cvInsurUrl">Commercial Vehicle
+        Insurance</a></button>
+        <button mat-menu-item><a [href]="termInsurUrl">Term Insurance</a></button>
+    </mat-menu>
+    <mat-menu x-position="before" #menuCom="matMenu">
+      <button mat-menu-item><a href="https://www.gibl.in/national-insurance/">National Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/new-india-assurance/">New India Assurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/united-india-insurance-uiic/">United India
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/hdfc-ergo-insurance/">HDFC ERGO General
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/star-health-insurance/">Star Health
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/oriental-insurance/">Oriental Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/bajaj-allianz-insurance/">Bajaj Allianz General
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/iffco-tokio-insurance/">Iffco Tokio General
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/sbi-general-insurance/">SBI General
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/max-bupa-insurance/">MaxBupa Health
+          insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/apollo-munich-insurance/">Apollo Munich Health
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/bharti-axa-insurance/">Bharti AXA General
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/tata-aig-insurance/">Tata AIG Greneral
+          Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/universal-sompo-insurance/">Universal Sompo General
+          Insurance </a></button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <div class="container">
+    <div fxLayout="row" fxLayout.xs="column" style="justify-content: space-between;">
+      <div fxHide fxShow.gt-xs  class="item item-2 ng-tns-c1-0 ng-star-inserted" fxFlex="60" style=" flex: 1 1 100%; box-sizing: border-box;padding:20px 0; margin: 19px 0 0 5px;">
+        <h1 class="ng-tns-c1-0" style="font-size: 24px; font-weight: bold;">Save upto 50% on <span style="color: #cc0001;">Car Insurance</span></h1>
+
+        <p class="motor_banner_p ng-tns-c1-0 ng-star-inserted" fxhide="true" fxshow.gt-sm="" ng-reflect-fx-show.gt-sm=""
+          ng-reflect-fx-hide="true">
+          Get your car insured with the best features - completely online, right now!
+          <img src="assets/quote/img/car-quote.png" width="450" class="car_img_width">
+        </p>
+
+        <!--bindings={"ng-reflect-ng-if": "false"}-->
+      </div>
+      <div fxFlex="43" fxFlex.xs="100" style="    background: rgb(255, 255, 255); padding: 30px 30px; border-radius: 10px;margin: 85px auto;flex: 1 1 100%;box-sizing: border-box;box-shadow: 1px 1px 10px #c6c6c6;">
+        <form class="example-container ng-untouched ng-pristine ng-invalid" [formGroup]="searchForm"
+          (submit)="onSearchFormSubmit(vehicleConfirmationModal)" fxLayout="column">
+          <div fxFlex="50" style=" margin: auto;" fxLayout="column" style="width: 100%;">
+            <!-- <h2 style="padding-bottom:15px; text-align: center; font-weight: bold;"> Compare & Save upto 85%* on Car Insurance <br> Renew in 2 minutes</h2> -->
+            <h2 style="font-size:20px; text-align: center; font-weight: bold; margin-bottom: 0px;">Please Provide Your <span style="color:#cc0001">Vehicle</span> Details</h2>
+            <h2 style="font-size:14px; text-align: center; margin-top: 10px; font-weight: bold;">Please Enter Vehicle Registration Number</h2>
+            <mat-form-field appearance="outline" fxFlex="50">
+              <mat-label>Enter Car Registration Number</mat-label>
+              <input matInput formControlName="registration_no" placeholder="DL03AB1234" maxlength="10" (change)="onRegnoChange()" (input)="onRegnoInput()">
+            </mat-form-field>
+          </div>
+          <div fxFlex="50" >
+            <button style="width: 100%;" [disabled]="!buttonStatus.search" class="contact100-form-btn" type="submit">Get Quote </button>
+              <p class="NoRegistration_btn">
+                <a routerLink="/search">Don't Know Registration No </a>
+                <a routerLink="/new" [queryParams]="{ 'TYPE': 'N' }">Buying a new car? </a>
+              </p>
+          </div>
+          <!-- (click)="onClickManual()" -->
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="container-fluid footer-new" style="background:#055ba9;"></div> -->
+</div>
+
+<footer id="footer">
+
+  <div class="footer-top bg-color">
+      <div class="container">
+          <div class="row d-block footer-ml">
+              <div fxFlex="20" fxFlex.xs="100" fxFlex.sm="100" class="footer-mr">
+                      <img  src="assets/ginteja-logo.svg" alt="ginteja-Logo" class="img-fluid ginteja-Logo">
+
+                  <div class="social-links text-center mt-4">
+                    <a href="" class="facebook" target="_blank">
+                      <img  src="assets/quote/img/twittrs.png" alt="ginteja-Logo" class="img-fluid">
+                    </a>
+                      <a href="" class="twitter" target="_blank">
+                        <img  src="assets/quote/img/fb.png" alt="ginteja-Logo" class="img-fluid">
+                      </a>
+
+                      <a href="" class="instagram" target="_blank">
+                        <img  src="assets/quote/img/linkedin.png" alt="ginteja-Logo" class="img-fluid">
+                      </a>
+                      <a href="" class="linkedin" target="_blank">
+                        <img  src="assets/quote/img/instragram.png" alt="ginteja-Logo" class="img-fluid">
+                      </a>
+                  </div>
+              </div>
+
+              <div  fxFlex="25" fxFlex.xs="100" fxFlex.sm="100">
+                  <h3>Get Insured</h3>
+                  <ul class="foot-link">
+                      <li>
+                          <a href="javascript:void(0);" ng-click="pageNavigation('car-insurance')"><mat-icon>keyboard_arrow_right</mat-icon> Car Insurance</a>
+                      </li>
+                      <li>
+                          <a href="javascript:void(0);" ng-click="pageNavigation('bike-insurance')">
+                              <mat-icon>keyboard_arrow_right</mat-icon> Bike Insurance
+                          </a>
+                      </li>
+                      <li>
+                          <a href="javascript:void(0);" ng-click="pageNavigation('life-insurance')">
+                              <mat-icon>keyboard_arrow_right</mat-icon> Life Insurance
+                          </a>
+                      </li>
+                      <li>
+                          <a href="javascript:void(0);" ng-click="pageNavigation('health-insurance')"><mat-icon>keyboard_arrow_right</mat-icon> Health Insurance</a>
+                      </li>
+                      <li>
+                          <a href="javascript:void(0);" ng-click="pageNavigation('term-insurance')"><mat-icon>keyboard_arrow_right</mat-icon> Term Insurance</a>
+                      </li>
+                      <li>
+                          <a href="javascript:void(0);" ng-click="pageNavigation('travel-insurance')"><mat-icon>keyboard_arrow_right</mat-icon> Travel Insurance</a>
+                      </li>
+                  </ul>
+                  <div class="pt-5">
+                      <a href="https://www.irdai.gov.in/" target="_blank">
+                          <img src="assets/irda.png" class="img-fluid irdai_logo">
+                      </a>
+                  </div>
+              </div>
+
+              <div fxFlex="25" fxFlex.xs="100" fxFlex.sm="100">
+                  <h3>Quick Links</h3>
+                  <ul class="foot-link">
+                      <li><a href="javascript:void(0);"><mat-icon>keyboard_arrow_right</mat-icon>Home</a></li>
+                      <li><a href="javascript:void(0);"><mat-icon>keyboard_arrow_right</mat-icon> About Us</a></li>
+                      <li><a href="https://blog.gintejainsurance.com/" target="_blank"><mat-icon>keyboard_arrow_right</mat-icon> Blog</a></li>
+                      <li><a href="javascript:void(0);" ng-click="pageNavigation('claim')"><mat-icon>keyboard_arrow_right</mat-icon> Claim</a></li>
+
+                     <li>
+                          <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#PolicyCancellation">
+                            <mat-icon> keyboard_arrow_right </mat-icon> Policy Cancellation
+                              &amp; Refund
+                          </a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0);">
+                          <mat-icon> keyboard_arrow_right </mat-icon> Careers</a>
+                      </li>
+
+                      <li>
+                          <a href="javascript:void(0);">
+                            <mat-icon> keyboard_arrow_right </mat-icon> POSP Agreement</a>
+                      </li>
+
+                      <li>
+                          <a href="javascript:void(0);">  <mat-icon> keyboard_arrow_right </mat-icon> Grievance Policy</a>
+                      </li>
+
+                      <li>
+                          <a href="javascript:void(0);" ng-click="pageNavigation('privacy-policy')">
+                            <mat-icon> keyboard_arrow_right </mat-icon> Privacy &amp; Policy</a>
+                      </li>
+
+                      <li>
+                          <a href="https://blog.gintejainsurance.com/annual-return/" target="_blank">
+                            <mat-icon> keyboard_arrow_right </mat-icon> Annual Return</a>
+                      </li>
+
+                      <li>
+                          <a href="javascript:void(0);" ng-click="pageNavigation('disclaimers')">
+                            <mat-icon> keyboard_arrow_right </mat-icon>  Disclaimer</a>
+                      </li>
+                  </ul>
+              </div>
+
+              <div fxFlex="25" fxFlex.xs="100" fxFlex.sm="100">
+                  <div class="footer-contact position-relative">
+                      <h3>Ginteja Insurance Brokers Private Limited</h3>
+                      <p class="my-1">
+                          <small>IRDAI Broker Registration Code: IRDAI/DB918/2022</small>
+                      </p>
+                      <p class="mb-1"><small>Registration No: 828</small></p>
+                      <p class="mb-1"><small>Direct Broker (Life &amp; General)</small></p>
+                      <p class="mb-1"><small>Valid upto: 03/07/2025</small></p>
+                      <p class="mb-1"><small>CIN No. - U66000WB2021PTC243249</small></p>
+                      <h3 class="mb-3 mt-4">
+                          Contact Us
+                      </h3 >
+                      <li class="mb-3">
+                        <mat-icon>
+                          location_on
+                        </mat-icon>
+                          <span>Registered Office : 25D, Harish Mukherjee Road 1E, 1st Floor Kolkata 700025</span>
+                      </li>
+                      <li class="mb-3">
+                         <mat-icon>phone_in_talk</mat-icon>
+                          <span>
+                              080 6905 7777
+                          </span>
+                        </li>
+                      <li class="mb-3">
+                        <mat-icon>phone_in_talk</mat-icon>
+                          <span>
+                              1800 3099 444
+                          </span>
+                        </li>
+
+                          <li class="mb-3">
+                            <mat-icon>mail</mat-icon>
+                              <span>help@ginteja.com</span>
+                          </li>
+
+                  </div>
+              </div>
+
+
+
+          </div>
+
+          <p style="font-size: 14px; text-align: center; font-weight: bold;">
+            <small>Insurance is the subject matter of the solicitation. For more details on policy terms, conditions, exclusions, limitations, please refer/read policy brochure carefully before concluding sale.</small>
+        </p>
+        <hr>
+
+        <p style="font-size: 14px; text-align: center; font-weight: bold;">Ginteja Insurance Brokers Private Limited. All rights Reserved Copyright © 2022</p>
+
+      </div>
+  </div>
+
+
+
+</footer>
+
+
+
+<ng-template #vehicleConfirmationModal>
+  <h2 matDialogTitle style="font-size: 23px !important;
+  font-weight: bold;">
+    Modify Your Car's Information
+    <mat-chip-list style="border: none;">
+      <button (click)="onNoClick()" area-label="close">
+        <i class="material-icons">close</i>
+      </button>
+    </mat-chip-list>
+  </h2>
+
+  <mat-dialog-content style="width: 97%" class="mat-typography scrollbar scrollbar-near-moon thin">
+    <div class="modal-body" style=" width: 100%;">
+      <div *ngIf="formStep == 1">
+        <div style="display:flex ;">
+          <button class="" mat-raised-button color="primary" *ngFor="let vehicle of vehicleList" (click)="onSelectVehicle(vehicle)" style="margin-right: 15px; padding: 7px; font-size: 12px; white-space: break-spaces; line-height: 21px;">
+            <!-- ; modal.dismiss('Cross click') -->
+            {{vehicle.brand_name}} - {{vehicle.gibl_model}} - {{vehicle.gibl_variant}}
+          </button>
+        </div>
+        <div style="display: flex; margin-top: 10px;">
+          <button class="contact100-form-btn" type="submit"
+          style="background-color: #c1c1ca !important; border-radius: 5px; color: #000; cursor:pointer;" (click)="onClickManual()">
+          &nbsp; &nbsp;&nbsp; Can't find your vehicle? Click here &nbsp;&nbsp;&nbsp;</button>
+        </div>
+      </div>
+
+      <!-- @todo -->
+      <div *ngIf="formStep == 2">
+        <form [formGroup]="detailsForm" (ngSubmit)="onDetailsFormSubmit(vehicleConfirmationModal)">
+          <mat-form-field appearance="outline" style="margin-top:10px;">
+            <mat-label>Your Mobile Number</mat-label>
+            <input formControlName="mobile_no" matInput placeholder="Please Enter Your Mobile Number" type="number"
+              (input)="checkLength()">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Your Email Id</mat-label>
+            <input formControlName="email_id" matInput placeholder="Please Enter Your Email Id">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Expiry Date</mat-label>
+            <input [min]="expireMinDate" [max]="expireMaxDate" formControlName="expiry_date" matInput
+              [matDatepicker]="picker" date=true (focus)="picker.open()" placeholder="Please Select Policy Expiry Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <!-- <mat-checkbox style="margin-bottom: 9px;" *ngIf="IS_LIVE!=2" [checked]="dontHavePreviousYearPolicy">
+            I don't have previous year policy
+          </mat-checkbox> -->
+          <mat-form-field appearance="outline">
+            <mat-label>Have you made any claim on last year?</mat-label>
+            <mat-select formControlName="lastClaimedYear" placeholder="Last Claim Taken?">
+              <mat-option value="1">Yes</mat-option>
+              <mat-option value="0">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button [disabled]="!buttonStatus.details" mat-button style="width: 100%;border-radius: 5px;" class="contact100-form-btn" type="submit">
+            Continue to View Quotes
+          </button>
+        </form>
+      </div>
+    </div>
+  </mat-dialog-content>
+</ng-template>

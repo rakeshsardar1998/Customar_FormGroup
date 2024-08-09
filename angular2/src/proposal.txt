@@ -1,0 +1,166 @@
+<div class="content"   fxFlexFill >
+  <div fxLayout="row" >
+<mat-toolbar color="primary">
+  <button mat-button [mat-menu-trigger-for]="menu" fxShow fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+    
+   </button>
+  <header fxFlexFill  fxFlex.lt-sm="50%">
+    
+    <div fxLayoutAlign="left"  fxFlex="" [fxFlex.md]="box1Width" class="one">
+       
+    <img src="../assets/quote/img/logo.png" alt="logo" height="67">
+    <span> Car Insurnace </span>
+  </div>
+  
+ 
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxFlex="85" fxHide fxShow.gt-sm>
+      <div fxLayout="row"  fxHide fxShow.gt-sm >
+        
+        <button   fxHide fxShow.gt-sm  mat-button [matMenuTriggerFor]="menu">Menu<mat-icon  fxLayoutalign="left" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">keyboard_arrow_down</mat-icon></button>
+        <button   fxHide fxShow.gt-sm  mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+    </div>
+     
+
+    </div>
+
+  </header>
+  
+</mat-toolbar>
+</div>
+
+</div>
+
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/products">Products</button>
+  <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+</mat-menu>
+<div class="containerX">
+    
+  <div fxLayout="row wrap"  fxLayoutGap="10px" fxLayoutAlign="center" >
+     
+    <div fxFlex="80%" fxLayoutAlign="center" fxFlex.md="row" >
+      <div fxFlex="22%"
+      fxFlex.md="50%" fxFlex.md="row" >
+      <img src="assets/company_logo/bajaj_generalli_logo.png">
+    </div>
+        <div fxFlex="22%"
+        fxFlex.lt-md="50%" fxFlex.md="column"  >
+          <h5 >Your Insurer</h5><p >Bajaj</p>
+          <a  style="font-size:12px;" href="/tw/quote-compare">
+            <i  aria-hidden="true" class="fa fa-long-arrow-left m-l-7 pa"></i><strong >Change Insurer</strong></a>
+          </div>
+            <div  fxFlex.lt-md="100%" fxFlex="22%" fxFlex.md="row"  class="text-right pull-right your-car">
+              <h5 >Your Bike </h5><p >Bajaj Avenger 180 Cc Petrol</p></div>
+            </div>
+  
+            <!-- <div  fxFlex="80%" fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center"  fxLayout.lt-sm="column" class="wrap-contact101 no-padding mt-10">
+              <div  class="app-sidebar-section  row">
+              <ul  fxFlex="0 1 calc(33.3% - 10px)"
+              fxFlex.lt-sm="100%" class="quote-settings form col-md-4">
+              <li  class="pull-left"><span  class="key pull-left">IDV:</span><span  class="value pull-left">Rs.21,004</span></li>
+              
+                <li  class="pull-left pl-0"><span  class="key pull-left">Policy Tenure: </span><span  class="value pull-left"> 1 Years</span></li></ul>
+                <ul  fxFlex="0 1 calc(33.3% - 22px)"
+                fxFlex.lt-md="0 1 calc(40% - 10x)"
+                fxLayout.lt-sm="row" 
+                fxFlex.lt-sm="0 1 calc(40% - 10x)" class="quote-settings form col-md-4 col-12 pull-left">
+                  <li  class="hidden-md-down"><span  class="key pull-left">Premium: </span><span  class="value pull-left"> Rs.1,702 </span></li><li  class="hidden-md-down"><span  class="key gst pull-left">+ GST (18%): </span><span  class="value pull-left"> Rs.306 </span></li></ul><ul fxFlex="0 1 calc(33.3% - 22px)"
+                  fxFlex.lt-md="0 1 calc(40% - 10x)"
+                  fxLayout.lt-sm="row" 
+                  fxFlex.lt-sm="50%" class="quote-settings form col-md-4 col-12 pull-left"><li  class="hidden-md-down"><span  class="value pull-left  prm">Total Premium = Rs.2,008 </span></li></ul></div></div>
+                  <div fxFlex="80%" fxLayout="row wrap" style="background-color:#fff;"  fxLayoutAlign="center" >
+                      <mat-tab-group>
+                          <mat-tab label="First"> 
+                              <div class="example-container">
+                                  <mat-form-field>
+                                    <input matInput placeholder="Input">
+                                  </mat-form-field>
+                                
+                                  <mat-form-field>
+                                    <textarea matInput placeholder="Textarea"></textarea>
+                                  </mat-form-field>
+                              
+                                </div> 
+                                <div fxFlex="20%" fxLayout="row" class="pull-left" style="margin-right:20px;">
+                                    <mat-form-field>
+                                      <mat-select placeholder="Select">
+                                        <mat-option value="option">Option</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                                  <div fxFlex="20%" fxLayout="row" class="pull-left" style="margin-right:20px;">
+                                      <mat-form-field>
+                                        <mat-select placeholder="Select">
+                                          <mat-option value="option">Option</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                    </div>
+                                    <div fxFlex="20%" fxLayout="row" class="pull-left" style="margin-right:20px;">
+                                        <mat-form-field>
+                                          <mat-select placeholder="Select">
+                                            <mat-option value="option">Option</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div>
+                          </mat-tab>
+                          <mat-tab label="Second">
+                              <div class="example-container">
+                                  <mat-form-field>
+                                    <input matInput placeholder="Input">
+                                  </mat-form-field>
+                                
+                                  <mat-form-field>
+                                    <textarea matInput placeholder="Textarea"></textarea>
+                                  </mat-form-field>
+                                
+                                  <mat-form-field>
+                                    <mat-select placeholder="Select">
+                                      <mat-option value="option">Option</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+
+                          </mat-tab>
+                          <mat-tab label="Third"> <div class="example-container">
+                              <mat-form-field>
+                                <input matInput placeholder="Input">
+                              </mat-form-field>
+                            
+                              <mat-form-field>
+                                <textarea matInput placeholder="Textarea"></textarea>
+                              </mat-form-field>
+                            
+                              <mat-form-field>
+                                <mat-select placeholder="Select">
+                                  <mat-option value="option">Option</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div></mat-tab>
+                            <mat-tab label="Fourth"> 
+                              <div class="example-container">
+                                <mat-form-field>
+                                  <input matInput placeholder="Input">
+                                </mat-form-field>
+                              
+                                <mat-form-field>
+                                  <textarea matInput placeholder="Textarea"></textarea>
+                                </mat-form-field>
+                              
+                                <mat-form-field>
+                                  <mat-select placeholder="Select">
+                                    <mat-option value="option">Option</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div></mat-tab>
+                        </mat-tab-group>
+                        </div>
+          
+                </div> -->
+          
+</div>
+</div>

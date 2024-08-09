@@ -42,6 +42,7 @@ export class ProposalFormComponent implements OnInit, AfterViewInit {
   premiumJson: any;
   proposalSubmitBtn: boolean = false;
   private subscribeList = new SubSink();
+  dynamicFormSecondFormGroup: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -52,6 +53,11 @@ export class ProposalFormComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    this.dynamicFormSecondFormGroup = this.fb.group({
+      educationalQualification: ['Graduate', [Validators.required]],
+      occupation: ['Salaried', [Validators.required]],
+      // custPinCode: ['', [Validators.required, Validators.pattern(/^[1-9][0-9]{5}$/)]]
+    });
     this.dynamicForm = this.fb.group({});
 
     this.apiService.getFormFields().subscribe(data => {
@@ -71,100 +77,91 @@ export class ProposalFormComponent implements OnInit, AfterViewInit {
         this.quoteJson = result[0];
         this.premiumJson = result[1];
         this.setProposalFormValue();
-        console.log('Quote JSON:', this.quoteJson);
-        console.log('Premium JSON:', this.premiumJson);
       });
     });
   }
-
   ngAfterViewInit() {
     // Ensure no changes occur after view initialization
     this.cdr.detectChanges();
   }
 
   setProposalFormValue() {
-    if (this.dynamicForm) {
-      this.dynamicForm.patchValue({
-        custName: this.customarItem.custName || '',
-        custEmail: this.customarItem.custEmail || '',
-        custMob: this.customarItem.custMob || '',
-        custCuntryCode: this.customarItem.custCuntryCode || '',
-        custPincode: this.customarItem.custPincode || ''
-      });
-    } else {
-      console.error('dynamicForm is not initialized.');
+    this.dynamicForm.get('custName').setValue(this.quoteJson.custName || '');
+    this.dynamicForm.get('custEmail').setValue(this.quoteJson.custEmail || '');
+    this.dynamicForm.get('custCuntryCode').setValue(this.quoteJson.custCuntryCode || '');
+    this.dynamicForm.get('custMob').setValue(this.quoteJson.custMob || '');
+
+    if (this.quoteJson.custPincode) {
+      const formattedPincode = this.quoteJson.custPincode.toString().padStart(6, '0').substring(0, 6);
+      this.dynamicForm.get('custPincode').setValue(formattedPincode);
     }
   }
+
 
   submitProposalForm() {
-    if (this.dynamicForm.invalid) {
+    // console.log('this.dynamicForm,this.dynamicFormSecondFormGroup', this.dynamicForm,this.dynamicFormSecondFormGroup)
+    this.isLoading = true;
+
+    if (this.dynamicForm.invalid || this.dynamicFormSecondFormGroup.invalid) {
+      this.isLoading = false;
       return;
-    } else {
-      this.proposalSubmitBtn = !this.proposalSubmitBtn;
-      this.quoteJson = { ...this.quoteJson, ...this.dynamicForm.value };
-      const proposalJson = {
-        custName: this.quoteJson.custName,
-        custEmail: this.quoteJson.custEmail,
-        custCuntryCode: this.quoteJson.custCuntryCode,
-        custMob: this.quoteJson.custMob,
-        customerFormatDOB: this.quoteJson.customerFormatDOB,
-        customerGender: this.quoteJson.customerGender,
-        customerEmpStatus: this.quoteJson.customerEmpStatus,
-        custPinCode: this.dynamicForm.get('custPinCode').value,
-        educationalQualification: this.dynamicForm.get('educationalQualification').value,
-        occupation: this.dynamicForm.get('occupation').value,
-        custPremiumAmount: this.quoteJson.premiumJson.net_premium,
-      };
+    }
 
-      this.quoteJson.proposalJson = proposalJson;
-      console.log("proposal", proposalJson);
+    const pinCode = this.dynamicForm.value.custPincode;
+
+    this.proposalSubmitBtn = !this.proposalSubmitBtn;
+    this.quoteJson.custName = this.dynamicForm.get('custName').value;
+    this.quoteJson.custEmail = this.dynamicForm.get('custEmail').value;
+    this.quoteJson.custCuntryCode = this.dynamicForm.get('custCuntryCode').value;
+    this.quoteJson.custMob = this.dynamicForm.get('custMob').value;
+
+    if (pinCode) {
+      this.quoteJson.custPinCode = parseInt(pinCode, 10);
+    }
+
+    const proposalJson = {
+      custName: this.quoteJson.custName,
+      custEmail: this.quoteJson.custEmail,
+      custCuntryCode: this.quoteJson.custCuntryCode,
+      custMob: this.quoteJson.custMob,
+      customerFormatDOB: this.quoteJson.customerFormatDOB,
+      customerGender: this.quoteJson.customerGender,
+      customerEmpStatus: this.quoteJson.customerEmpStatus,
+      custPinCode: parseInt(pinCode, 10),
+      educationalQualification: this.dynamicFormSecondFormGroup.get('educationalQualification').value,
+      occupation: this.dynamicFormSecondFormGroup.get('occupation').value,
+      custPremiumAmount: this.premiumJson.net_premium,
+    };
+
+    this.quoteJson.proposalJson = proposalJson;
+    this.quoteJson.premiumJson = this.premiumJson;
+
+console.log('this.quoteJson',this.quoteJson)
+    this.localStorage.setItem('quoteJson', this.quoteJson).subscribe(() => {
       this.subscribeList.add(
-        this.localStorage.setItem('quoteJson', this.quoteJson).subscribe(() => {
-          this.subscribeList.add(
-            this.apiService.updateQuoteTerm(this.quoteJson).subscribe((insertResponse) => {
-              // console.log('updateQuoteTerm',insertResponse)
-              if (typeof insertResponse == "number" && insertResponse > 0) {
-                this.subscribeList.add(
-                  this.apiService.getAegonProposal(this.quoteJson).subscribe((proposalRes) => {
-
-                    if (proposalRes.status === 'success' && proposalRes.redirect_url !== '') {
-                      window.location.href = proposalRes.redirect_url;
-                    } else {
-                      this.openErrorMessage(proposalRes.messages, 'Close');
-                    }
-                    this.proposalSubmitBtn = !this.proposalSubmitBtn;
-                  })
-                );
-              }
-            })
-          );
+        this.apiService.updateQuoteTerm(this.quoteJson).subscribe(insertResponse => {
+          console.log('insertResponse',insertResponse)
+          // insertResponse = parseInt('1');
+          if (typeof insertResponse === 'number' && insertResponse > 0) {
+            this.subscribeList.add(
+              this.apiService.getAegonProposal(this.quoteJson).subscribe(proposalRes => {
+                if (proposalRes.status === 'success' && proposalRes.redirect_url) {
+                  window.location.href = proposalRes.redirect_url;
+                } else {
+                  this.openErrorMessage(proposalRes.messages, 'Close');
+                }
+                this.proposalSubmitBtn = !this.proposalSubmitBtn;
+              })
+            );
+          }
         })
       );
-    }
+    });
   }
 
+
   openErrorMessage(messages: any, arg1: string) {
-    throw new Error('Method not implemented.');
-  }
-  checkLength(value, len: number, fldName: any) {
-    if (value.length > len) {
-      // tslint:disable-next-line: radix
-      this.dynamicForm.get(fldName).setValue(parseInt(value.substring(0, len)));
-    }
-  }
-  public checkLengthPinCode() {
-    if (this.dynamicForm.value.custPinCode.toString().length > 6) {
-      this.dynamicForm.controls['custPinCode'].setValue(parseInt(this.dynamicForm.value.custPinCode.toString().substring(0, 6)));
-    }
-  }
-  updateProposalForm(ev: any, idd: any, componentid: any) {
-    if (ev.isUserInput) {
-      if (componentid === 'custStateCode') {
-        this.dynamicForm.get('custStateCode').setValue(ev.source.value);
-      } else {
-        console.log('INVALID DATA');
-      }
-    }
+    console.error('Error:', messages);
   }
 
   bindValidations(validations: any[]): ValidatorFn[] {
@@ -195,43 +192,25 @@ export class ProposalFormComponent implements OnInit, AfterViewInit {
   exactLength(length: number): ValidatorFn {
     return (control: any): { [key: string]: any } | null => {
       const isValid = control.value && control.value.length === length;
-      if (!isValid) {
-      }
-      return isValid
-        ? null
-        : { 'length': { value: control.value } };
+      return isValid ? null : { 'length': { value: control.value } };
     };
   }
 
   getValidationErrors(control: any, validations: any[]): string[] {
-    for (let validation of validations) {
-      if (control.hasError(validation.validator)) {
-        return [validation.message];
+    if (control) {
+      for (let validation of validations) {
+        if (control.hasError(validation.validator)) {
+          return [validation.message];
+        }
       }
     }
     return [];
   }
 
-  onSubmit() {
-    this.isLoading = true;
-    if (this.dynamicForm.invalid) {
-      Object.keys(this.dynamicForm.controls).forEach(field => {
-        const control = this.dynamicForm.get(field);
-        if (control) {
-          control.markAsTouched({ onlySelf: true });
-        }
-      });
-      this.isLoading = false;
-      return;
-    }
-    console.log(this.dynamicForm.value);
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
-  }
   NoThanks(): void {
     this.router.navigate(['/listing']);
   }
+
   ngOnDestroy() {
     this.subscribeList.unsubscribe();
   }

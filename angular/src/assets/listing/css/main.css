@@ -1,14 +1,14 @@
 
 
 /*---------------------------------------------*/
-/deep/ body{background: #eee !important;}
+
 a{cursor: pointer;}
 .container {
-  max-width: 1160px;
+  max-width: 85%;
   margin: auto;
   padding:10px 19px 10px;
 }
-/deep/.material-icons{color:#cc0001;}
+/* /deep/.material-icons{color:#cc0001;} */
 .only-desk-p{text-align: right; padding:0px 10px 0 0;}
   .addons{ margin:0px; padding:0; width: 100%;}
   .addons p{line-height: 0;
@@ -19,9 +19,9 @@ a{cursor: pointer;}
     margin: 0 0 0px;
     display: block;
 }
-/deep/ .cdk-overlay-pane{max-width:95vw !important}
+/* /deep/ .cdk-overlay-pane{max-width:95vw !important} */
 .mat-slider-horizontal{width:100% !important;}
-/deep/.mat-slider-horizontal .mat-slider-thumb-label{padding: 10px !important;}
+/* /deep/.mat-slider-horizontal .mat-slider-thumb-label{padding: 10px !important;} */
 ul.selectbtn{margin: 0; padding: 0; float: left;}
 .float-left{ float: left;} .float-right{ float:right;}
 .text-size1{font-size: 13px;padding:0px 14px 4px 2px;}
@@ -36,7 +36,7 @@ ul.selectbtn{margin: 0; padding: 0; float: left;}
   background-color: #3f51b5 !important;
 }
 .m-top{margin-top:30px;} .m-bottom{margin-bottom:20px;}
-/deep/ .mat-dialog-container{padding: 12px !important;}
+/* /deep/ .mat-dialog-container{padding: 12px !important;}
 /deep/.mat-expansion-panel-header{padding:0 10px !important;}
 /deep/.mat-accordion .mat-expansion-panel:first-of-type{background:#fff !important;width:auto !important;
   padding-right: 11px !important; }
@@ -65,8 +65,8 @@ ul.selectbtn{margin: 0; padding: 0; float: left;}
   background: #cc0001;
   color: #fff;
   font-size: 18px;
-  padding: 9px;
-}
+  padding: 9px; 
+}*/
 .header h4{ margin:2px 0;}
 .price{ font-size:17px !important;
   padding: 0 21px;
@@ -87,12 +87,12 @@ ul.selectbtn{margin: 0; padding: 0; float: left;}
   font-weight: normal;
   cursor: pointer; text-transform: uppercase;}
   .example-container{font-size: 12px; float: left;}
-  /deep/.mat-raised-button {
+  /* /deep/.mat-raised-button {
     font-size: 12px !important;
     margin-top: 7px;
-}
+} */
 
-/deep/ .mat-expansion-panel-content{    font: 400 12px/16px Roboto,"Helvetica Neue",sans-serif;}
+/* /deep/ .mat-expansion-panel-content{    font: 400 12px/16px Roboto,"Helvetica Neue",sans-serif;} */
 .result-addon{ font-size: 12px; padding-bottom: 10px; background: #fff;}
 .result-addon span{float: left; padding: 5px; color: #5f5757;}
 .result-addon .material-icons{
@@ -175,31 +175,31 @@ ul.selectbtn{margin: 0; padding: 0; float: left;}
 
   }
   .edit-n{font-size: 14px !important;}
-  /deep/.new-head .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  /* /deep/.new-head .mat-form-field-appearance-legacy .mat-form-field-wrapper {
     padding-top: 0px;
     margin-bottom: -10px;
 }
 
 /deep/.mat-dialog-container .mat-form-field-appearance-legacy .mat-form-field-infix {
-  padding: 2.1em 0 1em;
-}
+  padding: 2.1em 0 1em; 
+}*/
 .text-center{text-align:center;}
-/deep/.mat-dialog-title{font-size: 16px !important;
+/* /deep/.mat-dialog-title{font-size: 16px !important;
   padding-top: 20px !important;
   padding-bottom: 0 !important;
-  font-weight: bold;}
+  font-weight: bold;} */
 
 .add {padding-top: 5px;}
-/deep/.mat-dialog-container label{font-size: 13px;
+/* /deep/.mat-dialog-container label{font-size: 13px;
   padding-bottom: 12px;padding-top: 12px;}
   /deep/  .mat-dialog-title {font-size: 13px;
-    padding-bottom: 12px;}
+    padding-bottom: 12px;} */
    
 .show-add{
   position: absolute;
     left: 5px;
     margin-right: 19px;}
-
+   
   @media(max-width:960px){
     #bt{display: block !important;}
     
@@ -213,22 +213,24 @@ ul.selectbtn{margin: 0; padding: 0; float: left;}
 
     .header p{font-size:13px !important; }
   }
-  /deep/.mat-dialog-container{ font-family: Avenir-Book!important; position: absolute; right:0; width:25% !important; top: 0 !important; border-radius: 0 !important;}
+  /* /deep/.mat-dialog-container{ font-family: Avenir-Book!important; position: absolute; right:0; width:25% !important; top: 0 !important; border-radius: 0 !important;}
   /deep/ .mat-dialog-title{font-family: Avenir-Book!important;}
-  /deep/ .mat-expansion-panel-header-title{font-weight: bold;}
+  /deep/ .mat-expansion-panel-header-title{font-weight: bold;} */
   mat-expansion-panel-header-description, .mat-expansion-panel-header-title{
     margin-right: 0;
     font-size: 17px;
     font-weight: bold;
 }
     @media(max-width:991px){
-
-      /deep/.mat-dialog-container{width:100% !important;}
+        .container {
+          max-width: 95%;
+        }
+      /* /deep/.mat-dialog-container{width:100% !important;}
       .header p{text-align: left;}
-      /deep/ .cdk-overlay-pane.proposal_container_dialog{width:100% !important; height: 100% !important;}
+      /deep/ .cdk-overlay-pane.proposal_container_dialog{width:100% !important; height: 100% !important;} */
   }
 
-  /deep/.mat-checkbox-layout .mat-checkbox-label{color:#0b559e }
-  /deep/ .adons   .mat-expansion-panel-body{padding: 0;}
+  /* /deep/.mat-checkbox-layout .mat-checkbox-label{color:#0b559e }
+  /deep/ .adons   .mat-expansion-panel-body{padding: 0;} */
  
 

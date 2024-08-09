@@ -1,13 +1,22 @@
 footer {
   margin-top: 25px;
-  padding-top: 25px;
+  padding-top: 35px;
   background-color: #ffffff;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.11);
+  // box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.11);
 
   .footer-lft {
     margin-right: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    .ginteja-Logo{
+      width: 160px;
+    }
   }
-
+  .irda-logo{
+    width: 120px;
+}
   .mat-expansion-panel-spacing {
     margin-top: 0;
   }
@@ -36,7 +45,7 @@ footer {
     }
 
     .footer-lft {
-      margin-right: 0;
+      margin-right: 0;    align-items: center;    gap: .5rem;
     }
 
     .footer-row {
@@ -44,7 +53,14 @@ footer {
         text-align: center;
       }
     }
+    footer .irda-logo {
+      width: 100px;
+    }
+    .footer-m-header{
+      margin: 30px 0 0 0 !important;
+    }  
   }
+ 
 }
 
 @media (min-width:320px) and (max-width:991px) {
@@ -133,6 +149,7 @@ footer {
 
 
 @media(max-width:1280px) {
+  
   .mat-expansion-panel-header {
     background: #263b4e;
   }
@@ -172,7 +189,7 @@ footer {
 
 
 .container {
-  max-width: 1200px;
+  max-width: 85%;
   margin: auto;
 }
 
@@ -192,11 +209,11 @@ footer {
 
 .foot-link {
   padding: 0;
-
+  margin: 6px -6px;
   .mat-icon {
     background-repeat: no-repeat;
     display: inline-block;
-    fill: #673AB7;
+    
     height: 37px;
     width: 22px;
     position: relative;
@@ -208,7 +225,7 @@ footer {
   }
 
   a {
-    font-size: 15px;
+    font-size: 14px;
     text-decoration: none;
     color: #000;
   }
@@ -226,7 +243,7 @@ footer {
       font-size: 13px;
       list-style-type: none;
       line-height: 20px;
-      font-weight: bold;
+      font-weight: 400;
       display: flex;
       margin-bottom: 10px;
 
@@ -264,15 +281,11 @@ footer {
 }
 .footer-m-header {
   margin-top: 0 !important;
+  font-weight: 500;
+    font-size: 20px;
 }
 
-.mat-icon {
-  background-repeat: no-repeat;
-  display: inline-block;
-  fill: #673AB7;
-  height: 40px;
-  width: 25px;
-}
+
 
 hr {
   border: 1px dashed #ccc;
@@ -286,23 +299,33 @@ hr {
   small {
     font-size: smaller;
     text-align: center;
-    font-weight: bold;
+    font-weight: 600;
   }
 }
 
 .footer-p-2 {
   font-size: 14px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
 }
 
-.footer-top {
-  .mat-icon {
-    font-size: 24px;
-  }
-}
+
 
 .cpy-sec {
   margin: 0;
   padding-bottom: 10px;
+}
+
+
+@media(max-width:991px) {
+  
+  .container {
+    max-width: 95%;
+    margin: auto;
+  }
+}
+@media(max-width:525px){
+.footer-row{
+  display: none !important;
+}
 }

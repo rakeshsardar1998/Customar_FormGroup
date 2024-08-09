@@ -7,8 +7,53 @@
     font-style: normal;
 }
 
+   @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-ExtraLight.ttf") format('truetype');
+    font-weight: lighter;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Light.ttf") format('truetype');
+    font-weight: 300;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Regular.ttf") format('truetype');
+    font-weight: normal ;
+  } 
+  @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Regular.ttf") format('truetype');
+    font-weight: 400 ;
+  }  
+
+   @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Medium.ttf") format('truetype');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-SemiBold.ttf") format('truetype');
+    font-weight: 600;
+  }
+
+ @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Bold.ttf") format('truetype');
+    font-weight: bold;
+  }
+ @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-ExtraBold.ttf") format('truetype');
+    font-weight: 800;
+  }
+  
+  
 body {
-    font-family: 'Avenir-Book' !important;
+    font-family: 'Poppins' !important;
     background: #eee !important;
 }
 .mat-button,
@@ -18,7 +63,7 @@ body {
 .mat-mini-fab,
 .mat-raised-button,
 .mat-stroked-button {
-    font-family: 'Avenir-Book' !important;
+    font-family: 'Poppins' !important;
 }
 
 body {
@@ -27,24 +72,24 @@ body {
     // background: url(term-life-bg.jpg) #fff;
     color: #000000;
     font-size: 18px;
-    font-family: 'Avenir-Book';
+    font-family: 'Poppins';
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .my-container {
-    width: min(100% - 1em, 60em);
+    width: min(100% - 1em, 64em);
     margin-inline: auto;
 }
 
 
 .mat-card {
-    font-family: 'Avenir-Book';
+    font-family: 'Poppins';
     background-repeat: no-repeat;
 }
 
 .mat-form-field {
-    font-family: 'Avenir-Book' !important;
+    font-family: 'Poppins' !important;
 }
 
 .mat-step-header .mat-step-icon-selected,
@@ -56,7 +101,7 @@ body {
 
 .mat-stepper-horizontal,
 .mat-stepper-vertical {
-    font-family: 'Avenir-Book' !important;
+    font-family: 'Poppins' !important;
 }
 
 .text-center {
@@ -71,7 +116,7 @@ body {
 
 .mat-list-text {
     padding-left: 10px !important;
-    font-family: 'Avenir-Book' !important;
+    font-family: 'Poppins' !important;
 }
 
 .gap-a {
@@ -121,8 +166,8 @@ body {
 
 .mat-toolbar-row,
 .mat-toolbar-single-row {
-    height: 80px !important;
-    padding: 7px !important;
+    height: auto !important;
+    padding: 0 !important;
 }
 
 .mat-stepper-horizontal,
@@ -131,9 +176,6 @@ body {
     // box-shadow: 0px -1px 14px 0px #797676;
 }
 
-.mat-form-field-infix {
-    font-size: 13px !important;
-}
 
 .mat-horizontal-content-container {
     padding: 24px 24px 24px 24px;
@@ -145,7 +187,7 @@ h1 {
 
 .mat-stepper-horizontal,
 .mat-stepper-vertical {
-    font-family: "Avenir-Book" !important;
+    font-family: 'Poppins' !important;
     margin: 10px !important;
     padding: 0px 2px !important;
 }
@@ -156,7 +198,7 @@ h1 {
 
 .mat-button-toggle-checked.mat-button-toggle-appearance-standard {
     color: #fff;
-    font-family: 'Avenir-Book' !important;
+    font-family: 'Poppins' !important;
 }
 
 .ng-untouched h2 {
@@ -180,7 +222,7 @@ h1 {
 }
 
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-    font-family: 'Avenir-Book' !important;
+    font-family: 'Poppins' !important;
 }
 
 .mat-icon-face {
@@ -198,11 +240,11 @@ h1 {
 .mat-select-value-text {
     font-weight: bold;
     font-size: 12px;
-    font-family: Avenir-Book !important;
+    font-family: 'Poppins' !important;
 }
 
 .mat-form-field-hide-placeholder .mat-select-placeholder {
-    font-family: Avenir-Book !important;
+    font-family: 'Poppins' !important;
 }
 
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
@@ -243,19 +285,19 @@ h1 {
     }
 }
 
-@media(min-width:992px) {
-    .gap-no {
-        margin: 5px 0;
-        font-size: 16px;
-        font-weight: bold;
-        padding-top: 1%;
-    }
-}
+// @media(min-width:992px) {
+//     .gap-no {
+//         margin: 5px 0;
+//         font-size: 16px;
+//         font-weight: 400;
+//         padding-top: 1%;
+//     }
+// }
 
 .mat-option,
 .mat-checkbox-label {
-    font-family: 'Avenir-Book' !important;
-    font-weight: bold;
+    font-family: 'Poppins' !important;
+    font-weight: 600;
 }
 
 .mat-option-text {
@@ -263,13 +305,13 @@ h1 {
 }
 
 .mat-form-field-infix {
-    font-size: 16px !important;
+    font-size: 14px !important;
     // padding: 1.25em 0 0.75em 0 !important;
 }
 
 .proposal_container_dialog {
     mat-dialog-container {
-        font-family: Avenir-Book !important;
+        font-family: 'Poppins' !important;
         position: relative;
         width: 44% !important;
         top: 0 !important;
@@ -287,7 +329,7 @@ h1 {
 
 .proposal_container_dialog_confirm {
     mat-dialog-container {
-        font-family: Avenir-Book !important;
+        font-family: 'Poppins' !important;
         position: relative;
         width: 44% !important;
         top: 0 !important;
@@ -360,13 +402,7 @@ h1 {
 
     .mat-cell {
         font-size: 13px !important;
-        font-family: 'Avenir-Book';
-    }
-}
-
-@media(max-width:991px) {
-    body {
-        background: none !important;
+        font-family: 'Poppins';
     }
 }
 
@@ -388,7 +424,7 @@ ul.links_1 {
 
 .mat-expansion-panel-header {
     text-transform: capitalize !important;
-    font-family: 'Avenir-Book' !important;
+    font-family: 'Poppins' !important;
 }
 
 .example-tooltip-green {
@@ -423,14 +459,7 @@ ul.links_1 {
     }
 }
 
-@media(min-width:320px) and (max-width:959px) {
-    .nav-mob {
-        position: absolute;
-        right: 18px;
-        top: 38px;
-        display: block !important;
-    }
-}
+
 
 .copy_rights p {
     color: #000000;

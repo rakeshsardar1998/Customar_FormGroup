@@ -1,0 +1,51 @@
+.mat-button-wrapper {
+    font-size: 14px;
+    padding-left: 1px;
+    padding-top: 0px;
+    font-weight: bold;
+    
+  }
+button:hover{
+  color: #cc0001;
+  cursor: pointer;
+} 
+header .mat-toolbar span {
+  padding-left: 0px;
+}
+.header-width{
+    width:80%;
+    margin:0 auto;
+
+}
+.profile {
+  color: #011856;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 100%;
+  background-color: #fff;
+  font-weight: 500 !important;
+  border: 2px solid;
+  cursor: pointer;
+  font-size: 14px !important;
+  text-transform: uppercase;
+  padding: 0 !important;    margin: 0 !important;
+}
+.backToHomediv{display: flex;align-items: center;}
+.backToHome{
+    font-size: 13px;
+    background: #001b66;
+    border: none;
+    font-weight: 600;
+    color: #fff !important;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-family: 'Poppins';
+    text-decoration: none;
+}
+.backToHome img{
+  vertical-align: middle;
+  margin: 0 5px;
+}

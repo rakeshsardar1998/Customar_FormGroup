@@ -1,0 +1,135 @@
+<mat-toolbar style="color: #000000;
+background-color: #fff;
+padding: 23px 0px 15px;
+font-weight: 600;
+height: 95px;" color="primary">
+<div class="header-width">
+  <header class="container">
+    <div style="background-color: #fff;" fxLayoutAlign="left" fxFlex="20" class="one" >
+      <img  src="assets/ginteja-logo.svg" [routerLink]="['']"
+        alt="logo" height="67">
+      <!-- <span fxLayoutAlign="right"> CAR INSURANCE </span> -->
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxFlex="85" fxHide fxShow.gt-sm style="margin-top: 5px;">
+      <div fxLayout="row" fxHide fxShow.gt-sm>
+        <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menu" style="font-weight: 600;">
+          Insurance Products
+          <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+            keyboard_arrow_down
+          </mat-icon>
+        </button>
+
+        <button fxHide fxShow.gt-sm mat-button style="font-weight: 600;"> Claim </button>
+        <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button style="font-weight: 600;">Support</button>
+        <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button style="font-weight: 600;">Blog</button>
+        <!-- <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn" (click)="openDialogLongin()">
+          LOGIN
+        </button> -->
+
+        <!-- <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn"
+        Style="color: #fff!important; background: #fb542f; border-radius: 5px; font-size: 11px; padding: 9px 10px 10px; margin-right: 5px;">
+        </button> -->
+
+        <!-- <a href="" fxHide fxShow.gt-sm mat-button
+          Style="color: #fff!important; background: #cc0001; border-radius: 5px; font-size: 11px; padding: 9px 10px 10px; margin-right: 5px;">
+         Login
+        </a>
+
+        <a href="" fxHide fxShow.gt-sm mat-button *ngIf="isLoggedIn"
+          Style="color: #fff!important;background: #cc0001;border-radius: 5px;font-size: 11px;padding:9px 10px 10px; margin-right:5px;">
+         Logout
+        </a> -->
+
+        <!-- <button (click)="registrationPage()"></button> -->
+
+      </div>
+      <div class="backToHomediv" *ngIf="isRollType8">
+        <a [href]="POSP_URL" class="backToHome">  
+          <img  src="assets/backtohome.png">
+          Back To Home</a>
+      </div>
+      <div class="backToHomediv" *ngIf="isRollType8">
+        <img class="profile" *ngIf="isPospImg" [src]="POSP_img" onerror="this.onerror=null; this.src='assets/utill/user-dummy.png';" alt="Profile Image">
+        <span *ngIf="!isPospImg" class="profile"> {{this.POSPshortname}}</span>
+      </div>
+    </div>
+
+
+    <ng-template #moo3>
+      <mat-dialog-actions>
+        <div fxLayout="row" fxFlex="100" class="mat-primary">
+          <button mat-button [matMenuTriggerFor]="menu">
+            Insurance Type
+            <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+              keyboard_arrow_down
+            </mat-icon>
+          </button>
+          <button mat-button [matMenuTriggerFor]="menuCom">
+            Insurance Company
+            <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+              keyboard_arrow_down
+            </mat-icon>
+          </button>
+          <button mat-button [matMenuTriggerFor]="menu">Support</button>
+          <button mat-button *ngIf="!isLoggedIn">
+            <a href="https://www.gibl.in/login.php" mat-button>Login</a>
+          </button>
+          <button mat-button (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+          <button mat-button [matMenuTriggerFor]="menu" *ngIf="!isLoggedIn">Register</button>
+        </div>
+      </mat-dialog-actions>
+    </ng-template>
+  </header>
+   
+</div>
+  <mat-menu x-position="before" #life="matMenu">
+    <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/term-plans/">Term
+        Insurance</a></button>
+    <button mat-menu-item><a
+        href="https://www.gibl.in/life-insurance/life-insurance-plans/retirement-plans/">Retirement
+        Plans</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/child-plans/">Child
+        Plans</a></button>
+    <button mat-menu-item><a
+        href="https://www.gibl.in/life-insurance/life-insurance-plans/ulip-plans/">ULIPS</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/group-plans/">Group
+        Plans</a></button>
+  </mat-menu>
+  <mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item><a [href]="carInsurUrl">Car Insurance</a></button>
+    <button mat-menu-item><a [href]="healthInsurUrl">Health Insurance</a></button>
+    <button mat-menu-item><a [href]="bikeInsurUrl">Two Wheeler
+        Insurance</a></button>
+    <button mat-menu-item><a [href]="travelInsurUrl">Travel Insurance</a></button>
+    <button mat-menu-item><a [href]="cvInsurUrl">Commercial Vehicle
+      Insurance</a></button>
+      <button mat-menu-item><a [href]="termInsurUrl">Term Insurance</a></button>
+  </mat-menu>
+  <mat-menu x-position="before" #menuCom="matMenu">
+    <button mat-menu-item><a href="https://www.gibl.in/national-insurance/">National Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/new-india-assurance/">New India Assurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/united-india-insurance-uiic/">United India
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/hdfc-ergo-insurance/">HDFC ERGO General
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/star-health-insurance/">Star Health
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/oriental-insurance/">Oriental Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/bajaj-allianz-insurance/">Bajaj Allianz General
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/iffco-tokio-insurance/">Iffco Tokio General
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/sbi-general-insurance/">SBI General
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/max-bupa-insurance/">MaxBupa Health
+        insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/apollo-munich-insurance/">Apollo Munich Health
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/bharti-axa-insurance/">Bharti AXA General
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/tata-aig-insurance/">Tata AIG Greneral
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/universal-sompo-insurance/">Universal Sompo General
+        Insurance </a></button>
+  </mat-menu>
+</mat-toolbar>

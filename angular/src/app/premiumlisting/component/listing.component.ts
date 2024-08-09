@@ -72,11 +72,11 @@ export class ListingComponent implements OnInit, OnDestroy {
   premiumData: any[] = [];
   premiumForm: FormGroup;
   paymentFrequencies: any[] = [
-    {option:"Annual", value:"annual"},
-    {option:"Half Annual", value:"semi-annual"},
-    {option:"Monthly", value:"monthly"},
-  ]; 
-  
+    { option: "Annual", value: "annual" },
+    { option: "Half Annual", value: "semi-annual" },
+    { option: "Monthly", value: "monthly" },
+  ];
+
 
 
   // ASSIGN SUBSINK
@@ -216,6 +216,7 @@ export class ListingComponent implements OnInit, OnDestroy {
   quoteJson: any;
   selTermAge: any = 70;
   selSumAssured: any;
+  selPaymentMode: string = 'monthly';
   public premiumItemArr: any[] = [];
   public progressBarValue: number = 0;
   public curSec: number = 0;
@@ -323,7 +324,7 @@ export class ListingComponent implements OnInit, OnDestroy {
   public pnbAddonsFormGroup: FormGroup;
   public tataAiaAddonsFormGroup: FormGroup;
   public aegonAddonsFormGroup: FormGroup;
-	userStatusApiStatus: boolean = true;
+  userStatusApiStatus: boolean = true;
   fb: any;
 
   constructor(
@@ -375,10 +376,10 @@ export class ListingComponent implements OnInit, OnDestroy {
       // payment_type: ["WHOLE_LIFE", [Validators.required]],
       payment_mode: ['monthly', [Validators.required]]
     });
-    this.apiService.premiumLoaderCounter.subscribe(count => { 
-			this.loaderList = new Array(count);
-		// console.log("🚀 ~ count:", count, this.loaderList)
-		});
+    this.apiService.premiumLoaderCounter.subscribe(count => {
+      this.loaderList = new Array(count);
+      // console.log("🚀 ~ count:", count, this.loaderList)
+    });
   }
 
   generateUi() {
@@ -395,7 +396,7 @@ export class ListingComponent implements OnInit, OnDestroy {
 
   // FUNCTIONALITY NEEDS TO TAKE PLACE DURING INITIALIZATION
   ngOnInit() {
-   
+
     this.generateUi();
     this.getScreenSize();
     // SET SEO META DATA
@@ -493,7 +494,7 @@ export class ListingComponent implements OnInit, OnDestroy {
     });
   }
 
-  
+
 
   // CHECK QUOTE LOCAL STORAGE VALUES
   checkQuoteValue() {
@@ -550,7 +551,7 @@ export class ListingComponent implements OnInit, OnDestroy {
     //this.setProgreesValue(10);
     this.maxLoadingTime = 10;
     this.startLoaderTimer(this.maxLoadingTime);
-    
+
     // GET AEGON LIFE PREMIUM
     this.getAegonPrrmium();
 
@@ -608,7 +609,7 @@ export class ListingComponent implements OnInit, OnDestroy {
           }
           this.setProgreesValue(this.progressIterateLImit);
           this.sortPremiumObj();
-          this.scrollToBottom();
+          // this.scrollToBottom();
         })
     );
   }
@@ -639,7 +640,7 @@ export class ListingComponent implements OnInit, OnDestroy {
             itemArr.push(premiumItem.value);
             //classObj.iciciShowPlanItem	= premiumItem.value.product_name;
           }
-          classObj.scrollToBottom();
+          // classObj.scrollToBottom();
         });
         this.sortPremiumObj();
       })
@@ -675,7 +676,7 @@ export class ListingComponent implements OnInit, OnDestroy {
           if (premiumItem.value.error_code !== 'E00') {
             classObj.openErrorMessage(premiumItem.value.error_message, 'Close');
           }
-          classObj.scrollToBottom();
+          // classObj.scrollToBottom();
         });
         this.sortPremiumObj(); // CALL PREMIUM LISTING OBJECT SORT
 
@@ -709,11 +710,11 @@ export class ListingComponent implements OnInit, OnDestroy {
             if (premiumItem.value.error_code === 'E00') {
               itemArr.push(premiumItem.value);
             }
-            classObj.scrollToBottom();
+            // classObj.scrollToBottom();
           });
         }
         this.sortPremiumObj(); // CALL PREMIUM LISTING OBJECT SORT
-        this.scrollToBottom();
+        // this.scrollToBottom();
       })
     );
   }
@@ -744,11 +745,11 @@ export class ListingComponent implements OnInit, OnDestroy {
             if (premiumItem.value.error_code === 'E00') {
               itemArr.push(premiumItem.value);
             }
-            classObj.scrollToBottom();
+            // classObj.scrollToBottom();
           });
         }
         this.sortPremiumObj(); // CALL PREMIUM LISTING OBJECT SORT
-        this.scrollToBottom();
+        // this.scrollToBottom();
       })
     );
   }
@@ -781,7 +782,7 @@ export class ListingComponent implements OnInit, OnDestroy {
         }
         this.setProgreesValue(this.progressIterateLImit);
         this.sortPremiumObj();
-        this.scrollToBottom();
+        // this.scrollToBottom();
       })
     );
   }
@@ -808,7 +809,7 @@ export class ListingComponent implements OnInit, OnDestroy {
           });
         }
         this.sortPremiumObj(); // CALL PREMIUM LISTING OBJECT SORT
-        this.scrollToBottom();
+        // this.scrollToBottom();
       })
     );
   }
@@ -828,7 +829,7 @@ export class ListingComponent implements OnInit, OnDestroy {
           });
         }
         this.sortPremiumObj(); // CALL PREMIUM LISTING OBJECT SORT
-        this.scrollToBottom();
+        // this.scrollToBottom();
       })
     );
   }
@@ -848,7 +849,7 @@ export class ListingComponent implements OnInit, OnDestroy {
             this.premiumItemArr = this.premiumItemArr.filter(data => data.provider_id != 40);
             this.premiumItemArr.push(premiumItem);
           }
-          this.scrollToBottom();
+          // this.scrollToBottom();
         });
 
         this.sortPremiumObj();
@@ -858,7 +859,8 @@ export class ListingComponent implements OnInit, OnDestroy {
 
   // FUNCTION FOR GETTING Aegon QUOTE LIST
   getAegonPrrmium() {
-    this.quoteJson.premiumPaymentFrequency = this.aegonAddonsFormGroup.value.payment_mode;
+    // this.quoteJson.premiumPaymentFrequency = this.aegonAddonsFormGroup.value.payment_mode;
+    let quoteJson = { ...this.quoteJson };
     this.quoteJson.providerId = 32;
     this.quoteJson.serviceUrl = "";
     this.loaderComplete = false;
@@ -873,14 +875,13 @@ export class ListingComponent implements OnInit, OnDestroy {
               if (premiumItem.error_code === 'E00') {
                 this.premiumItemArr = this.premiumItemArr.filter(data => data.provider_id !== 32);
                 this.premiumItemArr.push(premiumItem);
-                console.log("??????????",premiumItem)
                 this.loaderComplete = true;
               }
             });
           } else {
             console.error('premiumRes.data is not an array or is undefined.', premiumRes);
           }
-          this.scrollToBottom();
+          // this.scrollToBottom();
           this.sortPremiumObj();
         },
         (error) => {
@@ -890,10 +891,9 @@ export class ListingComponent implements OnInit, OnDestroy {
       )
     );
   }
-  
+
   frequencyDropdown() {
     this.quoteJson.premiumPaymentFrequency = this.aegonAddonsFormGroup.value.payment_mode;
-    console.log(this.aegonAddonsFormGroup.value.payment_mode)
     // this.quoteJson.policyPaymentType = this.aegonAddonsFormGroup.value.premium_plane;
     this.quoteJson.providerId = 32;
     this.quoteJson.serviceUrl = "";
@@ -932,7 +932,7 @@ export class ListingComponent implements OnInit, OnDestroy {
             this.premiumItemArr = this.premiumItemArr.filter(data => data.provider_id != 32);
             this.premiumItemArr.push(premiumItem);
           }
-          this.scrollToBottom();
+          // this.scrollToBottom();
         });
 
         this.sortPremiumObj();
@@ -994,7 +994,7 @@ export class ListingComponent implements OnInit, OnDestroy {
       if (this.iciciPremiumOptions[selItem] !== undefined) {
         iciciPPT = this.iciciPremiumOptions[selItem].ppt_value;
         selItem = this.iciciPremiumOptions[selItem].item_value;
-        this.scrollToBottom();
+        // this.scrollToBottom();
         this.progressBarValue = 0;
         this.loaderComplete = false;
         this.startLoaderTimer(this.maxLoadingTime);
@@ -1016,7 +1016,7 @@ export class ListingComponent implements OnInit, OnDestroy {
       let iciciPPT: number = 0;
       if (this.eddelPremiumOptions[selItem] !== undefined) {
         selItem = this.eddelPremiumOptions[selItem].item_value;
-        this.scrollToBottom();
+        // this.scrollToBottom();
         console.error('Itemmm', selItem);
         this.progressBarValue = 0;
         this.loaderComplete = false;
@@ -1085,32 +1085,37 @@ export class ListingComponent implements OnInit, OnDestroy {
     const metaKeyWords = 'term life insurance, term insurance, life insurance, term insurance uote compare';
     const metaDescription = 'Buy the best term life insurance plan online in India for lowest price. Compare.';
     this.seoService.setpageTitle(this.pageTitle);
-    // this.seoService.createLinkForCanonicalURL('https://www.gibl.in/term-life-insurance/');
+    // this.seoService.createLinkForCanonicalURL('https://www.gibl.in/term-insurance/');
     this.seoService.setMetaData(metaKeyWords, metaDescription);
   }
 
   // RECALCULATE QUOTE
-  recalculateQuote(sumAssured: number, coverUpto: number) {
+  recalculateQuote(sumAssured: number, coverUpto: number, paymentMode: string) {
     if (sumAssured < 2500000 || sumAssured > 1000000000) {
       this.openErrorMessage(`Payout must be between 2500000 and 1000000000`, `Close`);
-    } else {
-      this.subscribeList.add(
-        this.localStorage.getItem('quoteJson').subscribe((data) => {
-          if (data !== '') {
-            this.quoteJson = data;
-            this.selTermAge = coverUpto;
-            this.quoteJson.custSumAssured = this.selSumAssured = sumAssured;
-            this.quoteJson.custTerm = coverUpto - this.quoteJson.custAge;
-
-            this.localStorage.setItem('quoteJson', this.quoteJson).subscribe(() => {
-              this.progressBarValue = 0;
-              this.loaderComplete = false;
-              this.checkQuoteValue();
-            });
-          }
-        })
-      );
+      return;
     }
+    this.subscribeList.add(
+      this.localStorage.getItem('quoteJson').subscribe((data) => {
+        if (data === null || data === '')
+          return;
+
+        this.quoteJson = data;
+        this.selTermAge = coverUpto;
+        this.quoteJson.premiumPaymentFrequency = this.selPaymentMode = paymentMode;
+        this.quoteJson.custSumAssured = this.selSumAssured = sumAssured;
+        this.quoteJson.custTerm = this.selTermAge - this.quoteJson.custAge;
+        this.localStorage.setItem('quoteJson', this.quoteJson).subscribe(() => {
+          this.progressBarValue = 0;
+          this.loaderComplete = false;
+          this.premiumItemArr = [];
+          // this.checkQuoteValue();
+          this.saveTermQuote();
+        });
+
+      })
+    );
+
   }
 
   // OPEN DIALOG BY PASSING DIALOG OPBJECT
@@ -1325,7 +1330,6 @@ export class ListingComponent implements OnInit, OnDestroy {
   }
   // GET SELECTED PREMIUM ITEM
   selectPremiumItemPost(premiumItem: any, itemIndex: number, content) {
-    console.log('premiumJson', premiumItem);
     this.subscribeList.add(
       this.localStorage.setItem('premiumJson', premiumItem).subscribe(() => {
         const providerId: number = parseInt(premiumItem.provider_id);
@@ -1363,28 +1367,30 @@ export class ListingComponent implements OnInit, OnDestroy {
   selectPremiumItem(premiumItem: any, itemIndex: number, content, pospStatusContent) {
     // this.selectPremiumItemPost(premiumItem, itemIndex, content);
     // return;
-		if(this.userStatusApiStatus) {
-			this.localStorage.getItem("userJson").subscribe((userDetails: any) => {
-				if(!userDetails) {
-					this.selectPremiumItemPost(premiumItem, itemIndex, content);
-					return;
-				}
+    if (this.userStatusApiStatus) {
+      this.localStorage.getItem("userJson").subscribe((userDetails: any) => {
+        if (!userDetails) {
+          this.selectPremiumItemPost(premiumItem, itemIndex, content);
+          return;
+        }
 
-				this.userStatusApiStatus = false;
-				this.apiService.getPospCertificationStatus(userDetails.user_code).subscribe((res) => {
-					this.userStatusApiStatus = true;
-					if(res.status) {
-						this.selectPremiumItemPost(premiumItem, itemIndex, content);
-					} else {
-						this.dialogRef = this.dialog.open(pospStatusContent, {
+        this.userStatusApiStatus = false;
+        this.apiService.getPospCertificationStatus(userDetails.user_code).subscribe((res) => {
+          this.userStatusApiStatus = true;
+          if (res.status) {
+            this.selectPremiumItemPost(premiumItem, itemIndex, content);
+          } else {
+            this.dialogRef = this.dialog.open(pospStatusContent, {
+              // width: '80%',
+              // height: '80%',
               panelClass: ['posp_dialog']
             });
-						this.dialogRef.afterClosed().subscribe(result => {
-						});
-					}
-				});
-			});
-		}
+            this.dialogRef.afterClosed().subscribe(result => {
+            });
+          }
+        });
+      });
+    }
   }
   // SUBMIT MAX LIFE PREMIUM TO MAX LIVE DOMAIN
   submitMaxNyRegularForm(premiumItem: any, itemIndex: number) {
@@ -1597,7 +1603,7 @@ export class ListingComponent implements OnInit, OnDestroy {
           const curObj = this;
           setTimeout(() => {
             curObj.stopBuyNowLoader();
-            curObj.offLineSubmitBtn.nativeElement.click();
+            // curObj.offLineSubmitBtn.nativeElement.click();
           }, 4000);
         } else {
           this.stopBuyNowLoader();
@@ -1721,7 +1727,6 @@ export class ListingComponent implements OnInit, OnDestroy {
   // FUNCTION AFTER SUBMIT AEGON PROPOSAL FORM
   submitAegonProposalForm() {
     if (this.aegonProposalFormGroupFirst.invalid && this.aegonProposalFormGroupSecond.invalid) {
-      //  && this.aegonProposalFormGroupThird.invalid
       return;
     } else {
       this.proposalFormSubmitBtn = !this.proposalFormSubmitBtn;
@@ -1729,36 +1734,23 @@ export class ListingComponent implements OnInit, OnDestroy {
       this.quoteJson.custEmail = this.aegonProposalFormGroupFirst.get('custEmail').value;
       this.quoteJson.custCuntryCode = this.aegonProposalFormGroupFirst.get('custCuntryCode').value;
       this.quoteJson.custMob = this.aegonProposalFormGroupFirst.get('custMob').value;
-      // let iciciStateObj: any = this.secondFormGroup.get('custStateCode').value;
 
       const proposalJson = {
         custName: this.quoteJson.custName,
         custEmail: this.quoteJson.custEmail,
         custCuntryCode: this.quoteJson.custCuntryCode,
         custMob: this.quoteJson.custMob,
-        // custAddress: this.aegonProposalFormGroupSecond.get('custAddress').value,
-        // custCity: this.aegonProposalFormGroupSecond.get('custCity').value,
-        // custCountry: this.aegonProposalFormGroupSecond.get('custCountry').value,
-        // custStateCode: this.aegonProposalFormGroupSecond.get('custStateCode').value,
         customerFormatDOB: this.quoteJson.customerFormatDOB,
         customerGender: this.quoteJson.customerGender,
         customerEmpStatus: this.quoteJson.customerEmpStatus,
         custPinCode: this.aegonProposalFormGroupSecond.get('custPinCode').value,
-
-        // annualIncome: this.aegonProposalFormGroupThird.get('annualIncome').value,
         educationalQualification: this.aegonProposalFormGroupSecond.get('educationalQualification').value,
         occupation: this.aegonProposalFormGroupSecond.get('occupation').value,
-
-        // custPanNo: this.secondFormGroup.get('custPanNo').value,
         custPremiumAmount: this.quoteJson.premiumJson.net_premium,
       };
       console.log('pppppppp',proposalJson)
-      return;
-      
-
       this.quoteJson.proposalJson = proposalJson;
-      
-      return;
+      console.log('quoteJson',this.quoteJson)
       this.subscribeList.add(
         this.localStorage.setItem('quoteJson', this.quoteJson).subscribe(() => {
           this.subscribeList.add(
@@ -2120,13 +2112,13 @@ export class ListingComponent implements OnInit, OnDestroy {
       this.aegonStepper.next();
   }
 
-  checkAegonProposalFormGroupThird() {
-    if (this.aegonProposalFormGroupSecond.invalid)
-      // if (this.aegonProposalFormGroupThird.invalid)
-      return;
-    else
-      this.submitAegonProposalForm();
-  }
+  // checkAegonProposalFormGroupThird() {
+  //   if (this.aegonProposalFormGroupSecond.invalid)
+  //     // if (this.aegonProposalFormGroupThird.invalid)
+  //     return;
+  //   else
+  //     this.submitAegonProposalForm();
+  // }
 
   checkLength(value, len: number, fldName: any) {
     if (value.length > len) {
@@ -2142,15 +2134,12 @@ export class ListingComponent implements OnInit, OnDestroy {
     this.firstFormGroup.get('custAge').setValue(custAge);
   }
 
-  private scrollToBottom(): void {
-    if(this.listingPanel.nativeElement){
-      const scrollToElem = this.listingPanel.nativeElement;
-      setTimeout(() => {
-        scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-      }, 300);
-
-    }
-  }
+  // private scrollToBottom(): void {
+  //   const scrollToElem = this.listingPanel.nativeElement;
+  //   setTimeout(() => {
+  //     scrollToElem.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+  //   }, 300);
+  // }
 
   toggle() {
     this.show = !this.show;
@@ -2215,7 +2204,9 @@ export class ListingComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  public showFilter(){
+      document.getElementsByClassName('quotes-area-left')[0].classList.toggle('quotes-filter-show');
+  }
   ngOnDestroy() {
     this.subscribeList.unsubscribe();
   }

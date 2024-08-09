@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "buildprod": "ng build --prod --output-hashing=all --base-href /life-insurance/term-insurance/"
+    "buildprod": "ng build --prod --output-hashing=all --base-href /term-insurance/"
   },
   "private": true,
   "dependencies": {

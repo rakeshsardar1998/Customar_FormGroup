@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>Enter Aadhar No For EKYC</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter Aadhar No</mat-label>
+    <input matInput [(ngModel)]="data.magmaadhar">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <!-- <button mat-button [mat-dialog-close]="data.magmaadhar" cdkFocusInitial>Ok</button> -->
+  <button mat-button [mat-dialog-close]="data.magmaadhar" cdkFocusInitial (click)="callaadharapi(data.magmaadhar)">Ok</button>
+</div>

@@ -33,7 +33,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 		const metaKeyWords	='term life insurance, term insurance, life insurance, best term plan, buy best term plan policy, term life plans, term plan';
 		const metaDescription	=`Term Insurance: Buy the best term life insurance plan online in India for lowest price. Compare and buy the best term insurance plans starting at just Rs. 18 per day`;	
 		this.seoService.setpageTitle(this.pageTitle);
-		this.seoService.createLinkForCanonicalURL('https://www.gibl.in/term-life-insurance/');
+		this.seoService.createLinkForCanonicalURL('https://www.gibl.in/term-insurance/');
 		this.seoService.setMetaData(metaKeyWords, metaDescription);
 	}
 	

@@ -15,11 +15,13 @@ import { error } from '@angular/compiler/src/util';
 })
 export class ApiService implements Resolve<any> {
   dynamicForm: any;
+	localWindow: Window & typeof globalThis;
   submitForm(value: any) {
     throw new Error('Method not implemented.');
   }
 	private premiumLoaderCounterRef = 0;
 	private premiumLoaderCounterSubject = new BehaviorSubject(this.premiumLoaderCounterRef);
+	USERURL: string = "";
 	IS_LIVE = 'U';
 	LIC_SERVICE_URL = '';
 	ICICI_SERVICE_URL = '';
@@ -64,7 +66,7 @@ export class ApiService implements Resolve<any> {
 		private httpClient: HttpClient,
 		protected localStorage: LocalStorage,
 		@Inject(DOCUMENT) public document: HTMLDocument
-	) { }
+	) {}
 	public get premiumLoaderCounter(): Observable<number> {
 		return this.premiumLoaderCounterSubject.asObservable();
 	}
@@ -363,6 +365,8 @@ export class ApiService implements Resolve<any> {
 	}
 
 	signIn(callbackjson) {
+		console.log("TEST signin");
+		
 		const baseURL = this.getBaseURL();
 		const httpOptions = {
 			headers: new HttpHeaders({
@@ -641,6 +645,7 @@ export class ApiService implements Resolve<any> {
 			})
 		};
 		const baseURL = this.getBaseURL();
+		console.log(`${baseURL}api/updateLifeQuote/`)
 		return this.httpClient.post(`${baseURL}api/updateLifeQuote/`, quoteJson, httpOptions);
 	}
 
@@ -702,8 +707,18 @@ export class ApiService implements Resolve<any> {
 		const formFields$ = from(
 			fetch('/assets/proposal-form-stature.json').then(response => response.json())
 		);
-		
 		return formFields$;
 	}
+
+	pospLogin(sourceId: string): Observable<any> {
+		const baseURL = this.getBaseURL();
+		const domain = this.getDomain();
+		const payload = {
+			source: sourceId,
+			serviceUrl: `${domain}php-services/life-services/index.php?action=GET_AEGON_QUOTE`
+		};
+		return this.httpClient.post(`${baseURL}common/api`, payload);
+	}
+
 }
 

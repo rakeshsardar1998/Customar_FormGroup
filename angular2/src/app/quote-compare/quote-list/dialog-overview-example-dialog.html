@@ -1,0 +1,15 @@
+<h2 matDialogTitle>PA Owner Driver</h2>
+<!-- <p>
+Please opt this Compulsory Personal Accident Cover, only if you have valid driving license. You can skip this cover, if you have personal accident policy of Rs 15 Lakhs or have another motor insurance policy with "Compulsory Personal Accident Cover" of Rs 15 Lakhs sum insured. This is as per IRDAI mandate. Do you want to continue?
+</p> -->
+<p>
+    Please opt this Compulsory Personal Accident Cover, only if you have valid driving license. You can skip this cover, if you have
+</p>
+
+<mat-radio-button value='0' (click)="changeOwnerdrivr(0)" [checked]="true">No valid driving license</mat-radio-button>
+<mat-radio-button value='1' (click)="changeOwnerdrivr(1)">Other motor policy with CPA Cover</mat-radio-button>
+<mat-radio-button value='2' (click)="changeOwnerdrivr(2)">Have standalone CPA with SI>=15 lakh</mat-radio-button>
+<div mat-dialog-actions>
+<button color="primary" mat-raised-button color="warn" class="price" (click)="onNoClick()">Yes</button>
+<button mat-raised-button color="warn" class="price" [mat-dialog-close]="'no'" cdkFocusInitial>No</button>
+</div>

@@ -1,16 +1,18 @@
-import {Component, OnInit, ViewEncapsulation, Inject, ViewChild, AfterViewChecked, ChangeDetectorRef, ElementRef, OnDestroy} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControlName, FormControl} from '@angular/forms';
-import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { Component, OnInit, ViewEncapsulation, Inject, ViewChild, AfterViewChecked, ChangeDetectorRef, ElementRef, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControlName, FormControl } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../commonShare/date.adapter';
 import { MatStepper } from '@angular/material/stepper';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
-import {MatSnackBar,
+import {
+	MatSnackBar,
 	MatSnackBarConfig,
 	MatSnackBarHorizontalPosition,
-	MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
+	MatSnackBarVerticalPosition
+} from '@angular/material/snack-bar';
 
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -35,14 +37,14 @@ export interface PeriodicElement {
 
 	// encapsulation: ViewEncapsulation.None,
 	providers: [{
-			provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
-		},
-		{
-			provide: DateAdapter, useClass: AppDateAdapter
-		},
-		{
-			provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
-		}
+		provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
+	},
+	{
+		provide: DateAdapter, useClass: AppDateAdapter
+	},
+	{
+		provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+	}
 	]
 })
 export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
@@ -51,36 +53,36 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	// GET RANDOM NO
 	public randomNo: number = Date.now();
 	deviceInfo: any;
-	device_info:any;
+	device_info: any;
 	isLinear: boolean = true;
 	typesOfShoes: string[] = ['Self', 'Son', 'Father', 'Grand Father', 'Father-in_law', 'Wife'];
-  	typesOfShoes1: string[] = ['Self', 'Son', 'Father', 'Grand Father', 'Father-in_law', 'Wife'];
+	typesOfShoes1: string[] = ['Self', 'Son', 'Father', 'Grand Father', 'Father-in_law', 'Wife'];
 
 	// CMS CONTENT TBALE DATA
 	public ELEMENT_DATA: PeriodicElement[] = [
-	{company: 'Tata AIA', plan_name: 'Tata Sampoorna Raksha Lumpsum', settlement: '99.1%', maturity_age: '100 years', premium: 'Rs. 1001*/PM'},
-    {company: 'HDFC Life', plan_name: 'Hdfc Click2 Protect 3D Plus', settlement: '99%', maturity_age: '85 years', premium: 'Rs. 1023*/PM'},
-    {company: 'Max Life', plan_name: 'Smart Term Plan - Lumpsum Variant', settlement: '99.22%', maturity_age: '85 Years', premium: 'As per criteria'},
-    {company: 'ICICI Prudential', plan_name: 'iProtect Smart Lumpsum', settlement: '98.6%', maturity_age: '85 years', premium: 'Rs. 1017*/PM'},
-    {company: 'Edelweiss Tokio', plan_name: 'Zindagi Plus+ Lump sum', settlement: '97.8%', maturity_age: '80 years', premium: 'Rs. 780*/PM'},
-    {company: 'Reliance Nippon Life Insurance', plan_name: 'Reliance Digi-Term', settlement: '97.71%', maturity_age: '75 years', premium: 'Rs. 890*/PM'},
-    {company: 'Reliance Nippon Life Insurance', plan_name: 'Enhanced Life Secure', settlement: '97.71%', maturity_age: '75 years', premium: 'Rs. 1414*/PM'},
-    {company: 'Kotak Life', plan_name: 'Kotak e-Term Plan', settlement: '97.4%', maturity_age: '75 years', premium: 'Rs. 976*/PM'},
-    {company: 'Bharti Axa', plan_name: 'online term + Lumsum', settlement: '97.3%', maturity_age: '85 years', premium: 'Rs. 900*/PM'},
-    {company: 'Aditya Birla Sun Life Insurance', plan_name: 'ABSLI DigiShield Plan', settlement: '97.1%', maturity_age: '85 years', premium: 'Rs. 1037*/PM'},
-    {company: 'Exide Life', plan_name: 'Exide Life Smart', settlement: '97%', maturity_age: '65 years', premium: 'Rs. 1331*/PM'},
-    {company: 'SBI Life', plan_name: 'eShield', settlement: '96.8%', maturity_age: '80 years', premium: 'Rs. 1125*/PM'},
-    {company: 'SBI Life', plan_name: 'Poorna Suraksha', settlement: '96.8%', maturity_age: '65 years', premium: 'Rs. 2987*/PM'},
-    {company: 'DHFL', plan_name: 'Pramerica Life', settlement: '96.6%', maturity_age: '75 years', premium: 'Rs. 912*/PM'},
-    {company: 'Bandhan Life', plan_name: 'iTerm Comfort', settlement: '99.37%', maturity_age: '70 years', premium: 'Rs. 757*/PM'},
-    {company: 'IDBI', plan_name: 'IDBI Federal iSurance Flexi Lump Sum Plan', settlement: '96.2%', maturity_age: '80 years', premium: 'Rs. 1013*/PM'},
-    {company: 'PNB Metlife', plan_name: 'Mera Term Plan-Full Lumpsum Payout', settlement: '96.2%', maturity_age: '99 years', premium: 'Rs. 955*/PM'},
-    {company: 'Aviva Life Insurance', plan_name: 'Aviva iTerm Smart', settlement: '96%', maturity_age: '80 years', premium: 'Rs. 842*/PM'},
-    {company: 'Aviva Life Insurance', plan_name: 'iLife Total Protect', settlement: '96%', maturity_age: '75 years', premium: 'Rs. 971*/PM'},
-    {company: 'Future Generali', plan_name: 'Future Generali Flexi Online Term-Lumpsum', settlement: '95.2%', maturity_age: '75 years', premium: 'Rs. 885*/PM'},
-    {company: 'Canara HSBC OBC Life Insurance', plan_name: 'iSelect Lumpsum', settlement: '95.2%', maturity_age: '75 years', premium: 'Rs. 796/PM*'},
-    {company: 'Bajaj Allianz', plan_name: 'eTouch Lump Sum', settlement: '95%', maturity_age: '75 years', premium: 'Rs. 1128*/PM'},
-    {company: 'India First', plan_name: 'e-Term Plan', settlement: '94.2%', maturity_age: '75 years', premium: 'Rs. 780*/PM'}
+		{ company: 'Tata AIA', plan_name: 'Tata Sampoorna Raksha Lumpsum', settlement: '99.1%', maturity_age: '100 years', premium: 'Rs. 1001*/PM' },
+		{ company: 'HDFC Life', plan_name: 'Hdfc Click2 Protect 3D Plus', settlement: '99%', maturity_age: '85 years', premium: 'Rs. 1023*/PM' },
+		{ company: 'Max Life', plan_name: 'Smart Term Plan - Lumpsum Variant', settlement: '99.22%', maturity_age: '85 Years', premium: 'As per criteria' },
+		{ company: 'ICICI Prudential', plan_name: 'iProtect Smart Lumpsum', settlement: '98.6%', maturity_age: '85 years', premium: 'Rs. 1017*/PM' },
+		{ company: 'Edelweiss Tokio', plan_name: 'Zindagi Plus+ Lump sum', settlement: '97.8%', maturity_age: '80 years', premium: 'Rs. 780*/PM' },
+		{ company: 'Reliance Nippon Life Insurance', plan_name: 'Reliance Digi-Term', settlement: '97.71%', maturity_age: '75 years', premium: 'Rs. 890*/PM' },
+		{ company: 'Reliance Nippon Life Insurance', plan_name: 'Enhanced Life Secure', settlement: '97.71%', maturity_age: '75 years', premium: 'Rs. 1414*/PM' },
+		{ company: 'Kotak Life', plan_name: 'Kotak e-Term Plan', settlement: '97.4%', maturity_age: '75 years', premium: 'Rs. 976*/PM' },
+		{ company: 'Bharti Axa', plan_name: 'online term + Lumsum', settlement: '97.3%', maturity_age: '85 years', premium: 'Rs. 900*/PM' },
+		{ company: 'Aditya Birla Sun Life Insurance', plan_name: 'ABSLI DigiShield Plan', settlement: '97.1%', maturity_age: '85 years', premium: 'Rs. 1037*/PM' },
+		{ company: 'Exide Life', plan_name: 'Exide Life Smart', settlement: '97%', maturity_age: '65 years', premium: 'Rs. 1331*/PM' },
+		{ company: 'SBI Life', plan_name: 'eShield', settlement: '96.8%', maturity_age: '80 years', premium: 'Rs. 1125*/PM' },
+		{ company: 'SBI Life', plan_name: 'Poorna Suraksha', settlement: '96.8%', maturity_age: '65 years', premium: 'Rs. 2987*/PM' },
+		{ company: 'DHFL', plan_name: 'Pramerica Life', settlement: '96.6%', maturity_age: '75 years', premium: 'Rs. 912*/PM' },
+		{ company: 'Bandhan Life', plan_name: 'iTerm Comfort', settlement: '99.37%', maturity_age: '70 years', premium: 'Rs. 757*/PM' },
+		{ company: 'IDBI', plan_name: 'IDBI Federal iSurance Flexi Lump Sum Plan', settlement: '96.2%', maturity_age: '80 years', premium: 'Rs. 1013*/PM' },
+		{ company: 'PNB Metlife', plan_name: 'Mera Term Plan-Full Lumpsum Payout', settlement: '96.2%', maturity_age: '99 years', premium: 'Rs. 955*/PM' },
+		{ company: 'Aviva Life Insurance', plan_name: 'Aviva iTerm Smart', settlement: '96%', maturity_age: '80 years', premium: 'Rs. 842*/PM' },
+		{ company: 'Aviva Life Insurance', plan_name: 'iLife Total Protect', settlement: '96%', maturity_age: '75 years', premium: 'Rs. 971*/PM' },
+		{ company: 'Future Generali', plan_name: 'Future Generali Flexi Online Term-Lumpsum', settlement: '95.2%', maturity_age: '75 years', premium: 'Rs. 885*/PM' },
+		{ company: 'Canara HSBC OBC Life Insurance', plan_name: 'iSelect Lumpsum', settlement: '95.2%', maturity_age: '75 years', premium: 'Rs. 796/PM*' },
+		{ company: 'Bajaj Allianz', plan_name: 'eTouch Lump Sum', settlement: '95%', maturity_age: '75 years', premium: 'Rs. 1128*/PM' },
+		{ company: 'India First', plan_name: 'e-Term Plan', settlement: '94.2%', maturity_age: '75 years', premium: 'Rs. 780*/PM' }
 	];
 
 	displayedColumns: string[] = ['Insurance Company', 'Term Plan Name', 'Claim Settlement Ratio', 'Max Maturity Age', 'Premium (for a Cover of 1 Crore)'];
@@ -88,15 +90,15 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	source_user: string = "100173";
 
 	// SET FORM DEFAULT OPTIONS
-	public annualIncomeList: any[]  = [
+	public annualIncomeList: any[] = [
 		// {id: '0', text: '< 2 Lac'},
 		// {id: '1', text: '2-5 Lac'},
-		{id: '1', text: '< 5 Lac'},
-		{id: '2', text: '5-7 Lac'},
-		{id: '3', text: '7-10 Lac'},
-		{id: '4', text: '10-15 Lac'},
-		{id: '5', text: '15-20 Lac'},
-		{id: '6', text: '20 Lac & Above'}
+		{ id: '1', text: '< 5 Lac' },
+		{ id: '2', text: '5-7 Lac' },
+		{ id: '3', text: '7-10 Lac' },
+		{ id: '4', text: '10-15 Lac' },
+		{ id: '5', text: '15-20 Lac' },
+		{ id: '6', text: '20 Lac & Above' }
 	];
 
 	quoteJson: any;
@@ -111,50 +113,61 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 
 	// tslint:disable-next-line: no-inferrable-types
 	public focusState: boolean = true;
-	public quoteFormSubmitBtn: boolean  = false;
+	public quoteFormSubmitBtn: boolean = false;
 
 	// ASSIGN STEPPER OBJECT
 	@ViewChild('stepper', { static: false }) stepper: MatStepper;
 	@ViewChild('vstepper', { static: false }) vstepper: MatStepper;
 
 	// ASSIGN INPUT FORM FIELD
-	@ViewChild('customerDOB', {static: false}) customerDOB: ElementRef;
-	@ViewChild('custMob', {static: false}) custMob: ElementRef;
-	@ViewChild('custName', {static: false}) custName: ElementRef;
-	@ViewChild('custEmail', {static: false}) custEmail: ElementRef;
+	@ViewChild('customerDOB', { static: false }) customerDOB: ElementRef;
+	@ViewChild('custMob', { static: false }) custMob: ElementRef;
+	@ViewChild('custName', { static: false }) custName: ElementRef;
+	@ViewChild('custEmail', { static: false }) custEmail: ElementRef;
 
 	public genderValue: string;
 
 	dobMaxDate: any;
-	curDate: any  = new Date();
+	curDate: any = new Date();
 	maxDOB: any = new Date();
 	minDOB: any = new Date();
 	defaultCountryCode: any;
-	defaultTerm: number	= 25;
-	defaultSumAssured: number	= 50;
+	defaultTerm: number = 25;
+	defaultSumAssured: number = 50;
 
-	completeQuoteFormData: any  = {};
+	completeQuoteFormData: any = {};
 
 	// LOADER BEFORE NAVIGATE TO LISTING PAGE
 	// tslint:disable-next-line: no-inferrable-types
 	displayListingLoader: boolean = false;
 	// TERM AGE RANGE ARRAY DETAILS
-	termRange: any[]  = [];
-	showPageContent: boolean	= false;
+	termRange: any[] = [];
+	showPageContent: boolean = false;
 
-	pageTitle: string	= 'Best Term Life Insurance : Compare & Buy 1 Cr Life Cover @ 18/day.';
-	globalTerm: boolean	=false;
-	termBaseUrl: string = 'https://www.gibl.in/term-life-insurance/';
+	pageTitle: string = 'Best Term Life Insurance : Compare & Buy 1 Cr Life Cover @ 18/day.';
+	globalTerm: boolean = false;
+	termBaseUrl: string = 'https://www.gibl.in/term-insurance/';
 	public spinnerColor: any = 'primary';
 	public spinnerMode: any = 'indeterminate';
-	public redirectSpinnerShow: boolean	= false;
+	public redirectSpinnerShow: boolean = false;
 
 	horizontalPosition: MatSnackBarHorizontalPosition = 'center';
 	verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 	// DATE FIELD MASKING REGULAR EXPRESSION FOR DD/MM/YYYY FORMAT
 	dobMask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
-	localWindow:any;
+	localWindow: any;
+	userCode: any;
+	quoteForm: any;
+	user_code: any;
+	isLoggedIn: boolean;
+	white_label: number;
+	affiliate_customer_request_id: any = "";
+	form_premium_type: number;
+	showlogo: boolean = true;
+	role_type: string = "";
+	user_token: string = "";
 	constructor(
+		private cdRef: ChangeDetectorRef,
 		private _formBuilder: FormBuilder,
 		private router: Router,
 		protected localStorage: LocalStorage,
@@ -167,16 +180,18 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 		private _snackBar: MatSnackBar,
 		private _elementRef: ElementRef,
 		private deviceService: DeviceDetectorService,
-	) {}
+		@Inject(PLATFORM_ID) private platformId: Object,
+	) { }
 
 	ngAfterViewChecked() {
-		this.showPageContent	= true;
+		this.showPageContent = true;
 		this.cdr.detectChanges();
 	}
 
 	hasValues: any = (obj) => Object.values(obj).some(v => v !== null && typeof v !== 'undefined');
 
 	ngOnInit() {
+		// this.USERURL = this.apiService.getBaseURL();
 		// CALL SEO SERVICES
 		this.setSeoTagsData();
 
@@ -185,8 +200,8 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 
 		this.subscribeList.add(
 			this.localStorage.getItem('userJson').subscribe((data) => {
-				this.userJson	=data;
-				console.log('User my data:=>',data);
+				this.userJson = data;
+				console.log('User my data:=>', data);
 			})
 		);
 		this.genderValue = 'M';
@@ -200,30 +215,30 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 		this.minDOB.setDate(this.curDate.getDate());
 
 		// SET TERM AGE RANGE ARRAY
-		this.termRange	=[...Array(81).keys()].filter((counter)=>counter>4).map(i=>i);
+		this.termRange = [...Array(81).keys()].filter((counter) => counter > 4).map(i => i);
 
 		this.firstFormGroup = this._formBuilder.group({
 			// tslint:disable-next-line: max-line-length
-			custMob: ['', [ Validators.required, Validators.pattern(/^[1-9]\d{9}$/)]],
+			custMob: ['', [Validators.required, Validators.pattern(/^[1-9]\d{9}$/)]],
 			// tslint:disable-next-line: max-line-length
 			custCuntryCode: [this.defaultCountryCode, [Validators.required, Validators.pattern(/^\d{2,3}$/)]],
-			customerDOB: ['',[Validators.required, Validators.pattern(/(\d{2})\/(\d{2})\/(\d{4})/), this.checkAgeRestriction]],
+			customerDOB: ['', [Validators.required, Validators.pattern(/(\d{2})\/(\d{2})\/(\d{4})/), this.checkAgeRestriction]],
 			customerFormatDOB: [''],
 			custAge: ['', Validators.required],
 			//termType: ['T', [ Validators.required ]],
-			customerGender: [this.genderValue, [ Validators.required ]],
+			customerGender: [this.genderValue, [Validators.required]],
 			custName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^(\w.+\s).+$/), this.noWhitespaceValidator]],
 			custEmail: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'), this.noWhitespaceValidator]]
 		});
 		this.thirdFormGroup = this._formBuilder.group({});
-		this.customerFormStep2  = this._formBuilder.group({
+		this.customerFormStep2 = this._formBuilder.group({
 			customerSmoker: ['', [Validators.required]]
 		});
-		this.customerFormStep3  = this._formBuilder.group({
+		this.customerFormStep3 = this._formBuilder.group({
 			customerIncome: ['', [Validators.required]]
 		});
-		this.customerFormStep4  = this._formBuilder.group({
-			customerEmpStatus:  ['', [Validators.required]],
+		this.customerFormStep4 = this._formBuilder.group({
+			customerEmpStatus: ['', [Validators.required]],
 			// tslint:disable-next-line: max-line-length
 			custTerm: [this.defaultTerm, [Validators.required, Validators.pattern(/^\d{1,2}$/), Validators.maxLength(2), Validators.minLength(1), Validators.min(5), Validators.max(81)]],
 			custSumAssured: [this.defaultSumAssured, [Validators.required, Validators.pattern(/^\d{2,5}$/), Validators.min(25), Validators.max(10000)]]
@@ -236,15 +251,15 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	// UPDATE SEO META TAGS
 	setSeoTagsData() {
 		let date = new Date();
-		let day	=date.getDate();
+		let day = date.getDate();
 		let month = date.toLocaleString('default', { month: 'long' });
-		let year	=date.getFullYear();
-		let full_date	=`${day} ${month}, ${year}`;
+		let year = date.getFullYear();
+		let full_date = `${day} ${month}, ${year}`;
 
-		const metaKeyWords	='term life insurance, term insurance, life insurance, best term plan, buy best term plan policy, term life plans, term plan';
-		const metaDescription	=`Buy the best term life insurance plan online in India for lowest price. Compare and buy the best term insurance plans starting at just Rs. 18 per day. ${full_date}`;
+		const metaKeyWords = 'term life insurance, term insurance, life insurance, best term plan, buy best term plan policy, term life plans, term plan';
+		const metaDescription = `Buy the best term life insurance plan online in India for lowest price. Compare and buy the best term insurance plans starting at just Rs. 18 per day. ${full_date}`;
 		this.seoService.setpageTitle(this.pageTitle + full_date);
-		this.seoService.createLinkForCanonicalURL('https://www.gibl.in/term-life-insurance/');
+		this.seoService.createLinkForCanonicalURL('https://www.gibl.in/term-insurance/');
 		this.seoService.setMetaData(metaKeyWords, metaDescription);
 
 		this.seoService.removeH1Tag();
@@ -260,8 +275,8 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 
 		this.subscribeList.add(
 			this.localStorage.getItem('quoteJson').subscribe((data) => {
-				this.quoteJson  = data;
-				if ( data ) {
+				this.quoteJson = data;
+				if (data) {
 					// console.log('Localstorage::',this.quoteJson);
 					// this.setPreFormValue();
 				}
@@ -270,22 +285,22 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	}
 	// SET FORM PRE FILLED VALUES
 	setPreFormValue() {
-		if ( this.quoteJson.custCuntryCode !== '' ) {
-			this.defaultCountryCode	= this.quoteJson.custCuntryCode;
+		if (this.quoteJson.custCuntryCode !== '') {
+			this.defaultCountryCode = this.quoteJson.custCuntryCode;
 		}
 
-		if ( this.quoteJson.custSumAssured !== '' ) {
-			this.defaultSumAssured	= this.quoteJson.custSumAssured / 100000;
+		if (this.quoteJson.custSumAssured !== '') {
+			this.defaultSumAssured = this.quoteJson.custSumAssured / 100000;
 		}
 
-		if ( this.quoteJson.custTerm !== '' ) {
-			this.defaultTerm	= this.quoteJson.custTerm;
+		if (this.quoteJson.custTerm !== '') {
+			this.defaultTerm = this.quoteJson.custTerm;
 		}
 
-		if ( this.quoteJson.customerGender !== '' ) {
-			this.genderValue	= this.quoteJson.customerGender.toString();
+		if (this.quoteJson.customerGender !== '') {
+			this.genderValue = this.quoteJson.customerGender.toString();
 		}
-		console.log('local value::',this.genderValue);
+		console.log('local value::', this.genderValue);
 		this.firstFormGroup.get('customerDOB').setValue(this.quoteJson.customerDOB);
 		this.firstFormGroup.get('customerFormatDOB').setValue(this.getFormatDOB(this.quoteJson.customerDOB));
 		this.firstFormGroup.get('custAge').setValue(this.quoteJson.custAge);
@@ -306,84 +321,84 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	checkQuoteAutoRedirect() {
 		this.subscribeList.add(
 			this.route.queryParams.subscribe(params => {
-				const quoteId	=params['QID'];
+				const quoteId = params['QID'];
 				// console.log('qidddd::', quoteId);
 				// console.log('spinner::', this.redirectSpinnerShow);
-				if( quoteId>0 ) {
-					this.redirectSpinnerShow	= !this.redirectSpinnerShow;
+				if (quoteId > 0) {
+					this.redirectSpinnerShow = !this.redirectSpinnerShow;
 					console.log('spinner::', this.redirectSpinnerShow);
 					this.subscribeList.add(
 						this.apiService.getQuoteTerm(quoteId)
-						.subscribe(( quoteResponse ) => {
-							if ( quoteId == quoteResponse[0].quoteId ) {
-								console.log('Response::', quoteResponse[0]);
-								let custAge	= this.getAgeFromDOB(quoteResponse[0].custDOB);
-								let customerFormatDOB	= this.getFormatDOB(quoteResponse[0].custDOB);
-								let customerQuoteJson = JSON.parse(quoteResponse[0].quoteJson);
+							.subscribe((quoteResponse) => {
+								if (quoteId == quoteResponse[0].quoteId) {
+									console.log('Response::', quoteResponse[0]);
+									let custAge = this.getAgeFromDOB(quoteResponse[0].custDOB);
+									let customerFormatDOB = this.getFormatDOB(quoteResponse[0].custDOB);
+									let customerQuoteJson = JSON.parse(quoteResponse[0].quoteJson);
 
-								this.completeQuoteFormData.custAge	= custAge;
-								this.completeQuoteFormData.custCuntryCode	= 91;
-								this.completeQuoteFormData.custMob	= quoteResponse[0].custMobile;
-								this.completeQuoteFormData.customerDOB	= quoteResponse[0].custDOB;
-								this.completeQuoteFormData.customerFormatDOB	= customerFormatDOB;
-								this.completeQuoteFormData.custName	= quoteResponse[0].custName;
-								this.completeQuoteFormData.custEmail	= quoteResponse[0].custEmail;
-								this.completeQuoteFormData.customerGender	= quoteResponse[0].custGender;
-								this.completeQuoteFormData.customerSmoker	= customerQuoteJson.customerSmoker;
-								this.completeQuoteFormData.customerIncome	= customerQuoteJson.customerIncome;
-								this.completeQuoteFormData.customerEmpStatus	= customerQuoteJson.customerEmpStatus;
-								this.completeQuoteFormData.custSumAssured	= customerQuoteJson.custSumAssured;
-								this.completeQuoteFormData.custTerm	= customerQuoteJson.custTerm;
-								this.completeQuoteFormData.uniqueId	= quoteResponse[0].uniqueId;
+									this.completeQuoteFormData.custAge = custAge;
+									this.completeQuoteFormData.custCuntryCode = 91;
+									this.completeQuoteFormData.custMob = quoteResponse[0].custMobile;
+									this.completeQuoteFormData.customerDOB = quoteResponse[0].custDOB;
+									this.completeQuoteFormData.customerFormatDOB = customerFormatDOB;
+									this.completeQuoteFormData.custName = quoteResponse[0].custName;
+									this.completeQuoteFormData.custEmail = quoteResponse[0].custEmail;
+									this.completeQuoteFormData.customerGender = quoteResponse[0].custGender;
+									this.completeQuoteFormData.customerSmoker = customerQuoteJson.customerSmoker;
+									this.completeQuoteFormData.customerIncome = customerQuoteJson.customerIncome;
+									this.completeQuoteFormData.customerEmpStatus = customerQuoteJson.customerEmpStatus;
+									this.completeQuoteFormData.custSumAssured = customerQuoteJson.custSumAssured;
+									this.completeQuoteFormData.custTerm = customerQuoteJson.custTerm;
+									this.completeQuoteFormData.uniqueId = quoteResponse[0].uniqueId;
 
-								console.log('Retrive Data::', this.completeQuoteFormData);
-								this.subscribeList.add(this.localStorage.setItem('quoteJson', '').subscribe(() => {
-									this.subscribeList.add(this.localStorage.setItem('quoteJson', this.completeQuoteFormData).subscribe(() => {
-										this.subscribeList.add(
+									console.log('Retrive Data::', this.completeQuoteFormData);
+									this.subscribeList.add(this.localStorage.setItem('quoteJson', '').subscribe(() => {
+										this.subscribeList.add(this.localStorage.setItem('quoteJson', this.completeQuoteFormData).subscribe(() => {
+											this.subscribeList.add(
 												this.localStorage.setItem('proposalJson', '').subscribe(() => {
-												this.redirectSpinnerShow	= !this.redirectSpinnerShow;
-												this.router.navigate(['/listing']);
-											})
-										);
+													this.redirectSpinnerShow = !this.redirectSpinnerShow;
+													this.router.navigate(['/listing']);
+												})
+											);
+										}));
 									}));
-								}));
-							} else {
-								this.redirectSpinnerShow	= !this.redirectSpinnerShow;
-								this.openErrorMessage('Invalid request','close');
-							}
-						})
+								} else {
+									this.redirectSpinnerShow = !this.redirectSpinnerShow;
+									this.openErrorMessage('Invalid request', 'close');
+								}
+							})
 					);
 				}
-	    	})
+			})
 		);
 	}
 
 	// FUNCTION HANDLE FIRST STEP
 	checkFirstForm(stepper: MatStepper) {
-		if ( this.firstFormGroup.invalid ) {
+		if (this.firstFormGroup.invalid) {
 			if (this.firstFormGroup.get('customerDOB').invalid) {
 				this.customerDOB.nativeElement.focus();
-	      	} else if (this.firstFormGroup.get('custMob').invalid) {
+			} else if (this.firstFormGroup.get('custMob').invalid) {
 				this.custMob.nativeElement.focus();
-	      	} else if (this.firstFormGroup.get('custName').invalid) {
+			} else if (this.firstFormGroup.get('custName').invalid) {
 				this.custName.nativeElement.focus();
-	      	} else if (this.firstFormGroup.get('custEmail').invalid) {
-	      		this.custEmail.nativeElement.focus();
-	      	}
+			} else if (this.firstFormGroup.get('custEmail').invalid) {
+				this.custEmail.nativeElement.focus();
+			}
 			return;
 		} else {
-			const dob_arr	= this.firstFormGroup.get('customerDOB').value.split("/");
-			const selDOB  = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
+			const dob_arr = this.firstFormGroup.get('customerDOB').value.split("/");
+			const selDOB = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
 			/*const selDOB  = new Date(this.firstFormGroup.get('customerDOB').value);*/
-			const dobMonth: number  = selDOB.getMonth() + 1;
-			const dobFormatVal  = selDOB.getFullYear() + '-' + this.addLeadingZero(dobMonth) + '-' + this.addLeadingZero(selDOB.getDate());
+			const dobMonth: number = selDOB.getMonth() + 1;
+			const dobFormatVal = selDOB.getFullYear() + '-' + this.addLeadingZero(dobMonth) + '-' + this.addLeadingZero(selDOB.getDate());
 			this.firstFormGroup.get('customerFormatDOB').setValue(dobFormatVal);
 			this.stepper.next();
 		}
 	}
 	// FUNCTION FOR CHECK SMOKE STATUS
 	submitSmokerStatus(stepper: MatStepper) {
-		if ( this.customerFormStep2.invalid ) {
+		if (this.customerFormStep2.invalid) {
 			return;
 		} else {
 			this.vstepper.next();
@@ -391,7 +406,7 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	}
 	// FUNCTION FOR ANNUAL INCOME SUBMIT
 	submitAnnualIncome(stepper: MatStepper) {
-		if ( this.customerFormStep3.invalid ) {
+		if (this.customerFormStep3.invalid) {
 			return;
 		} else {
 			this.vstepper.next();
@@ -399,7 +414,7 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	}
 	// FUNCTION FOR VALIDATE STEP 3
 	checkStep3Form(stepper: MatStepper) {
-		if ( this.customerFormStep3.invalid ) {
+		if (this.customerFormStep3.invalid) {
 			return;
 		} else {
 			this.vstepper.next();
@@ -407,7 +422,7 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	}
 	// FUNCTION FOR EMPLOYEE STATUS SUBMIT
 	submitEmpStatus(stepper: MatStepper) {
-		if ( this.customerFormStep4.invalid ) {
+		if (this.customerFormStep4.invalid) {
 			return;
 		} else {
 			// this.vstepper.next();
@@ -415,21 +430,22 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	}
 	// FUNCTION TO HANDLE QUOTE FORM SUBMITTED DATA
 	submitQuoteForm(stepper: MatStepper) {
-		if ( this.customerFormStep4.invalid ) {
+		if (this.customerFormStep4.invalid) {
 			return;
 		} else {
 			this.displayListingLoader = true;
-			this.quoteFormSubmitBtn  = !this.quoteFormSubmitBtn;
+			this.quoteFormSubmitBtn = !this.quoteFormSubmitBtn;
 			this.setQuoteFormData();
 			//return;
 			this.localStorage.removeItem('quoteJson');
 			this.subscribeList.add(
 				this.localStorage.setItem('quoteJson', '').subscribe(() => {
+					console.log('quoteJson', this.quoteJson)
 					this.subscribeList.add(
 						this.localStorage.setItem('quoteJson', this.completeQuoteFormData).subscribe(() => {
 							this.localStorage.setItem('proposalJson', '').subscribe(() => {
 								console.log('New Quote::', this.completeQuoteFormData);
-								this.quoteFormSubmitBtn  = !this.quoteFormSubmitBtn;
+								this.quoteFormSubmitBtn = !this.quoteFormSubmitBtn;
 								this.router.navigate(['/listing']);
 							});
 						})
@@ -440,57 +456,56 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	}
 	// SET GIVEN FORM ENTRY DATA INTO SINGLE FORM BEFORE SUBMIT
 	setQuoteFormData() {
-		this.completeQuoteFormData.premiumPaymentFrequency   = "monthly";
-		this.completeQuoteFormData.custAge   = this.firstFormGroup.get('custAge').value;
-		this.completeQuoteFormData.custCuntryCode   = this.firstFormGroup.get('custCuntryCode').value;
-		this.completeQuoteFormData.custMob   = this.firstFormGroup.get('custMob').value;
-		this.completeQuoteFormData.customerDOB   = this.firstFormGroup.get('customerDOB').value;
-		this.completeQuoteFormData.customerGender   = this.firstFormGroup.get('customerGender').value;
-		this.completeQuoteFormData.customerFormatDOB   = this.firstFormGroup.get('customerFormatDOB').value;
-		this.completeQuoteFormData.custName  = this.apiService.toTitleCase(this.firstFormGroup.get('custName').value);
-		this.completeQuoteFormData.custEmail  = this.firstFormGroup.get('custEmail').value;
+		this.completeQuoteFormData.premiumPaymentFrequency = "monthly";
+		this.completeQuoteFormData.custAge = this.firstFormGroup.get('custAge').value;
+		this.completeQuoteFormData.custCuntryCode = this.firstFormGroup.get('custCuntryCode').value;
+		this.completeQuoteFormData.custMob = this.firstFormGroup.get('custMob').value;
+		this.completeQuoteFormData.customerDOB = this.firstFormGroup.get('customerDOB').value;
+		this.completeQuoteFormData.customerGender = this.firstFormGroup.get('customerGender').value;
+		this.completeQuoteFormData.customerFormatDOB = this.firstFormGroup.get('customerFormatDOB').value;
+		this.completeQuoteFormData.custName = this.apiService.toTitleCase(this.firstFormGroup.get('custName').value);
+		this.completeQuoteFormData.custEmail = this.firstFormGroup.get('custEmail').value;
 
-		this.completeQuoteFormData.customerSmoker   = this.customerFormStep2.get('customerSmoker').value;
-		this.completeQuoteFormData.customerIncome   = this.customerFormStep3.get('customerIncome').value;
-		this.completeQuoteFormData.customerEmpStatus   = this.customerFormStep4.get('customerEmpStatus').value;
-		this.completeQuoteFormData.custSumAssured   = this.customerFormStep4.get('custSumAssured').value * 100000;
-		this.completeQuoteFormData.custTerm   = this.customerFormStep4.get('custTerm').value;
-		this.completeQuoteFormData.uniqueId  = new Date().getTime();
-		this.completeQuoteFormData.source_user	=this.source_user;
-		this.completeQuoteFormData.userCode	=0;
+		this.completeQuoteFormData.customerSmoker = this.customerFormStep2.get('customerSmoker').value;
+		this.completeQuoteFormData.customerIncome = this.customerFormStep3.get('customerIncome').value;
+		this.completeQuoteFormData.customerEmpStatus = this.customerFormStep4.get('customerEmpStatus').value;
+		this.completeQuoteFormData.custSumAssured = this.customerFormStep4.get('custSumAssured').value * 100000;
+		this.completeQuoteFormData.custTerm = this.customerFormStep4.get('custTerm').value;
+		this.completeQuoteFormData.uniqueId = new Date().getTime();
+		this.completeQuoteFormData.source_user = this.source_user;
+		this.completeQuoteFormData.userCode = 0;
 		// SET DEVICE VALUE
-		this.completeQuoteFormData.deviceInfo	=this.device_info;
-		if( this.userJson !== null ){
-			this.completeQuoteFormData.userJson	=this.userJson;
-			this.completeQuoteFormData.userCode	=this.userJson.user_code;
-			this.completeQuoteFormData.source_user	=this.userJson.source_user;
+		this.completeQuoteFormData.deviceInfo = this.device_info;
+		if (this.userJson !== null) {
+			this.completeQuoteFormData.userJson = this.userJson;
+			this.completeQuoteFormData.userCode = this.userJson.user_code;
+			this.completeQuoteFormData.source_user = this.userJson.source_user;
 		}
 		console.log('full quote form', this.completeQuoteFormData);
 	}
 	// GET DEVICE DETAILS
-	getDeviceDetails()
-	{
+	getDeviceDetails() {
 		this.deviceInfo = this.deviceService.getDeviceInfo();
 		const isMobile = this.deviceService.isMobile();
 		const isTablet = this.deviceService.isTablet();
 		const isDesktopDevice = this.deviceService.isDesktop();
-		let source_device='';
-		if(isMobile){
-		  source_device='MOBILE'
+		let source_device = '';
+		if (isMobile) {
+			source_device = 'MOBILE'
 		}
-		else if(isTablet){
-		  source_device='TABLET'
+		else if (isTablet) {
+			source_device = 'TABLET'
 		}
-		else if(isDesktopDevice){
-		  source_device='DESKTOP'
+		else if (isDesktopDevice) {
+			source_device = 'DESKTOP'
 		}
-		this.device_info={
-			visitor_source:"GIBL.IN",
-			visitor_device:source_device,
-			visitor_browser:this.deviceInfo.browser.toUpperCase(),
-			visitor_agent:this.deviceInfo.userAgent
+		this.device_info = {
+			visitor_source: "GIBL.IN",
+			visitor_device: source_device,
+			visitor_browser: this.deviceInfo.browser.toUpperCase(),
+			visitor_agent: this.deviceInfo.userAgent
 		}
-		console.log('device_info',this.device_info);
+		console.log('device_info', this.device_info);
 	}
 
 	// CHECK INPUT VALUE LENGTH
@@ -503,15 +518,15 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	// CHECK QUOTE SUM ASSURED
 	sumAssuredCheck($event) {
 		console.log($event.charCode);
-		if ( $event.charCode >= 48 && $event.charCode <= 57 ) {
+		if ($event.charCode >= 48 && $event.charCode <= 57) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 	// GENERIC URL REDIRECT
-	redirectTo( url: string) {
-		window.location.href  = url;
+	redirectTo(url: string) {
+		window.location.href = url;
 	}
 	// OPEN ERROR MESSAGE POPUP
 	openErrorMessage(message: string, action: string) {
@@ -522,9 +537,9 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	}
 	// TRIM ANY VALUE PASSES IN IT
 	public noWhitespaceValidator(control: FormControl) {
-	    const isWhitespace = (control.value || '').trim().length === 0;
-	    const isValid = !isWhitespace;
-	    return isValid ? null : { 'whitespace': true };
+		const isWhitespace = (control.value || '').trim().length === 0;
+		const isValid = !isWhitespace;
+		return isValid ? null : { 'whitespace': true };
 	}
 	// CONVERT VALUE TO TITLE CASE
 	toTitleCase = (phrase) => {
@@ -536,77 +551,125 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 	}
 	// CALCULATE AGE FROM DATE OF BIRTH
 	calculateAge($event) {
-		const selDOB  = new Date($event.value);
+		const selDOB = new Date($event.value);
 		const timeDiff = Math.abs(Date.now() - selDOB.getTime());
 		const custAge = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
 		this.firstFormGroup.get('custAge').setValue(custAge);
 		// CALCULATE DEFAULT TERM AGE
-		if(custAge<75) {
-			this.defaultTerm	= 75 - custAge;
+		if (custAge < 75) {
+			this.defaultTerm = 75 - custAge;
 		} else {
-			this.defaultTerm	= 99 - custAge;
+			this.defaultTerm = 99 - custAge;
 		}
 
 		this.customerFormStep4.get('custTerm').setValue(this.defaultTerm);
-		const dobMonth: number  = selDOB.getMonth() + 1;
-		const dobFormatVal  = selDOB.getFullYear() + '-' + this.addLeadingZero(dobMonth) + '-' + this.addLeadingZero(selDOB.getDate());
+		const dobMonth: number = selDOB.getMonth() + 1;
+		const dobFormatVal = selDOB.getFullYear() + '-' + this.addLeadingZero(dobMonth) + '-' + this.addLeadingZero(selDOB.getDate());
 		this.firstFormGroup.get('customerFormatDOB').setValue(dobFormatVal);
 		// this.customerFormStep5.get('custTerm').setValue(this.defaultTerm);
 	}
 	// CALCULATE AGE FROM GIVEN DATE VALUE
-	getAgeFromDOB(dateVal:string) {
-		const dob_arr	= dateVal.split("/");
-		const selDOB  = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
+	getAgeFromDOB(dateVal: string) {
+		const dob_arr = dateVal.split("/");
+		const selDOB = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
 		const timeDiff = Math.abs(Date.now() - selDOB.getTime());
 		const custAge = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
 		return custAge;
 	}
 	// FORMAT DATE MYSQL DB FORMAT
-	getFormatDOB(dateVal:string) {
-		const dob_arr	= dateVal.split("/");
-		const selDOB  = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
-		const dobMonth: number  = selDOB.getMonth() + 1;
-		const dobFormatVal  = selDOB.getFullYear() + '-' + this.addLeadingZero(dobMonth) + '-' + this.addLeadingZero(selDOB.getDate());
+	getFormatDOB(dateVal: string) {
+		const dob_arr = dateVal.split("/");
+		const selDOB = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
+		const dobMonth: number = selDOB.getMonth() + 1;
+		const dobFormatVal = selDOB.getFullYear() + '-' + this.addLeadingZero(dobMonth) + '-' + this.addLeadingZero(selDOB.getDate());
 		return dobFormatVal;
 	}
 	// ADD LEADING 0 TO ANY NUMBER
 	addLeadingZero(numberVal: any) {
-		return ( '0' + numberVal ).slice(-2);
+		return ('0' + numberVal).slice(-2);
 	}
 	// CLACULATE AGE FROM DOB
-	checkDOB(dobValue:string) : void {
-		let dob_arr	= dobValue.split("/");
-		let selDOB  = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
-    let toDate = new Date();
-    let custAge = toDate.getFullYear() - selDOB.getFullYear();
-    if(toDate.getMonth() < selDOB.getMonth() || toDate.getMonth() == selDOB.getMonth() && toDate.getDate() < selDOB.getDate()) {
-      custAge -= 1;
-    }
+	checkDOB(dobValue: string): void {
+		let dob_arr = dobValue.split("/");
+		let selDOB = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
+		let toDate = new Date();
+		let custAge = toDate.getFullYear() - selDOB.getFullYear();
+		if (toDate.getMonth() < selDOB.getMonth() || toDate.getMonth() == selDOB.getMonth() && toDate.getDate() < selDOB.getDate()) {
+			custAge -= 1;
+		}
 
 		// let timeDiff = Math.abs(Date.now() - selDOB.getTime());
 		// let custAge = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
 
-		if( custAge>=18 && custAge<=65 ) {
+		if (custAge >= 18 && custAge <= 65) {
 			this.firstFormGroup.get('custAge').setValue(custAge);
 		}
 	}
 	// FUNCTION TO CHECK CUSTOMER AGE RANGE RESTRICTION
 	public checkAgeRestriction(control: FormControl) {
-		const dob_arr	= control.value.split("/");
-		const selDOB  = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
-    let toDate = new Date();
-    let custAge = toDate.getFullYear() - selDOB.getFullYear();
-    if(toDate.getMonth() < selDOB.getMonth() || toDate.getMonth() == selDOB.getMonth() && toDate.getDate() < selDOB.getDate()) {
-      custAge -= 1;
-    }
+		const dob_arr = control.value.split("/");
+		const selDOB = new Date(`${dob_arr[2]}-${dob_arr[1]}-${dob_arr[0]}`);
+		let toDate = new Date();
+		let custAge = toDate.getFullYear() - selDOB.getFullYear();
+		if (toDate.getMonth() < selDOB.getMonth() || toDate.getMonth() == selDOB.getMonth() && toDate.getDate() < selDOB.getDate()) {
+			custAge -= 1;
+		}
 		// const timeDiff = Math.abs(Date.now() - selDOB.getTime());
 		// const custAge = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
 
-		return (custAge>=18 && custAge<=65)? null : { 'agerestrict': true };
+		return (custAge >= 18 && custAge <= 65) ? null : { 'agerestrict': true };
 	}
+	ngAfterViewInit() {
+		if (isPlatformBrowser(this.platformId)) {
+			this.route.queryParams.subscribe(params => {
+				console.log("Test Params",params)
+				/*************************************Auto Login********************************/
+				if (params.source != null) {
+					this.apiService.pospLogin(params.source).subscribe(res => {
+						console.log('res',res);
+						console.log("Check Params",params);
+						if (res.token) {
+							if (res.status == '1')
+								this.isLoggedIn = true;
+							else
+								this.isLoggedIn = false;
 
+							this.user_code = res.user_code;
+							this.localStorage.setItem('userJson', res).subscribe(() => {
+								this.quoteForm.get('userCode').setValue(res.user_code);
+								this.router.navigate(['/'], { queryParams: { TYPE: params.TYPE } });
+							});
+						} else {
+							this.isLoggedIn = false;
+							this.user_code = '100173';
+							this.localStorage.setItem('userJson', null).subscribe(() => {
+								this.router.navigate(['/'], { queryParams: { TYPE: params.TYPE } });
+							});
+						}
+					});
+				} else {
+					this.localStorage.getItem('userJson').subscribe((data: any) => {
+						if (data != null) {
+							this.source_user = data.source_user;
+							this.role_type = data.role_type;
+							this.user_token = data.token;
+							this.isLoggedIn = true;
+							this.user_code = data.user_code;
+							this.quoteForm.get('userCode').setValue(this.user_code);
+						} else {
+							this.isLoggedIn = false;
+							this.user_code = '100173';
+							this.quoteForm.get('userCode').setValue(0);
+						}
+					});
+				}
+			});
+		}
+
+		this.cdRef.detectChanges();
+	}
 	// FUNCTION TO DESTROY COMPONENET
 	ngOnDestroy() {
-	    this.subscribeList.unsubscribe();
+		this.subscribeList.unsubscribe();
 	}
 }

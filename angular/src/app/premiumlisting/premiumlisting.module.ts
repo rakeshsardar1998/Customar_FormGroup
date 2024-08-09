@@ -1,8 +1,6 @@
-
 import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { PremiumlistingRoutingModule } from './premiumlisting-routing.module';
-
 import {MatChipsModule} from '@angular/material/chips';
 import {MatStepperModule} from '@angular/material/stepper';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -20,12 +18,9 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatBadgeModule} from '@angular/material/badge';
-
 import { ListingComponent} from './component/listing.component';
 import { InsurersPlanModule } from "../common/insurers-plan/insurers-plan.module";
 import { LoaderModule } from "../common/loader/loader.module";
-
-// import { PngProposalDialog } from "./component/listing.component";
 
 @NgModule({
   declarations: [

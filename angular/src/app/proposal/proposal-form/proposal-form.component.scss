@@ -3,58 +3,251 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  gap: 2rem;
+  max-width: 95%;
+  margin: 2rem auto 0;
 }
 
 /* Form box styling */
 .form-box {
-  padding: 2rem;
-  max-width: 500px;
-  width: 100%;
+  padding: 2rem 1rem;
+  max-width: 60%;
+  flex-grow: 1;
+  .form-text{ 
+    font-weight: 500;
+    font-size: 16px;
+    span{
+    color: #cc0001;
+    }
+  }
+ 
+   form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;    
+  }
 }
 
 /* Full width for form fields */
 .full-width {
   width: 100%;
+  
 }
 
 /* Button actions styling */
 .form-actions {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-}
+  justify-content: flex-end;
+  grid-column: 1/3;
+  text-align: center;
+
 button {
   display: flex;
   align-items: center;
+}
 }
 
 mat-spinner {
   margin-left: 8px; /* Adjust spacing between text and spinner */
 }
 
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-}
 
-.form-group {
-  flex: 1;
-  min-width: 300px; /* Adjust this value as needed */
-  padding: 0 10px;  /* Adjust for desired spacing */
-}
+
+// .form-group {
+//   flex: 1;
+//   min-width: 300px; /* Adjust this value as needed */
+//   padding: 0 10px;  /* Adjust for desired spacing */
+// }
 
 .full-width {
   width: 100%;
 }
 
-.form-actions {
-  text-align: center;
-  margin-top: 20px;
-}
+
 
 .red-progress-bar {
   .mat-progress-bar-fill::after {
     background-color: #f44336 !important;
+  }
+}
+
+.page-heading{
+  text-align: center;
+  span{
+    color:#cc0001;
+  }
+}
+
+.details-div{
+  padding:1rem 2rem;
+  border-left: 6px solid #cc0001;
+  background: #f8f8f8;
+  border-radius: 0 10px 10px 0;
+
+  .back-btn {
+    font-size: 12px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: flex-start;
+    color: #7f7f7f;
+  }
+
+  .details-inner-div{ 
+
+    padding:1rem 0;
+
+    p{
+      color: #707070;
+      font-size: 13px;
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      span{
+        color: #333;
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+
+    .total-premium{
+      display: flex;
+      gap: 10px;
+      background: #fff;
+      padding: 0 1rem;
+      border-radius: 10px;
+      p{
+        font-size: 16px !important;
+        font-weight: 600;
+        color: #707070;
+      }
+      .total-value{
+        color: #000;
+      }
+    }
+}
+}
+
+::ng-deep{
+
+  .mat-raised-button.mat-warn {
+    background-color: #cc0001;
+  }
+  .mat-raised-button.mat-warn[disabled], .mat-raised-button[disabled][disabled] {
+      color: rgb(255 255 255 / 60%);
+      background-color: rgb(204 35 39 / 50%);
+    }
+    .mat-form-field-wrapper {
+      padding-bottom: 1rem;
+  }
+    .mat-form-field-outline-start {
+      border-radius: 10px 0 0 10px !important;    
+   }    
+   .mat-form-field-outline-end {
+       border-radius: 0 10px 10px 0 !important;   
+   }
+   .mat-form-field-appearance-outline 
+   {
+       .mat-form-field-label {
+       margin-top: 0.25em !important;
+       font-size: 14px !important;font-weight: 500 !important;
+       top: 1.1em;
+       }  
+       .mat-form-field-infix {
+       padding: .50em 0 .50em 0;
+       }
+       
+       
+   }
+   .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+       color: #cc0001;
+       }
+   .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+       transform: translateY(-1.2em) scale(.75);
+       }
+   .mat-input-element {
+       font-size: 14px !important;    margin: 0 0 5px !important;
+   } 
+
+   .mat-hint {
+       font-size: 12px;
+       }  
+
+   .mat-form-field.mat-form-field-invalid .mat-form-field-label{
+       color: #cc0001;
+   }
+   .mat-error {
+       color: #cc0001;font-size: 12px;
+       display: inline-block;
+       margin: 0 10px 0 0;
+   }
+   .mat-card {
+    border-radius: 10px !important;
+   }
+}
+
+@media (max-width: 991px) {
+  .form-container {
+    align-items: flex-start;
+    gap: 1rem;
+    .details-div .details-inner-div{
+      p span {
+        font-size: 14px;
+      }
+      .total-premium p {
+        font-size: 14px !important;
+        font-weight: 600;
+        color: #707070;
+      }
+    }
+  }
+}
+
+@media (max-width:768px) {
+  .form-container {
+    flex-wrap: wrap;
+    .details-div{
+      width: 100%;padding: 1rem;
+      .details-inner-div{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        .total-premium
+        {width: 100%;}
+        .plan-name
+        {width: 65%;align-items: flex-end;}
+      }
+    }
+    .form-box{
+      max-width: 100%; width: 100%;
+    }
+  }
+}
+
+@media (max-width:525px) {
+  .form-container {
+    .details-div{
+      .details-inner-div{
+         .plan-name
+        {width: 100%;align-items: flex-start;}
+      }
+    }
+    .form-box
+    { 
+      
+      form{
+      grid-template-columns: 1fr;
+        .form-actions {
+          grid-column: 1;
+          justify-content: center;
+          button{
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
   }
 }

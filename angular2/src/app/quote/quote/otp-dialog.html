@@ -1,0 +1,159 @@
+<div *ngIf="data.name=='otpverify'" style="padding-bottom: 20px;"> 
+  <form [formGroup]="otpForm" (ngSubmit)="otpverify()">   
+    <mat-dialog-content class="mat-typography">
+      <h2 mat-dialog-title>OTP Verification
+      </h2> 
+	  <p>An OTP has been sent to {{data.phone_no}}. Enter OTP to get the quote.</p>
+      <p style="padding-top:15px">
+		<mat-form-field appearance="outline">
+          <mat-label>Enter OTP</mat-label>
+          <input matInput type="otp" name="otp" [formControl]="otpForm.controls['otp']" placeholder="">
+        </mat-form-field>
+      </p>
+	  <p>Didn’t receive the OTP? <a (click)="resendOTP();" style="color:#0ed09b">Resend OTP</a></p>
+      <span style="color:red" *ngIf="loginStatus!=''">
+          {{loginStatus}}
+        </span>
+    </mat-dialog-content>
+    <mat-dialog-actions>      
+      <button mat-raised-button color="primary" type="submit" style="background:#fc5846;">Verify OTP</button>
+    </mat-dialog-actions>
+  </form>
+  
+	<form #userCrmForm="ngForm" [action]="crmFormAction" (ngSubmit)="userFormSubmit(userCrmForm, $event)" method="post">
+		<input type="hidden" name="src" value="giblportal">
+		<input type="hidden" name="login_id" value="{{crmUserEmail}}">
+		<input type="hidden" name="user_pwd" value="{{crmUserPassword}}">		
+		<button #crmUserSubmit class="invisible" type="submit" style="display:none">submit</button>
+	</form>
+  
+</div>
+
+<div *ngIf="loginPopupShow" style="padding-bottom: 20px;"> 
+  <form [formGroup]="signinForm" (ngSubmit)="signin()">   
+    <mat-dialog-content class="mat-typography">
+      <h2 mat-dialog-title>Login
+        <mat-chip-list style="border: none;">
+          <a style="text-decoration: none;border: none;" href="JavaScript:void(0);" (click)="onNoClick()" area-label="close"><i
+            class="material-icons">
+          close
+          </i></a>
+        </mat-chip-list>
+      </h2>      
+      <p style="padding-top:15px">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter User ID</mat-label>
+          <input matInput type="email" name="email" [formControl]="signinForm.controls['email']" placeholder="">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter Password</mat-label>
+          <input matInput type="password" name="password" [formControl]="signinForm.controls['password']"
+            placeholder="">
+        </mat-form-field>
+      </p>
+      <span style="color:red" *ngIf="loginStatus!=''">
+          {{loginStatus}}
+        </span>
+    </mat-dialog-content>
+    <mat-dialog-actions>      
+      <button mat-raised-button color="primary" type="submit" style="background:#fc5846;">Login</button>
+    </mat-dialog-actions>
+  </form>
+</div>
+
+<div *ngIf="data.name=='openDialog' && menuPopupShow">
+  <div class="container">
+    <div fxFlex="100">
+	<div class="desk-footer" fxHide fxShow.xs fxShow.sm>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'LIFE INSURANCE' | uppercase }}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{panelOpenState ? '' : ''}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ul class="links_1">
+				<li><a href="https://www.gibl.in/life-insurance/life-insurance-plans/term-plans/">Term Insurance</a></li>
+				<li><a href="https://www.gibl.in/life-insurance/life-insurance-plans/retirement-plans/">Retirement  Plans</a></li>
+				<li><a href="https://www.gibl.in/life-insurance/life-insurance-plans/child-plans/">Child Plans</a></li>
+				<li><a href="https://www.gibl.in/life-insurance/life-insurance-plans/ulip-plans/">ULIPS</a></li>
+				<li><a href="https://www.gibl.in/life-insurance/life-insurance-plans/group-plans/">Group Plans</a></li>
+            </ul>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'Insurance Type' | uppercase }}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{panelOpenState ? '' : ''}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ul class="links_1">
+				<li><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></li>
+				<li><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></li>
+				<li><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></li>
+				<li><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></li>
+				<li><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident
+				Insurance</a></li>
+				<li><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></li>
+				<li><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle
+				Insurance</a></li>
+				<li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group
+				Insurance</a></li>
+				<li><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness
+				Insurance</a></li>
+				<li><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></li>
+            </ul>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'Insurance Company' | uppercase }}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{panelOpenState ? '' : ''}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ul class="links_1">
+				<li><a href="https://www.gibl.in/national-insurance/">National Insurance</a></li>
+				<li><a href="https://www.gibl.in/new-india-assurance/">New India Assurance</a></li>
+				<li><a  href="https://www.gibl.in/united-india-insurance-uiic/">United India Insurance</a></li>
+				<li><a  href="https://www.gibl.in/hdfc-ergo-insurance/">HDFC ERGO General Insurance</a></li>
+				<li><a  href="https://www.gibl.in/star-health-insurance/">Star Health Insurance</a></li>
+				<li><a  href="https://www.gibl.in/oriental-insurance/">Oriental Insurance</a></li>
+				<li><a  href="https://www.gibl.in/bajaj-allianz-insurance/">Bajaj Allianz General Insurance</a></li>
+				<li><a  href="https://www.gibl.in/iffco-tokio-insurance/">Iffco Tokio General Insurance</a></li>
+				<li><a  href="https://www.gibl.in/sbi-general-insurance/">SBI General Insurance</a></li>
+				<li><a  href="https://www.gibl.in/max-bupa-insurance/">MaxBupa Health insurance</a></li>
+				<li><a  href="https://www.gibl.in/apollo-munich-insurance/">Apollo Munich Health Insurance</a></li>
+				<li><a  href="https://www.gibl.in/bharti-axa-insurance/">Bharti AXA General Insurance</a></li>
+				<li><a  href="https://www.gibl.in/tata-aig-insurance/">Tata AIG Greneral Insurance</a></li>
+				<li><a  href="https://www.gibl.in/universal-sompo-insurance/">Universal Sompo General Insurance </a></li>
+            </ul>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+				{{'Login & Register' | uppercase }}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{panelOpenState ? '' : ''}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ul class="links_1">
+				<li><a href="https://www.gibl.in/UI/Pages/ContactUs.aspx">Support</a></li>
+				<li><a href="https://www.gibl.in/login.php">Login</a></li>
+				<li><a href="https://www.gibl.in/pos/">Register</a></li>
+			</ul>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>

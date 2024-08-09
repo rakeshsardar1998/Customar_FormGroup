@@ -1,0 +1,109 @@
+<app-header></app-header>
+<div class="container" style="background: #e9ecef;margin-top: 10px;">
+   <div class="container" style="background: #fff;padding-top: 15px !important;" fxFlexLayout="row">
+      <div *ngIf="showPremiumdata" fxFlex.xs="45" fxFlex="17">
+         <img alt="Company logo" src="assets/company_logo/{{COMPANY_LOGO}}">
+      </div>
+      <div fxFlex="55" fxFlex.xs="100">
+         <span class="name-comp">{{COMPANY_NAME}}</span>
+      </div>
+      <div fxFlex="10" style="text-align:right;">
+         <mat-icon>print</mat-icon>
+      </div>
+   </div>
+   <div class="container" style="background: #fff">
+      <small>Dear {{OWNER_NAME}},</small>
+      <p *ngIf="paymentStatus==1"> Your {{COMPANY_NAME}} Car Policy request has been generated successfully issued. <a href="https://reverse.rapipay.com/RapInsurance/redirectToPage?status=success&urc={{user_code}}" *ngIf="parent_user_code=='112949'" style="color: #cc0001;"> Back to Home</a></p>
+      <p *ngIf="paymentStatus!=1"> Your {{COMPANY_NAME}} Car Policy request has been failed. <a href="https://reverse.rapipay.com/RapInsurance/redirectToPage?status=paymentFail&urc={{user_code}}" *ngIf="parent_user_code=='112949'" style="color: #cc0001;"> Back to Home</a></p>
+		<p class="text-center" *ngIf="IS_LIVE!=2 && paymentStatus==1 && !policyDownloadLoader">
+			 <button class="w-40" (click)="downloadPolicy(providerId)" download mat-raised-button color="primary">
+            Download your Policy Copy <i class="material-icons"> arrow_downward </i>
+			 </button>
+		</p>
+      <p class="text-center" *ngIf="IS_LIVE==2 && paymentStatus==1 && !policyDownloadLoader && providerId==7">
+          <button class="w-40" (click)="downloadPolicy(providerId)" download mat-raised-button color="primary">Download your Policy Copy
+            <i class="material-icons"> arrow_downward </i>
+          </button>
+      </p>
+		<p class="text-center" *ngIf="IS_LIVE==2 && paymentStatus==1 && !policyDownloadLoader && providerId!=7">
+			 <a class="w-40" href="https://www.gibl.in/two-wheeler-insurance/payment/policy_copy_cron/crm_download_policy.php?insurer_id={{providerId}}&policy_no={{policyNo}}" download mat-raised-button color="primary">Download your Policy Copy
+            <i	class="material-icons"> arrow_downward </i>
+			 </a>
+		</p>
+		<div *ngIf="policyDownloadLoader">
+			<div class="mat-button-wrapper loader-wrap confirm-loader">
+				<div class="loader" >Loading...</div>
+			</div>
+		</div>
+      <p *ngIf="paymentStatus==1">Please send us your RC Copy and Previous Insurance Copy at
+         <a target="_top" href="mailto:help@ginteja.com">help@ginteja.com</a>
+         for future reference. In case of any questions or concerns,
+         please feel free to contact us at 1800 3099 444.
+         Thank you for choosing Ginteja.IN for your insurance needs.
+      </p>
+      <div style="background: #fff; width:100%;">
+         <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+               <div>
+                  <h6 class="my-0">Order No</h6>
+               </div>
+               <span class="text-muted">{{proposalNo}}</span>
+            </li>            
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+               <div>
+                  <h6 class="my-0">Transaction No</h6>
+               </div>
+               <span class="text-muted">{{transactionNo}}</span>
+            </li>
+			<li class="list-group-item d-flex justify-content-between lh-condensed">
+               <div>
+                  <h6 class="my-0">Policy No</h6>
+               </div>
+               <span class="text-muted">{{policyNo}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+               <div class="text-success">
+                  <h6 class="my-0" style="color: #cc0001; font-size:14px;">Transaction Amount</h6>
+               </div>
+               <span class="text-success" style="color: #cc0001;font-size:16px;">{{TOTAL_PREMIUM | currency:'Rs.' : 'symbol' : '1.0'}}</span>
+            </li>
+         </ul>
+      </div>
+
+      <!-- <p style="padding:15px; text-align:center; color: red;">
+         Do NOT PRESS BACK BUTTON  for any further transactions. Close the current window and open a new insurance landing page from your retailar dashboard if you want to purchase another policy.
+      </p> -->
+      <!-- <p style="padding:15px;">
+         Call us on 033-66044788 for any assistance on your policy and we will be happy to help
+         more than 4 million policies issued and over 250K claims settled annually
+      </p>
+		<p class="text-center">
+			<a href="{{ apiService?.bannerData?.banner_link }}">
+				<img style="width:100%" src="{{ apiService?.bannerData?.banner_image }}" alt="">
+			</a>
+		</p> -->
+   </div>
+   <!-- <div class="container" id="icon" fxFlexLayout="row">
+      <div fxFlex="33">
+         <img src="assets/quote/img/travel.jpg" alt="logo" height="44">
+         <a style="text-decoration:none" href="https://www.gibl.in/travel-insurance/">
+         <span> Travel Insurance</span>
+         </a>
+      </div>
+      <div fxFlex="33">
+         <img src="assets/quote/img/heath.jpg" alt="logo" height="44">
+         <a style="text-decoration:none" href="https://www.gibl.in/health-insurance/">
+         <span>Health Insurance</span>
+         </a>
+      </div>
+      <div fxFlex="33">
+         <img src="assets/quote/img/home.jpg" alt="logo" height="44">
+         <a style="text-decoration:none" href="https://www.gibl.in/home-insurance/">
+         <span>Home Insurance</span>
+         </a>
+      </div>
+   </div> -->
+   <div style="background: #fff; width:100%;">
+   </div>
+</div>
+<app-footer></app-footer>

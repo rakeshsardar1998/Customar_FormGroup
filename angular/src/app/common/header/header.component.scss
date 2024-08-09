@@ -33,3 +33,102 @@ a.mat-menu-item {
 .pinc {
     color: #000 !important;
 }
+
+header{
+    width: 85%;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo a  {
+        display: flex; 
+        align-items: center;
+
+        img {
+            width: 130px;
+        }
+    }
+
+    .header-menu-outer{
+        display: flex; 
+        align-items: center;
+        gap: 2rem;
+
+        .header-menu {
+            display: flex; 
+            align-items: center;
+        }
+
+        .backToHomediv{
+            display: flex;
+            align-items: center;
+
+            .backToHome{
+                font-size: 13px;
+                background: #001b66;
+                border: none;
+                font-weight: 600;
+                color: #fff !important;
+                padding: 5px 15px;
+                border-radius: 10px;
+                font-family: 'Poppins';
+                text-decoration: none;
+                cursor: pointer;
+                
+                img{
+                    vertical-align: middle;
+                    margin: 0 5px;
+                }
+            }
+        }
+    }
+
+}
+::ng-deep{
+    .header-menu {
+        .mat-button{
+            font-size: 16px;
+        :hover{
+            background-color: #fff;
+        }
+        }
+    }
+    @media(max-width:991px){
+        .header-menu {
+            .mat-button{
+                font-size: 14px;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.nav-mob{
+    display: none;
+}
+
+@media(max-width:991px){
+    header {
+        width: 95%;
+        .header-menu-outer{
+            gap: 0;
+    
+            
+
+            .backToHome{
+                font-size: 12px;
+                padding: 0px 10px;
+                img{
+                    width: 12px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:768px){
+    header .header-menu-outer .header-menu {
+        display: none;
+    }
+}

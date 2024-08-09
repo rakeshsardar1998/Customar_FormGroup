@@ -1,71 +1,188 @@
 .skeleton {
-    background-color: #ccbfbf;
-    animation: skeleton-loading 1s linear infinite alternate
+  background-color: #ccbfbf;
+  animation: skeleton-loading 1s linear infinite alternate
 }
 
 @keyframes skeleton-loading {
-    0% {
-        background-color: hsl(200, 20%, 70%);
-    }
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
 
-    100% {
-        background-color: hsl(200, 20%, 95%);
-    }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
 }
 
 .loader-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .pic {
+    width: 30%;
+    margin-right: 10px;
+
+    .skeleton-pic {
+      display: block;
+      height: 50px;
+      width: 100px;
+      border-radius: 7px;
+    }
+  }
+
+  .plan-info .plan-label {
+    margin-bottom: 8px;
+  }
+
+  .details {
+    width: 70%;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
-    .pic {
-        width: 30%;
-        margin-right: 10px;
+    .text {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-direction: column;
+      margin-right: 10px;
 
-        .skeleton-pic {
-            display: block;
-            height: 50px;
-            width: 100px;
-            border-radius: 7px;
+      .skeleton-title {
+        display: block;
+        height: 15px;
+        width: 160px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+
+        .skeleton-desc {
+          display: block;
+          height: 10px;
+          width: 100px;
+          border-radius: 4px;
         }
+
+        text {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          flex-direction: column;
+          margin-right: 10px
+        }
+      }
+
+      .skeleton-desc {
+        display: block;
+        height: 10px;
+        width: 100px;
+        border-radius: 4px;
+      }
     }
-    .details { 
-        width: 70%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
 
-        .text {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-direction: column;
-            margin-right: 10px;
+    .action {
+      .skeleton-title {
+        display: block;
+        height: 15px;
+        width: 120px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
 
-            .skeleton-title {
-                display: block;
-                height: 15px;
-                width: 120px;
-                border-radius: 4px;
-                margin-bottom: 10px;
-            }
-
-            .skeleton-desc {
-                display: block;
-                height: 10px;
-                width: 100px;
-                border-radius: 4px;
-            }
-        }
-
-        .action {
-            .skeleton-action {
-                display: block;
-                height: 30px;
-                width: 80px;
-                border-radius: 7px;
-            }
-        }
+      .skeleton-action {
+        display: block;
+        height: 30px;
+        width: 150px;
+        border-radius: 7px;
+      }
     }
+  }
 }
+
+// .loader-box {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     margin-bottom: 16px;
+//   }
+
+//   .supp-holder {
+//     margin-right: 16px;
+//   }
+
+//   .skeleton {
+//     display: inline-block;
+//     background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+//     background-size: 200% 100%;
+//     animation: skeleton-loading 1.5s infinite linear;
+//   }
+
+//   .skeleton-logo {
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 50%;
+//   }
+
+//   .insurers-plan {
+//     display: flex;
+//     flex-direction: row;
+//     width: 100%;
+//   }
+
+//   .insurers-plan-top {
+//     display: flex;
+//     flex-direction: row;
+//     width: 100%;
+//   }
+
+//   .Plan-details-wrapper {
+//     flex: 1;
+//     display: flex;
+//     flex-direction: column;
+//   }
+
+// .plan-info .plan-label {
+//   margin-bottom: 8px;
+// }
+
+//   .skeleton-text {
+//     display: block;
+//     height: 16px;
+//     width: 60%;
+//     margin-bottom: 8px;
+//   }
+
+//   .product-feature .features-list {
+//     list-style-type: none;
+//     padding: 0;
+//   }
+
+//   .features-list li {
+//     margin-bottom: 8px;
+//   }
+
+//   .product-actions {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//   }
+
+//   .warper-top {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     margin-bottom: 8px;
+//   }
+
+//   .skeleton-button {
+//     width: 150px;
+//     height: 36px;
+//   }
+
+//   @keyframes skeleton-loading {
+//     0% {
+//       background-position: 200% 0;
+//     }
+//     100% {
+//       background-position: -200% 0;
+//     }
+//   }

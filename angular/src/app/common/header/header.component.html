@@ -1,38 +1,61 @@
-  <div class="content main" fxFlexFill>
-    <div fxLayout="row">
+  <div class="content main ">
+    <div>
       <mat-toolbar color="light">
-        <header fxFlexFill fxFlex.lt-sm="50%">
-          <div fxLayoutAlign="left" fxFlex="100" class="one" [ngClass]="{'pinc':isSponsored}">
-            <a href="" *ngIf="!retailerLogin?.whileLabeled"><img src="assets/logo.svg" alt="logo" height="67" style="    margin-left: 13px;"></a>
-            <span fxLayoutAlign="right" class="title"> Term Insurnace </span>
+        <header>
+          <a class="nav-mob"  (click)="openMenuPopup(mobMenuPanel)">
+            <i class="material-icons">
+                storage
+              </i>
+          </a>
+          <div  class="logo" [ngClass]="{'pinc':isSponsored}">
+            <a href="" *ngIf="!retailerLogin?.whileLabeled">
+              <img src="assets/logo.svg" alt="logo">
+            </a>
           </div>
-          <div fxFlex fxLayout fxLayoutAlign="flex-end" fxFlex="85" fxHide fxShow.gt-sm>
-            <div fxLayout="row" fxHide fxShow.gt-sm>
-				<button fxHide fxShow.gt-sm mat-button (click)="redirectTo('https://www.gibl.in/life-insurance');" [ngClass]="{'pinc':isSponsored}">{{ 'Life insurance' | uppercase }}</button> 
-              <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="incType" [ngClass]="{'pinc':isSponsored}">{{ 'Insurance Type' | uppercase }}
+          <div class="header-menu-outer">
+
+            <div class="header-menu">
+				      <!-- <button  mat-button (click)="redirectTo('https://www.gibl.in/term-insurance');" [ngClass]="{'pinc':isSponsored}">{{ 'Life insurance'  }}</button>  -->
+             
+              <button  mat-button [matMenuTriggerFor]="incType" [ngClass]="{'pinc':isSponsored}">{{'Insurance Products'}}
                 <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
                   keyboard_arrow_down
                 </mat-icon>
               </button>
 
-              <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="incCompany" [ngClass]="{'pinc':isSponsored}">{{ 'Insurance Company' | uppercase }}
+              <button  mat-button [ngClass]="{'pinc':isSponsored}">{{'Claim'}}</button> 
+
+              <button  mat-button [matMenuTriggerFor]="supportType" [ngClass]="{'pinc':isSponsored}">{{'Support'}}
                 <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                  keyboard_arrow_down
+                </mat-icon>
+              </button> 
+
+              <button  mat-button [ngClass]="{'pinc':isSponsored}">{{'Blog'}}</button>
+
+              <!-- <button mat-button [matMenuTriggerFor]="incCompany" [ngClass]="{'pinc':isSponsored}">{{ 'Insurance Company'  }}
+                <mat-icon  aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
                   keyboard_arrow_down
                 </mat-icon>
               </button>
               <mat-menu #incCompany="matMenu">
                 <a mat-menu-item *ngFor="let mItem of insuranceCompanyList" [href]="mItem.link">{{mItem.title}}</a>
-              </mat-menu>
+              </mat-menu> -->
 
-				<button fxHide fxShow.gt-sm mat-button onClick="window.open('https://www.gibl.in/UI/Pages/ContactUs.aspx','_self')" [ngClass]="{'pinc':isSponsored}">{{ 'Support' | uppercase }}</button>
-				<button fxHide fxShow.gt-sm mat-button *ngIf="!retailerLogin?.isLoggedIn" [ngClass]="{'pinc':isSponsored}">{{ 'Login' | uppercase }}</button>            
-				<button fxHide fxShow.gt-sm mat-button *ngIf="!retailerLogin?.isLoggedIn" onClick="window.open('https://www.gibl.in/UI/Pages/Registration.aspx','_self')" [ngClass]="{'pinc':isSponsored}">{{ 'Register' | uppercase }}</button>
-				<button fxHide fxShow.gt-sm mat-button *ngIf="retailerLogin?.isLoggedIn && !isSponsored" (click)="logout()">{{ 'Logout' | uppercase }}</button> 
+              <!-- <button  mat-button onClick="window.open('https://www.gibl.in/UI/Pages/ContactUs.aspx','_self')" [ngClass]="{'pinc':isSponsored}">{{ 'Support'  }}</button>
+              <button  mat-button *ngIf="!retailerLogin?.isLoggedIn" [ngClass]="{'pinc':isSponsored}">{{ 'Login'  }}</button>            
+              <button  mat-button *ngIf="!retailerLogin?.isLoggedIn" onClick="window.open('https://www.gibl.in/UI/Pages/Registration.aspx','_self')" [ngClass]="{'pinc':isSponsored}">{{ 'Register' | uppercase }}</button>
+              <button  mat-button *ngIf="retailerLogin?.isLoggedIn && !isSponsored" (click)="logout()">{{ 'Logout'  }}</button>  -->
             </div>
+
+            <div class="backToHomediv" >
+              <a class="backToHome">  
+              <img  src="assets/backtohome.png">
+              Back To Home</a>
+           </div>
+
           </div>
-          <a class="nav-mob" fxHide (click)="openMenuPopup(mobMenuPanel)"><i class="material-icons">
-            storage
-          </i></a>
+              
 
           <ng-template #mobMenuPanel>
             <div class="container">
@@ -216,6 +239,10 @@
   <a mat-menu-item *ngFor="let mItem of insuranceTypeMenuItem" [href]="mItem.link">{{mItem.title}}</a>
 </mat-menu>
 
-<mat-menu #incCompany="matMenu">
+<!-- <mat-menu #incCompany="matMenu">
   <a mat-menu-item *ngFor="let mItem of insuranceCompanyList" [href]="mItem.link">{{mItem.title}}</a>
+</mat-menu> -->
+
+<mat-menu #supportType="matMenu">
+  <a mat-menu-item *ngFor="let mItem of supportMenuItem" [href]="mItem.link">{{mItem.title}}</a>
 </mat-menu>

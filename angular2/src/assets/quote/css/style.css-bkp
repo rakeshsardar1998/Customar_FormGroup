@@ -1,0 +1,54 @@
+body{margin:0; padding: 0;background: url(../img/city.jpg); 
+}
+
+/* ::ng-deep.mat-dialog-container{padding:0 !important;} */
+h4{font-weight: bold;}
+
+::ng-deep #visitor .mat-form-field-label-wrapper {
+    top: -1.7em;}
+    .list li{font-size: 12px;}
+    .card-body{margin: 12px 15px !important;}
+    .table-striped{ padding:30px; font-size: 15px; border: 0;} 
+    h1, h2, h3, h4, h5{ font-size: 21px !important;}
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+    
+    /* .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        font-size: 13px;
+        line-height: 21px;
+    } */
+
+    .table{
+        width: 84%;
+        margin-bottom: 1rem;
+        color: #212529;
+        font-size: 12px;
+        line-height: 21px;
+    }
+    
+    table {
+        border-collapse: collapse;
+    }
+    .table-bordered thead th, .table-bordered thead td {
+        border-bottom-width: 2px;
+    }
+    
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+    }
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #dee2e6;
+    }    
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #dee2e6;
+        padding: 7px;
+    }
+    .table th{background: rgb(5, 91, 169); width:15%; color: #fff;}
+    .table-bordered th, .table-bordered td{border: 1px solid #dee2e6;
+        padding: 1%;
+        text-align: left;}

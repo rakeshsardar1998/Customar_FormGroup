@@ -53,7 +53,7 @@ mat-cell:first-of-type, mat-footer-cell:first-of-type, mat-header-cell:first-of-
     overflow: hidden;
     padding: 0 24px 24px 24px;
 }
-p{font-size: 15px !important;}
+
 @media(min-width:992px){
 
     .continue{margin:25px auto !important;}

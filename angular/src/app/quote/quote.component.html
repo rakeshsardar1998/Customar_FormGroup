@@ -1,12 +1,13 @@
 <div class="my-container">
   <div class="top-section">
     <div class="left-section">
-      <div class="col-lg-5 order-1 order-lg-0">
-        <h4 class="mb-3">
+      <div class="left-section-inner">
+                <img src="assets/quote/img/life-quote.png" alt="life-quote" class="img-fluid">
+        <h4 >
           Get your <span class="red-text font-24">Life</span> insured with the best features completely online, right
           now!
         </h4>
-        <img src="assets/quote/img/life-quote.png" alt="life-quote" class="img-fluid">
+
       </div>
     </div>
     <div class="right-section">
@@ -51,7 +52,7 @@
                     <mat-button-toggle value="T" aria-checked="checked" fxFlex="50">
                       Term Insurance
                     </mat-button-toggle>
-                    <mat-button-toggle value="L" fxFlex="50" (click)="redirectTo('https://www.gibl.in/life-insurance');">
+                    <mat-button-toggle value="L" fxFlex="50">
                       Life Insurance
                     </mat-button-toggle>
                   </mat-button-toggle-group>
@@ -64,12 +65,16 @@
               <p class="gap-no">Choose Gender</p>
               <div class="gender-input">
                 <mat-button-toggle-group name="fontStyle" formControlName="customerGender" aria-label="Font Style"
-                  fxFlex="70" fxFlex.sm="100" fxFlex.xs="100">
+                  fxFlex="100" fxFlex.sm="100" fxFlex.xs="100">
                   <mat-button-toggle value="M" aria-checked="checked" fxFlex="50">
-                    <mat-icon class="mat-icon-face">tag_faces</mat-icon>Male
+                    <!-- <mat-icon class="mat-icon-face">tag_faces</mat-icon> -->
+                    <img class="gender-img" src="assets/quote/img/male.png" alt="male" >
+                    Male
                   </mat-button-toggle>
                   <mat-button-toggle value="F" fxFlex="50">
-                    <mat-icon class="mat-icon-face">face</mat-icon>Female
+                    <!-- <mat-icon class="mat-icon-face">face</mat-icon> -->
+                    <img class="gender-img" src="assets/quote/img/female.png" alt="female" >
+                    Female
                   </mat-button-toggle>
                 </mat-button-toggle-group>
                 <mat-error *ngIf="firstFormGroup.controls['customerGender'].errors?.required">
@@ -255,7 +260,7 @@
   </div>
 </div>
 
-<div fxflex="80" *ngIf="showPageContent">
+<!-- <div fxflex="80" *ngIf="showPageContent">
   <div fxFlex="40" fxLayout.xs="column" style="margin:15px auto;" id="quote" fxFlex.sm="100">
     <div fxLayoutAlign="center" style="flex-basis:100%;">
       <mat-progress-spinner style="text-align:center !important;" *ngIf="redirectSpinnerShow" [color]="spinnerColor"
@@ -264,4 +269,4 @@
     </div>
 
   </div>
-</div>
+</div> -->

@@ -1,0 +1,109 @@
+<header>
+   <div fxFlexFill style="background: #055ba9;">
+      <div fxLayout="row" class="container">
+         <mat-toolbar color="primary">
+            <header fxFlexFill fxFlex.lt-sm="100%">
+               <div fxLayoutAlign="left" fxFlex="20" class="one" (click)="homepage()">
+                  <img *ngIf="white_label==0" src="assets/quote/img/logo.png" alt="logo" height="67">
+                  <span fxLayoutAlign="right" style="padding-left: 10px;"> CAR INSURANCE </span>
+               </div>
+               <div fxFlex fxLayout fxFlex="80" fxLayoutAlign="flex-end" style="float: right;" fxFlex="85" fxShow.gt-sm>
+                  <div fxLayout="row" fxLayout.xs="column" fxShow.gt-sm>
+                     <button target="_top" fxShow.gt-sm mat-button>email: info@gibl.in</button>
+                     <button style="cursor: default;" fxShow.gt-sm mat-button fxHide.xs>Ph: 033 - 66074257</button>
+                  </div>
+               </div>
+               <ng-template #moo3>
+                  <mat-dialog-actions>
+                     <div fxLayout="row" fxFlex="100">
+                        <button mat-button [matMenuTriggerFor]="menu">Support</button>
+                        <button mat-button (click)="openDialog(moo3)">Login</button>
+                        <button mat-button [matMenuTriggerFor]="menu">Register</button>
+                     </div>
+                  </mat-dialog-actions>
+               </ng-template>
+            </header>
+         </mat-toolbar>
+      </div>
+   </div>
+</header>
+<mat-menu x-position="before" #menu="matMenu">
+   <button mat-menu-item><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident
+   Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle
+   Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group
+   Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness
+   Insurance</a></button>
+   <button mat-menu-item><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></button>
+</mat-menu>
+<div class="container">
+   <div fxLayout="row wrap" fxLayoutGap="10px"  fxLayout="column" style="margin: auto;">
+      <div fxLayoutAlign="center" style="flex-basis:100%;">
+         <div *ngIf="showData" class="container no-padding" fxLayout="row" fxLayout.xs="column" fxFlexFill fxFlex=""
+            fxFlex.xs="100">
+            <div fxLayout.xs="row" fxFlex="100" fxLayout="row" style="flex-basis:50%;">
+            </div>
+         </div>
+      </div>
+      <div fxHide.xs >
+         <div class="wrap-contact101 no-padding mt-10" >
+         </div>
+      </div>
+      <div class="wrap-contact101  no-padding mt-10" style="background: transparent; box-shadow:none;">
+         <mat-tab-group [selectedIndex]="selectedIndex" #tabs>
+         <mat-tab label="Your Vehicle Detail">
+            <form [formGroup]="renewalForm" fxLayout="column" (ngSubmit)="renewal()">
+            <h2>Enter Your Vehicle Detail</h2>
+            <div fxFlex="100%" fxLayout="row" fxLayout.xs="row">
+               <div fxFlex="20%" class="pull-left" style="margin-right:20px;">
+                  <mat-form-field>
+                     <mat-select formControlName="prevInsurer" placeholder="Previous Insurer">
+                        <mat-option value="6">HDFC Ergo</mat-option>
+                     </mat-select>
+                  </mat-form-field>
+               </div>
+            </div>
+            <div fxFlex="100" fxLayout fxLayout.xs="column">
+               <div fxFlex="20 10 calc(40% - 30px)" class="pull-left" style="margin-right:20px;">
+                  <mat-form-field>
+                     <input formControlName="prevPolicyNo" autocomplete="off" matInput placeholder="Previous Policy No">
+                  </mat-form-field>
+               </div>
+               <div fxFlex="20 10 calc(40% - 30px)" class="pull-left" style="margin-right:20px;">
+                  <mat-form-field>
+                     <input autocomplete="off" formControlName="vehicleNo" matInput placeholder="Vehicle Registration No">
+                  </mat-form-field>
+               </div>
+            </div>
+            <button type="submit" fxFlex="100" class="contact100-form-btn" id="perionalDetailBtn">
+            <span>Continue to Your Car Detail
+            <i aria-hidden="true" class="fa fa-long-arrow-right m-l-7"></i>
+            </span>
+            </button>
+			<div style="text-align:center;width:100%;" *ngIf="progressLoader"><img src="assets/quote/img/load.gif" alt=""></div>
+            </form>
+         </mat-tab>
+         </mat-tab-group>
+      </div>
+   </div>
+</div>
+<div class="container-fluid footer-new">
+   <p>
+      ©Copyright 2014 - till now | www.gibl.in | All Rights Reserved | Insurance is the subject matter of solicitation.
+   </p>
+   <p>
+      IRDA License Code No : DB 482/10 Dated 27-05-2019 valid Till date 26-05-2022, Direct(Non-Life) | Principal Officer : Mr.
+      Sahid Ali | Ph: 033-6607 4257 | Our emergency lockdown number: +91 6289901320
+   </p>
+   <p>Regd. & Corp. Office : GreenLife Insurance Broking Pvt. Ltd., A-4/B, 1st Floor, Rishi Tech Park, New Town,
+      Kolkata-700156, West Bengal, India |
+      <a href="http://eceltic.ie/" target="blank" rel="noopener">Designed & Developed By : e-Celtic</a>
+   </p>
+</div>

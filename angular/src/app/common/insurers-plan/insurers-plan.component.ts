@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
@@ -18,22 +18,41 @@ export class InsurersPlanComponent implements OnInit {
   compareStatus: FormControl = new FormControl(false);
   isScreenSmall: boolean = false;
   useDirectPremiumCall: boolean = true;
+  public quoteFormSubmitBtn: boolean  = false;
+  premiumJson: any;
 
   constructor(
     private router: Router,
     private _dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private localStorage: LocalStorage
-
   ) { }
 
   ngOnInit(): void {
-
+    this.loadPremiumJson();
   }
+
+  loadPremiumJson(): void {
+    this.localStorage.getItem('premiumJson').subscribe((data) => {
+      this.premiumJson = data;
+      console.log('Loaded premiumJson:', this.premiumJson);
+    }, (error) => {
+      console.error('Error loading premiumJson:', error);
+    });
+  }
+
   buyNow(): void {
-    this.localStorage.setItem('premiumjson',JSON.stringify(this.premiumData)).subscribe(()=>{});
-    console.log("1234",this.premiumData)
-    this.router.navigate(['/proposal']);
+    // this.localStorage.setItem('premiumJson', JSON.stringify(this.premiumData)).subscribe(() => {
+    //   console.log("1234", this.premiumData);
+    //   this.router.navigate(['/proposal-form']);
+    // });
+    // Storing data manually as a simple string
+this.localStorage.setItem('premiumJson', this.premiumData).subscribe();
+this.localStorage.getItem('premiumJson').subscribe((data: string) => {
+  // console.log('this.premiumJson', this.premiumData)
+  this.router.navigate(['/proposal-form']);
+});
+
   }
 
   showPdfFromUrl(url: string): void {
