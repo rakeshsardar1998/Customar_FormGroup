@@ -15,7 +15,7 @@ const routes: Routes = [
 		pathMatch: 'full',
 		loadChildren: () => import('./premiumlisting/premiumlisting.module').then(m => m.PremiumlistingModule),
 	},
-	{ path: 'proposal',pathMatch:'full', loadChildren: () => import('./proposal/proposal.module').then(m => m.ProposalModule) },
+	// { path: 'proposal',pathMatch:'full', loadChildren: () => import('./proposal/proposal.module').then(m => m.ProposalModule) },
 	{ path: 'proposal-form',pathMatch:'full', loadChildren: () => import('./proposal/proposal.module').then(m => m.ProposalModule) },
 	{
 		path: 'payment',

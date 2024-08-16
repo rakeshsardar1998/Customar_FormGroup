@@ -14,11 +14,12 @@ import { error } from '@angular/compiler/src/util';
 	providedIn: 'root'
 })
 export class ApiService implements Resolve<any> {
-  dynamicForm: any;
+	dynamicForm: any;
 	localWindow: Window & typeof globalThis;
-  submitForm(value: any) {
-    throw new Error('Method not implemented.');
-  }
+	POSP_URL: string;
+	submitForm(value: any) {
+		throw new Error('Method not implemented.');
+	}
 	private premiumLoaderCounterRef = 0;
 	private premiumLoaderCounterSubject = new BehaviorSubject(this.premiumLoaderCounterRef);
 	USERURL: string = "";
@@ -66,7 +67,7 @@ export class ApiService implements Resolve<any> {
 		private httpClient: HttpClient,
 		protected localStorage: LocalStorage,
 		@Inject(DOCUMENT) public document: HTMLDocument
-	) {}
+	) { }
 	public get premiumLoaderCounter(): Observable<number> {
 		return this.premiumLoaderCounterSubject.asObservable();
 	}
@@ -138,6 +139,19 @@ export class ApiService implements Resolve<any> {
 			this.LIC_SERVICE_URL = 'http://127.0.0.1:3004/';
 		}
 		return this.LIC_SERVICE_URL;
+	}
+	getPospUrl(){
+		this.IS_LIVE = this.checkDomain();
+
+		if (this.IS_LIVE === 'U') {
+			this.POSP_URL = "http://gcrm.ecelticgroup.com/posp-products.php";
+		} else if (this.IS_LIVE === 'L') {
+			this.POSP_URL = "http://gcrm.ecelticgroup.com/posp-products.php";
+		} else {
+			this.POSP_URL = "http://gcrm.ecelticgroup.com/posp-products.php";
+		}
+		return this.POSP_URL;
+
 	}
 
 	getBaseUserServiceUrl() {
@@ -366,7 +380,7 @@ export class ApiService implements Resolve<any> {
 
 	signIn(callbackjson) {
 		console.log("TEST signin");
-		
+
 		const baseURL = this.getBaseURL();
 		const httpOptions = {
 			headers: new HttpHeaders({
@@ -540,30 +554,30 @@ export class ApiService implements Resolve<any> {
 	// }
 	getAegonPremium(quoteJson: any): Observable<any> {
 		const httpOptions = {
-		  headers: new HttpHeaders({
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-			'Authorization': 'my-auth-token'
-		  })
+			headers: new HttpHeaders({
+				'Content-Type': 'application/json',
+				'Accept': 'application/json',
+				'Authorization': 'my-auth-token'
+			})
 		};
-	
+
 		const baseURL = this.getBaseURL();
 		quoteJson.serviceUrl = this.getAegonServiceURL();
 		quoteJson.providerId = 32;
-	
+
 		this.premiumLoaderCounterIncrement();
 		return this.httpClient.post(`${baseURL}common/api/getPremium/${quoteJson.providerId}`, quoteJson, httpOptions)
-		  .pipe(
-			retryWhen(errors => errors.pipe(delay(1000), take(5))),
-			tap(() => {
-			  this.premiumLoaderCounterDecrement();
-			}),
-			catchError(() => {
-			  this.premiumLoaderCounterDecrement();
-			  return of([]);
-			})
-		  );
-	  }
+			.pipe(
+				retryWhen(errors => errors.pipe(delay(1000), take(5))),
+				tap(() => {
+					this.premiumLoaderCounterDecrement();
+				}),
+				catchError(() => {
+					this.premiumLoaderCounterDecrement();
+					return of([]);
+				})
+			);
+	}
 	getTataAiaPremium(quoteJson): Observable<any> {
 		const httpOptions = {
 			headers: new HttpHeaders({
@@ -703,11 +717,11 @@ export class ApiService implements Resolve<any> {
 		};
 		return this.httpClient.post(`${baseURL}common/api`, payload);
 	}
-	getFormFields(): Observable<any> {
-		const formFields$ = from(
-			fetch('/assets/proposal-form-stature.json').then(response => response.json())
-		);
-		return formFields$;
+	getFormFields(provider_id): Observable<any> {
+		const baseURL = this.getBaseURL();
+		const domain = this.getDomain();
+		const payload = {provider_id};
+		return this.httpClient.post(`${baseURL}common/get-proposal-form`, payload);
 	}
 
 	pospLogin(sourceId: string): Observable<any> {
@@ -715,9 +729,9 @@ export class ApiService implements Resolve<any> {
 		const domain = this.getDomain();
 		const payload = {
 			source: sourceId,
-			serviceUrl: `${domain}php-services/life-services/index.php?action=GET_AEGON_QUOTE`
+			serviceUrl: `${domain}php-services/user-services/login.php?TYPE=7`
 		};
-		return this.httpClient.post(`${baseURL}common/api`, payload);
+		return this.httpClient.post(`${baseURL}common/api/login`, payload);
 	}
 
 }

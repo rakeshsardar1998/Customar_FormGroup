@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProposalRoutingModule } from './proposal-routing.module';
-import { ProposalComponent } from './proposal/proposal.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule, MatButtonModule, MatIconModule, MatSidenavModule, MatCheckboxModule, MatRadioModule, MatOptionModule, MatInputModule, MatToolbarModule, MatListModule, MatAutocompleteModule, MatTooltipModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,7 +23,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
-    ProposalComponent,
     ProposalFormComponent
   ],
   imports: [

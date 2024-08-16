@@ -201,7 +201,7 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 		this.subscribeList.add(
 			this.localStorage.getItem('userJson').subscribe((data) => {
 				this.userJson = data;
-				console.log('User my data:=>', data);
+				// console.log('User my data:=>', data);
 			})
 		);
 		this.genderValue = 'M';
@@ -505,7 +505,7 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 			visitor_browser: this.deviceInfo.browser.toUpperCase(),
 			visitor_agent: this.deviceInfo.userAgent
 		}
-		console.log('device_info', this.device_info);
+		// console.log('device_info', this.device_info);
 	}
 
 	// CHECK INPUT VALUE LENGTH
@@ -619,15 +619,17 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 
 		return (custAge >= 18 && custAge <= 65) ? null : { 'agerestrict': true };
 	}
+	
+
 	ngAfterViewInit() {
 		if (isPlatformBrowser(this.platformId)) {
 			this.route.queryParams.subscribe(params => {
-				console.log("Test Params",params)
+				// console.log("Test Params", params);
 				/*************************************Auto Login********************************/
 				if (params.source != null) {
 					this.apiService.pospLogin(params.source).subscribe(res => {
-						console.log('res',res);
-						console.log("Check Params",params);
+						// console.log('res', res);
+						// console.log("Check Params", params);
 						if (res.token) {
 							if (res.status == '1')
 								this.isLoggedIn = true;
@@ -636,7 +638,10 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 
 							this.user_code = res.user_code;
 							this.localStorage.setItem('userJson', res).subscribe(() => {
-								this.quoteForm.get('userCode').setValue(res.user_code);
+								// console.log('userJson111111', this.userJson);
+								if (this.quoteForm && this.quoteForm.get('userCode')) {
+									this.quoteForm.get('userCode').setValue(res.user_code);
+								}
 								this.router.navigate(['/'], { queryParams: { TYPE: params.TYPE } });
 							});
 						} else {
@@ -655,11 +660,15 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 							this.user_token = data.token;
 							this.isLoggedIn = true;
 							this.user_code = data.user_code;
-							this.quoteForm.get('userCode').setValue(this.user_code);
+							if (this.quoteForm && this.quoteForm.get('userCode')) {
+								this.quoteForm.get('userCode').setValue(this.user_code);
+							}
 						} else {
 							this.isLoggedIn = false;
 							this.user_code = '100173';
-							this.quoteForm.get('userCode').setValue(0);
+							if (this.quoteForm && this.quoteForm.get('userCode')) {
+								this.quoteForm.get('userCode').setValue(0);
+							}
 						}
 					});
 				}
@@ -668,6 +677,7 @@ export class QuoteComponent implements OnInit, AfterViewChecked, OnDestroy {
 
 		this.cdRef.detectChanges();
 	}
+
 	// FUNCTION TO DESTROY COMPONENET
 	ngOnDestroy() {
 		this.subscribeList.unsubscribe();

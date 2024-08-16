@@ -60,6 +60,23 @@ header{
             align-items: center;
         }
 
+        .profile {
+            color: #011856;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border-radius: 100%;
+            background-color: #fff;
+            font-weight: 500 !important;
+            border: 2px solid;
+            cursor: pointer;
+            font-size: 14px !important;
+            text-transform: uppercase;
+            padding: 0 !important;    margin: 0 !important;
+          }
+
         .backToHomediv{
             display: flex;
             align-items: center;

@@ -1,18 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
-import { ProposalComponent } from './proposal/proposal.component';
-import { ApiService } from '../services/api.service';
+import { RouterModule, Routes } from '@angular/router';
 import { ProposalFormComponent } from './proposal-form/proposal-form.component';
 
 
 const routes: Routes = [
-  {
-    path: '', component: ProposalComponent,
-    resolve: {
-      movie: ApiService
-    }
-  },
-  {path:'proposal-form',component:ProposalFormComponent}
+  { path: '', component: ProposalFormComponent }
 ];
 
 @NgModule({

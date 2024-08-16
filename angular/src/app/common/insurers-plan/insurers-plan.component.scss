@@ -22,7 +22,9 @@
         .supp-holder {
             display: flex;
             // max-width: 65px;
-            width: 150px;    padding: 10px;margin: 20px;
+            width: 150px;
+            padding: 10px;
+            margin: 20px;
 
             picture {
 
@@ -52,7 +54,7 @@
                     border-right: 1px dashed #eee;
                     padding: 1rem;
                     border-left: 1px dashed #eee;
-                   
+
 
                     .product-feature {
                         .features-list {
@@ -62,7 +64,8 @@
                             padding: 0;
                             flex-direction: row;
                             gap: 10px;
-                            margin: 0;flex-wrap: wrap;
+                            margin: 0;
+                            flex-wrap: wrap;
                             margin: 10px 0 0;
 
                             li {
@@ -70,12 +73,13 @@
                                 color: #000;
                                 display: inline-flex;
                                 flex-direction: column;
-                                
+
                                 padding: 5px;
                                 background: #f8f8f8;
                                 border-radius: 10px;
                                 padding: 5px 19px;
-                                span{
+
+                                span {
                                     font-size: 12px;
                                     opacity: 0.5;
                                 }
@@ -90,7 +94,7 @@
                                 width: 100%;
                                 background: none;
 
-                                img{
+                                img {
                                     height: 15px;
                                 }
                             }
@@ -112,14 +116,14 @@
                         flex-direction: column;
                         align-items: center;
 
-                        .premium-label{
+                        .premium-label {
                             display: flex;
                             gap: 5px;
                         }
 
                     }
 
-                    .warper-middle{
+                    .warper-middle {
                         text-align: center;
                     }
 
@@ -163,7 +167,7 @@
 
     .insurers-plan-bottom {
         padding: 0 20px;
-       
+
         min-width: 170px;
     }
 
@@ -188,16 +192,16 @@
             font-weight: normal;
         }
     }
-  
+
     @media (max-width: 600px) {
         .insurers-plan-top {
-            
+
 
             .supp-holder {
                 // justify-content: center;
                 width: 100%;
 
-               
+
                 .plan-label.mobile {
                     width: calc(100% - 80px);
                     margin-left: 15px;
@@ -219,7 +223,7 @@
                     .product-actions {
                         width: 100% !important;
                         padding: 1rem;
-                        
+
                         .warper-bottom {
                             width: 50%;
 
@@ -244,25 +248,51 @@
 .custom-button {
     background-color: #cc0001 !important;
 }
-::ng-deep{
+
+::ng-deep {
     .insurers-plan-bottom {
         .mat-raised-button {
             font-size: 13px !important;
         }
     }
 }
-@media (max-width: 1199px) {
-    .insurers-plan .insurers-plan-top .Plan-details-wrapper .Plan-details  .product-actions {
-        width: calc(100% - 145px);}
+
+.insurers-plan .product-actions .warper-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.insurers-plan .product-actions .warper-middle button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.insurers-plan .product-actions .warper-middle mat-spinner {
+    position: absolute; 
+    left: 40%; 
+    top: 19%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1; 
+}
+@media (max-width: 1199px) {
+    .insurers-plan .insurers-plan-top .Plan-details-wrapper .Plan-details .product-actions {
+        width: calc(100% - 145px);
+    }
+}
+
 @media (max-width: 700px) {
     .insurers-plan .insurers-plan-top {
-        flex-wrap:wrap ;
+        flex-wrap: wrap;
     }
-    .insurers-plan .insurers-plan-top .supp-holder{
+
+    .insurers-plan .insurers-plan-top .supp-holder {
         width: auto;
         padding: 0;
     }
+
     .insurers-plan[_ngcontent-qtw-c14] .insurers-plan-top[_ngcontent-qtw-c14] {
         box-sizing: border-box;
         display: -webkit-box;
@@ -277,26 +307,28 @@
         align-items: flex-start;
     }
 }
+
 @media (max-width: 400px) {
-    .insurers-plan
-        .insurers-plan-top{
-            .supp-holder{
-                margin: 1rem;
+    .insurers-plan .insurers-plan-top {
+        .supp-holder {
+            margin: 1rem;
+        }
+
+        .Plan-details-wrapper .Plan-details {
+            flex-wrap: wrap;
+
+            .plan-info {
+                padding: 0 1rem 1rem;
             }
-        
-            .Plan-details-wrapper
-                .Plan-details {
-                    flex-wrap: wrap;
-                     .plan-info {
-                        padding: 0 1rem 1rem;
-                     }
-                    .product-actions{
-                        padding: 0 1rem 2rem;
-                        .warper-top {
-                            flex-direction: row;
-                        }
-                    }
-                 
+
+            .product-actions {
+                padding: 0 1rem 2rem;
+
+                .warper-top {
+                    flex-direction: row;
                 }
             }
+
+        }
+    }
 }

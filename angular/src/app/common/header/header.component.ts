@@ -16,6 +16,13 @@ import { SubSink } from 'subsink';
 export class HeaderComponent implements OnInit, OnDestroy {
 	private subscribeList = new SubSink();
 	source_user: string = "100173";
+	isLoggedIn: boolean;
+	isRollType8: boolean;
+	POSP_URL: string;
+	POSP_name: any;
+	POSPshortname: string;
+	isPospImg: boolean;
+	POSP_img: any;
 	public insuranceTypeMenuItem: any[] = [
 		{ 'title': 'Car Insurance', 'link': 'https://www.gibl.in/car-insurance/' },
 		{ 'title': 'Health Insurance', 'link': 'https://www.gibl.in/health-insurance/' },
@@ -55,6 +62,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.generateUi();
+		setTimeout(()=>{this.setPospURL();},2000)
+		
 	}
 
 	ngOnDestroy() {
@@ -71,6 +80,35 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 		})
 	}
+	setPospURL() {
+		this.localStorage.getItem('userJson').subscribe((data: any) => {
+			if (data != null) {
+				this.isLoggedIn = true;
+				if (data.role_type == '8') {
+					this.isRollType8 = true;
+					this.POSP_URL = this.apiService.getPospUrl();
+					if (data.profile_pic_url) {
+						if (data.profile_pic_url != "") {
+							this.isPospImg = true;
+							this.POSP_img = data.profile_pic_url;
+						} else {
+							this.isPospImg = false;
+							this.POSP_name = data.name;
+							this.POSPshortname = this.getshortname(this.POSP_name);
+						}
+					} else {
+						this.isPospImg = false;
+						this.POSP_name = data.name;
+						this.POSPshortname = this.getshortname(this.POSP_name);
+
+					}
+				}
+			}
+		});
+	}
+	    getshortname(fullname: string){
+      return fullname.split(' ').map(n => n[0]).join('');
+    }
 
 	logout() {
 		this.localStorage.removeItem('userJson').subscribe(() => {

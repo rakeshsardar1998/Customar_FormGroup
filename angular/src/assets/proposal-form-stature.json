@@ -20,13 +20,13 @@
         },
         {
           "validator": "minLength",
-          "value": 3,
-          "message": "Customer name must be at least 3 characters long."
+          "value": 4,
+          "message": "Customer name must be at least 4 characters long."
         },
         {
           "validator": "maxLength",
-          "value": 15,
-          "message": "Customer name must not exceed 20 characters."
+          "value": 50,
+          "message": "Customer name must not exceed 50 characters."
         }
       ],
       "visible": true
@@ -149,9 +149,14 @@
           "message": "Customer pincode must only contain digits."
         },
         {
-          "validator": "length",
+          "validator": "minLength",
           "value": 6,
-          "message": "Customer pincode must be exactly 6 digits long."
+          "message": "Customer pincode must be at least 6 characters long."
+        },
+        {
+          "validator": "maxLength",
+          "value": 6,
+          "message": "Customer pincode must not exceed 10 characters."
         }
       ],
       "visible": true

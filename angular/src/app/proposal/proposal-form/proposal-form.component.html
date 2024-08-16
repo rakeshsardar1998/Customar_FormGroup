@@ -8,15 +8,15 @@
     <div class="details-inner-div">
       <img src="assets/listing/company_logo/aegon-life.png" alt="">
      
-        <p class="plan-name">Plan Name<span>Bandhan Life iTerm Comfort</span></p>
-        <p>Plan Type<span>Regular pay</span></p>
-        <p>Claim Settled<span>99.37%</span></p>
-        <p>Cover Upto<span>70 Yrs</span></p>
-        <p>Sum insured<span>₹5,000,000</span></p>
+        <p class="plan-name">Plan Name<span>{{premiumJson?.product_name}}</span></p>
+        <p>Plan Type<span>{{premiumJson?.db_type}}</span></p>
+        <p>Claim Settled<span>{{premiumJson?.claim_settled}}%</span></p>
+        <p>Cover Upto<span>{{premiumJson?.cover_upto}}Yrs</span></p>
+        <p>Sum insured<span>₹{{premiumJson?.sum_assured}}</span></p>
       
       <div class="total-premium">
         <p>Total Premium:</p>
-        <p class="total-value">₹1,624</p>
+        <p class="total-value">₹{{premiumJson?.total_premium}}</p>
       </div>
     </div>
   </div>
@@ -85,9 +85,9 @@
       </div>
       <div class="form-actions">
         <!-- <button mat-raised-button color="warn" type="button" (click)="NoThanks()">No Thanks</button> -->
-        <button mat-raised-button color="warn" type="submit">
+        <button mat-raised-button color="warn" type="submit" [disabled]="isLoading">
           <span *ngIf="!isLoading">Submit</span>
-          <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+          <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
         </button>
       </div>
     </form>

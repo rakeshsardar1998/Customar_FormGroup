@@ -1,9 +1,0 @@
-.env 
-/node_modules/
-
-/log/*
-/logs/*
-/bin/logs/*
-
-/write_logs/*
-/bin/write_logs/*

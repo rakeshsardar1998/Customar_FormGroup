@@ -28,13 +28,11 @@
   }
 }
 
-/* Full width for form fields */
 .full-width {
   width: 100%;
   
 }
 
-/* Button actions styling */
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -48,16 +46,8 @@ button {
 }
 
 mat-spinner {
-  margin-left: 8px; /* Adjust spacing between text and spinner */
+  margin-left: 8px;
 }
-
-
-
-// .form-group {
-//   flex: 1;
-//   min-width: 300px; /* Adjust this value as needed */
-//   padding: 0 10px;  /* Adjust for desired spacing */
-// }
 
 .full-width {
   width: 100%;

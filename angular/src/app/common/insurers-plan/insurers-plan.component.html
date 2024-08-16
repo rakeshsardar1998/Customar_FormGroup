@@ -47,9 +47,10 @@
           </div>
           <div class="warper-middle">
             <button mat-raised-button color="warn" class="insurers-plan-bottom" style="background-color: #cc0001;"
-              (click)="buyNow()">
-              <span class="hide-l-xs">Buy for</span>
-              {{ premiumData.net_premium | currency:'Rs. ':'code':'1.0' }}
+              (click)="buyNow()" [disabled]="isLoading">
+                <span class="hide-l-xs" *ngIf="!isLoading">Buy for</span>
+                {{ premiumData.net_premium | currency:'Rs. ':'code':'1.0' }}
+              <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
             </button>
           </div>
           <div class="warper-bottom">
@@ -59,3 +60,5 @@
     </div>
   </div>
 </div>
+
+<!-- "This button how to desible when i click"  -->

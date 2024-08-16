@@ -60,25 +60,27 @@ export class ProposalFormComponent implements OnInit, AfterViewInit {
     });
     this.dynamicForm = this.fb.group({});
 
-    this.apiService.getFormFields().subscribe(data => {
-      this.formFields = data.form_field_list;
-      this.formFields.forEach(field => {
-        const control = this.fb.control(
-          field.default_value,
-          { validators: this.bindValidations(field.validations || []) }
-        );
-        this.dynamicForm.addControl(field.name, control);
-      });
-
-      let quoteJson$ = this.localStorage.getItem('quoteJson') as Observable<any>;
-      let premiumJson$ = this.localStorage.getItem('premiumJson') as Observable<any>;
-      forkJoin([quoteJson$, premiumJson$]).subscribe((result: any) => {
-        this.customarItem = result[0];
-        this.quoteJson = result[0];
-        this.premiumJson = result[1];
+    let quoteJson$ = this.localStorage.getItem('quoteJson') as Observable<any>;
+    let premiumJson$ = this.localStorage.getItem('premiumJson') as Observable<any>;
+    forkJoin([quoteJson$, premiumJson$]).subscribe((result: any) => {
+      this.customarItem = result[0];
+      this.quoteJson = result[0];
+      this.premiumJson = result[1];
+      console.log(this.premiumJson);
+      this.apiService.getFormFields(this.premiumJson.provider_id).subscribe(data => {
+        this.formFields = data.data.form_field_list;
+        this.formFields.forEach(field => {
+          const control = this.fb.control(
+            field.default_value,
+            { validators: this.bindValidations(field.validations || []) }
+          );
+          this.dynamicForm.addControl(field.name, control);
+        });
+  
         this.setProposalFormValue();
       });
     });
+    
   }
   ngAfterViewInit() {
     // Ensure no changes occur after view initialization
