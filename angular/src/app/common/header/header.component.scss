@@ -1,0 +1,151 @@
+.main {
+    mat-toolbar {
+        background-color: #ffffff;
+    }
+}
+
+a.mat-menu-item {
+    line-height: 30px !important;
+    height: 30px !important;
+
+    &:hover {
+        color: #fff !important;
+        background-color: #cc0001 !important;
+    }
+}
+
+.title {
+    font-family: "Avenir-Book" !important;
+    padding: 21px 15px;
+    font-size: 17px;
+}
+
+.mat-toolbar {
+    color: #000;
+}
+
+.pinc img {
+    width: 150px;
+    height: 27px;
+    margin-top: 21px;
+}
+
+.pinc {
+    color: #000 !important;
+}
+
+header{
+    width: 85%;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo a  {
+        display: flex; 
+        align-items: center;
+
+        img {
+            width: 130px;
+        }
+    }
+
+    .header-menu-outer{
+        display: flex; 
+        align-items: center;
+        gap: 2rem;
+
+        .header-menu {
+            display: flex; 
+            align-items: center;
+        }
+
+        .profile {
+            color: #011856;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border-radius: 100%;
+            background-color: #fff;
+            font-weight: 500 !important;
+            border: 2px solid;
+            cursor: pointer;
+            font-size: 14px !important;
+            text-transform: uppercase;
+            padding: 0 !important;    margin: 0 !important;
+          }
+
+        .backToHomediv{
+            display: flex;
+            align-items: center;
+
+            .backToHome{
+                font-size: 13px;
+                background: #001b66;
+                border: none;
+                font-weight: 600;
+                color: #fff !important;
+                padding: 5px 15px;
+                border-radius: 10px;
+                font-family: 'Poppins';
+                text-decoration: none;
+                cursor: pointer;
+                
+                img{
+                    vertical-align: middle;
+                    margin: 0 5px;
+                }
+            }
+        }
+    }
+
+}
+::ng-deep{
+    .header-menu {
+        .mat-button{
+            font-size: 16px;
+        :hover{
+            background-color: #fff;
+        }
+        }
+    }
+    @media(max-width:991px){
+        .header-menu {
+            .mat-button{
+                font-size: 14px;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.nav-mob{
+    display: none;
+}
+
+@media(max-width:991px){
+    header {
+        width: 95%;
+        .header-menu-outer{
+            gap: 0;
+    
+            
+
+            .backToHome{
+                font-size: 12px;
+                padding: 0px 10px;
+                img{
+                    width: 12px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:768px){
+    header .header-menu-outer .header-menu {
+        display: none;
+    }
+}

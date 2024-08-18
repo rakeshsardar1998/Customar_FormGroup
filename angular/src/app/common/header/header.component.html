@@ -1,0 +1,287 @@
+<div class="content main ">
+  <div>
+    <mat-toolbar color="light">
+      <header>
+        <a class="nav-mob" (click)="openMenuPopup(mobMenuPanel)">
+          <i class="material-icons">
+            storage
+          </i>
+        </a>
+        <div class="logo" [ngClass]="{'pinc':isSponsored}">
+          <a href="" *ngIf="!retailerLogin?.whileLabeled">
+            <img src="assets/logo.svg" alt="logo">
+          </a>
+        </div>
+        <div class="header-menu-outer">
+
+          <div class="header-menu">
+            <!-- <button  mat-button (click)="redirectTo('https://www.gibl.in/term-insurance');" [ngClass]="{'pinc':isSponsored}">{{ 'Life insurance'  }}</button>  -->
+
+            <button mat-button [matMenuTriggerFor]="incType" [ngClass]="{'pinc':isSponsored}">{{'Insurance Products'}}
+              <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                keyboard_arrow_down
+              </mat-icon>
+            </button>
+
+            <button mat-button [ngClass]="{'pinc':isSponsored}">{{'Claim'}}</button>
+
+            <button mat-button [matMenuTriggerFor]="supportType" [ngClass]="{'pinc':isSponsored}">{{'Support'}}
+              <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                keyboard_arrow_down
+              </mat-icon>
+            </button>
+
+            <button mat-button [ngClass]="{'pinc':isSponsored}">{{'Blog'}}</button>
+
+            <!-- <button mat-button [matMenuTriggerFor]="incCompany" [ngClass]="{'pinc':isSponsored}">{{ 'Insurance Company'  }}
+                <mat-icon  aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                  keyboard_arrow_down
+                </mat-icon>
+              </button>
+              <mat-menu #incCompany="matMenu">
+                <a mat-menu-item *ngFor="let mItem of insuranceCompanyList" [href]="mItem.link">{{mItem.title}}</a>
+              </mat-menu> -->
+
+            <!-- <button  mat-button onClick="window.open('https://www.gibl.in/UI/Pages/ContactUs.aspx','_self')" [ngClass]="{'pinc':isSponsored}">{{ 'Support'  }}</button>
+              <button  mat-button *ngIf="!retailerLogin?.isLoggedIn" [ngClass]="{'pinc':isSponsored}">{{ 'Login'  }}</button>            
+              <button  mat-button *ngIf="!retailerLogin?.isLoggedIn" onClick="window.open('https://www.gibl.in/UI/Pages/Registration.aspx','_self')" [ngClass]="{'pinc':isSponsored}">{{ 'Register' | uppercase }}</button>
+              <button  mat-button *ngIf="retailerLogin?.isLoggedIn && !isSponsored" (click)="logout()">{{ 'Logout'  }}</button>  -->
+          </div>
+
+          <div class="backToHomediv" *ngIf="isRollType8">
+            <a class="backToHome" [href]="POSP_URL">
+              <img src="assets/backtohome.png">
+              Back To Home</a>
+          </div>
+          <div class="backToHomediv" *ngIf="isRollType8">
+            <img class="profile" *ngIf="isPospImg" [src]="POSP_img"
+              onerror="this.onerror=null; this.src='assets/Utill/user-dummy.png';" alt="Profile Image">
+            <span *ngIf="!isPospImg" class="profile"> {{this.POSPshortname}}</span>
+          </div>
+        </div>
+
+
+        <ng-template #mobMenuPanel>
+          <div class="container">
+            <div fxFlex="100">
+              <div class="mob-desk-footer" fxLayout.xs="column" fxLayout.md="row">
+                <div fxFlex="30" fxFlex.md="50" fxLayout.md="row">
+                  <p class="new_subfooter n_f1" style="border-bottom: 1px solid #989898!important;">Insurance for you
+                  </p>
+                  <ul class="links_1">
+                    <li><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></li>
+                    <li><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></li>
+                    <li><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></li>
+                    <li><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></li>
+                    <li><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></li>
+                    <li><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness
+                        Insurance</a></li>
+                    <li><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident Insurance</a></li>
+                    <li><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></li>
+                    <li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group Insurance</a></li>
+                    <li><a href="https://www.gibl.in/health-insurance/extended-family-insurance/">Extended Family
+                        Insurance</a></li>
+                    <li><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle Insurance</a>
+                    </li>
+                    <li><a href="https://www.gibl.in/health-insurance/health-insurance-for-senior-citizens.html">Health
+                        Insurance for Senior Citizen</a></li>
+                    <li><a href="https://www.gibl.in/health-insurance/family-health-insurance.html">Family Health
+                        Insurance</a></li>
+                  </ul>
+                </div>
+                <div fxFlex="30" fxFlex.md="50" fxLayout.md="row">
+                  <p class="new_subfooter n_f1" style="border-bottom: 1px solid #989898!important;">Insurance for your
+                    business</p>
+                  <ul class="col-md-12 links_1">
+                    <li></li>
+                    <li><a href="https://www.gibl.in/fire-insurance/">Fire Insurance</a></li>
+                    <li></li>
+                    <li><a href="https://www.gibl.in/marine-insurance/">Marine(Cargo) Insurance</a></li>
+                    <li></li>
+                    <li><a href="https://www.gibl.in/liability-insurance/">Liability Insurance</a></li>
+                    <li><a href="https://www.gibl.in/crop-insurance/">Crop Insurance</a></li>
+                    <li><a href="https://www.gibl.in/kidnap-ransom-insurance/">Kidnap Insurance</a></li>
+                    <li><a href="https://www.gibl.in/liability-insurance/cyber-risk-insurance/">Cyber Risk Insurance</a>
+                    </li>
+                    <li><a href="https://www.gibl.in/marine-insurance/export-import-insurance/">Export and Import
+                        Insurance</a></li>
+                    <li><a href="https://www.gibl.in/property-insurance/factory-warehouse-insurance/">Factory and
+                        Warehouse Insurance</a></li>
+                    <li><a href="https://www.gibl.in/errors-omissions-insurance/">Error and Omission Insurance</a></li>
+                    <li><a href="https://www.gibl.in/property-insurance/construction-all-risk-insurance/">Construction
+                        All Risk Insurance</a></li>
+                    <li><a href="https://www.gibl.in/property-insurance/office-insurance/">Office Insurance</a></li>
+                    <li><a href="https://www.gibl.in/burglary-insurance/">Burglary Insurance</a></li>
+                    <li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group Mediclaim
+                        Insurance</a></li>
+                  </ul>
+                </div>
+                <div fxFlex="30" fxFlex.md="50">
+                  <p class="new_subfooter n_f1" style="border-bottom: 1px solid #989898!important;">About GIBL</p>
+                  <ul class="links_1">
+                    <li><a href="https://www.gibl.in/UI/Pages/AboutUs.aspx">About Us</a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/Process.aspx">Process</a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/FAQ.aspx">FAQ</a></li>
+                    <li><a href="https://www.gibl.in/blog" target="_blank">Blog</a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/PrivacyPolicy.aspx">Privacy Policy </a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/TermsOfUse.aspx">Terms Of Use</a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/PaymentModes.aspx">Payment Modes</a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/Disclaimer.aspx">Disclaimer</a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/CancellationRefundPolicy.aspx">Cancel &amp; Refund
+                        Policy</a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/ContactUs.aspx">Contact Us</a></li>
+                    <li><a href="https://www.gibl.in/government-scheme/">Government Scheme</a></li>
+                    <li><a href="https://www.gibl.in/UI/Pages/Careers.aspx">Careers</a></li>
+                    <li><a href="https://www.gibl.in/sitemap.aspx">Sitemap</a></li>
+                  </ul>
+                </div>
+                <div fxFlex="30" fxFlex.md="50">
+                  <p class="new_subfooter n_f1" style="border-bottom: 1px solid #989898!important;">Security &amp;
+                    Payment</p>
+                  <ul class="links_1">
+                    <li>
+                      <img src="https://www.gibl.in/government-scheme/image/payments.jpg" alt="Gibl-instant-policy"
+                        style="width: 150px;">
+                    </li>
+                    <br>
+                    <li style="padding-left: 0px;"><a href="https://www.gibl.in/UI/Pages/HowItWorks.aspx"
+                        target="_blank" class="btn-primary-new">How it works</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="desk-footer" fxHide fxShow.xs fxShow.sm>
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Insurance for you
+                      </mat-panel-title>
+                      <mat-panel-description>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ul class="links_1">
+                      <li><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></li>
+                      <li><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></li>
+                      <li><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></li>
+                      <li><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></li>
+                      <li><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></li>
+                      <li><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness
+                          Insurance</a></li>
+                      <li><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident Insurance</a>
+                      </li>
+                      <li><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></li>
+                      <li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group Insurance</a>
+                      </li>
+                      <li><a href="https://www.gibl.in/health-insurance/extended-family-insurance/">Extended Family
+                          Insurance</a></li>
+                      <li><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle Insurance</a>
+                      </li>
+                      <li><a
+                          href="https://www.gibl.in/health-insurance/health-insurance-for-senior-citizens.html">Health
+                          Insurance for Senior Citizen</a></li>
+                      <li><a href="https://www.gibl.in/health-insurance/family-health-insurance.html">Family Health
+                          Insurance</a></li>
+                    </ul>
+                  </mat-expansion-panel>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Insurance For your Business
+                      </mat-panel-title>
+                      <mat-panel-description>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ul class="links_1">
+                      <li></li>
+                      <li><a href="https://www.gibl.in/fire-insurance/">Fire Insurance</a></li>
+                      <li></li>
+                      <li><a href="https://www.gibl.in/marine-insurance/">Marine(Cargo) Insurance</a></li>
+                      <li></li>
+                      <li><a href="https://www.gibl.in/liability-insurance/">Liability Insurance</a></li>
+                      <li><a href="https://www.gibl.in/crop-insurance/">Crop Insurance</a></li>
+                      <li><a href="https://www.gibl.in/kidnap-ransom-insurance/">Kidnap Insurance</a></li>
+                      <li><a href="https://www.gibl.in/liability-insurance/cyber-risk-insurance/">Cyber Risk
+                          Insurance</a></li>
+                      <li><a href="https://www.gibl.in/marine-insurance/export-import-insurance/">Export and Import
+                          Insurance</a></li>
+                      <li><a href="https://www.gibl.in/property-insurance/factory-warehouse-insurance/">Factory and
+                          Warehouse Insurance</a></li>
+                      <li><a href="https://www.gibl.in/errors-omissions-insurance/">Error and Omission Insurance</a>
+                      </li>
+                      <li><a href="https://www.gibl.in/property-insurance/construction-all-risk-insurance/">Construction
+                          All Risk Insurance</a></li>
+                      <li><a href="https://www.gibl.in/property-insurance/office-insurance/">Office Insurance</a></li>
+                      <li><a href="https://www.gibl.in/burglary-insurance/">Burglary Insurance</a></li>
+                      <li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group Mediclaim
+                          Insurance</a></li>
+                    </ul>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        About You
+                      </mat-panel-title>
+                      <mat-panel-description>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ul class="links_1">
+                      <li><a href="https://www.gibl.in/UI/Pages/AboutUs.aspx">About Us</a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/Process.aspx">Process</a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/FAQ.aspx">FAQ</a></li>
+                      <li><a href="https://www.gibl.in/blog" target="_blank">Blog</a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/PrivacyPolicy.aspx">Privacy Policy </a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/TermsOfUse.aspx">Terms Of Use</a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/PaymentModes.aspx">Payment Modes</a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/Disclaimer.aspx">Disclaimer</a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/CancellationRefundPolicy.aspx">Cancel &amp; Refund
+                          Policy</a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/ContactUs.aspx">Contact Us</a></li>
+                      <li><a href="https://www.gibl.in/government-scheme/">Government Scheme</a></li>
+                      <li><a href="https://www.gibl.in/UI/Pages/Careers.aspx">Careers</a></li>
+                      <li><a href="https://www.gibl.in/sitemap.aspx">Sitemap</a></li>
+                    </ul>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Security & Payment
+                      </mat-panel-title>
+                      <mat-panel-description>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ul class="links_1">
+                      <li>
+                        <img src="https://www.gibl.in/government-scheme/image/payments.jpg" alt="Gibl-instant-policy"
+                          style="width: 150px;">
+                      </li>
+                      <br>
+                      <li style="padding-left: 0px;"><a href="https://www.gibl.in/UI/Pages/HowItWorks.aspx"
+                          target="_blank" class="btn-primary-new">How it works</a></li>
+                    </ul>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+
+            </div>
+
+          </div>
+        </ng-template>
+
+      </header>
+    </mat-toolbar>
+  </div>
+</div>
+
+<mat-menu #incType="matMenu">
+  <a mat-menu-item *ngFor="let mItem of insuranceTypeMenuItem" [href]="mItem.link">{{mItem.title}}</a>
+</mat-menu>
+
+<!-- <mat-menu #incCompany="matMenu">
+  <a mat-menu-item *ngFor="let mItem of insuranceCompanyList" [href]="mItem.link">{{mItem.title}}</a>
+</mat-menu> -->
+
+<mat-menu #supportType="matMenu">
+  <a mat-menu-item *ngFor="let mItem of supportMenuItem" [href]="mItem.link">{{mItem.title}}</a>
+</mat-menu>

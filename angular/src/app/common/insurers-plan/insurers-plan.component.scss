@@ -1,0 +1,334 @@
+.insurers-plan {
+    box-shadow: 0px 2px 10px #c6c6c6;
+    margin: 3px 0 20px 0;
+    background: #fff;
+    border-radius: 0 10px 10px 0;
+    overflow: hidden;
+    border-left: 6px solid #a00001;
+
+    .insurers-plan-top {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        border-bottom: none;
+        align-items: center;
+        position: relative;
+        padding: 0;
+
+        // padding-top: 35px;
+
+        .supp-holder {
+            display: flex;
+            // max-width: 65px;
+            width: 150px;
+            padding: 10px;
+            margin: 20px;
+
+            picture {
+
+                img {
+                    max-width: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .Plan-details-wrapper {
+            width: 100%;
+
+            .Plan-details {
+                padding: 0;
+                width: calc(100% - 0);
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                -webkit-box-pack: justify;
+                justify-content: center;
+                margin-left: auto;
+                position: relative;
+
+                .plan-info {
+                    width: calc(100% - 10px);
+                    border-right: 1px dashed #eee;
+                    padding: 1rem;
+                    border-left: 1px dashed #eee;
+
+
+                    .product-feature {
+                        .features-list {
+                            display: flex;
+                            -webkit-box-align: start;
+                            align-items: center;
+                            padding: 0;
+                            flex-direction: row;
+                            gap: 10px;
+                            margin: 0;
+                            flex-wrap: wrap;
+                            margin: 10px 0 0;
+
+                            li {
+                                font-size: 13px;
+                                color: #000;
+                                display: inline-flex;
+                                flex-direction: column;
+
+                                padding: 5px;
+                                background: #f8f8f8;
+                                border-radius: 10px;
+                                padding: 5px 19px;
+
+                                span {
+                                    font-size: 12px;
+                                    opacity: 0.5;
+                                }
+                            }
+
+                            li:last-child {
+                                color: #cc0001;
+                                cursor: pointer;
+                                gap: 4px;
+                                padding: 0;
+                                flex-direction: row;
+                                width: 100%;
+                                background: none;
+
+                                img {
+                                    height: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .product-actions {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 1.5rem 0 1.5rem 0.5rem;
+                    width: calc(100% - 240px);
+
+                    .warper-top {
+                        display: flex;
+                        justify-content: space-between;
+                        gap: 5px;
+                        text-align: center;
+                        flex-direction: column;
+                        align-items: center;
+
+                        .premium-label {
+                            display: flex;
+                            gap: 5px;
+                        }
+
+                    }
+
+                    .warper-middle {
+                        text-align: center;
+                    }
+
+                }
+            }
+        }
+
+        .plan-label {
+            color: #000000;
+            font-size: 13px;
+            font-weight: 500;
+            overflow: hidden;
+
+            span {
+                display: block;
+                font-size: 12px;
+                opacity: .5;
+                font-weight: normal;
+            }
+
+            p {
+                margin: 0;
+                // max-width: 150px;
+            }
+        }
+    }
+
+    .insurers-plan-middle {
+        background: #f7f7ec;
+        padding: 14px 16px;
+
+        .label {
+            color: #ffab00;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: text;
+            margin: -3px 0 0 0;
+            display: inherit;
+        }
+    }
+
+    .insurers-plan-bottom {
+        padding: 0 20px;
+
+        min-width: 170px;
+    }
+
+    .insurers-plan-bottom .loader {
+        padding: 0 50px;
+
+        mat-spinner {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    .insurers-plan-name-mobile {
+        padding: 15px 0 0 20px;
+        font-weight: 500;
+        font-size: 12px;
+        color: #000000;
+
+        span {
+            font-size: 12px;
+            opacity: .5;
+            font-weight: normal;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .insurers-plan-top {
+
+
+            .supp-holder {
+                // justify-content: center;
+                width: 100%;
+
+
+                .plan-label.mobile {
+                    width: calc(100% - 80px);
+                    margin-left: 15px;
+                    font-size: 18px;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+            }
+
+            .Plan-details-wrapper {
+                .Plan-details {
+                    display: flex;
+
+                    .plan-info {
+                        width: 100%;
+                    }
+
+                    .product-actions {
+                        width: 100% !important;
+                        padding: 1rem;
+
+                        .warper-bottom {
+                            width: 50%;
+
+                            mat-checkbox {
+                                background-color: whitesmoke;
+                                border-radius: 5px;
+                                padding-right: 10px;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        .insurers-plan-bottom {
+            width: 100%;
+        }
+    }
+}
+
+.custom-button {
+    background-color: #cc0001 !important;
+}
+
+::ng-deep {
+    .insurers-plan-bottom {
+        .mat-raised-button {
+            font-size: 13px !important;
+        }
+    }
+}
+
+.insurers-plan .product-actions .warper-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.insurers-plan .product-actions .warper-middle button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.insurers-plan .product-actions .warper-middle mat-spinner {
+    position: absolute; 
+    left: 40%; 
+    top: 19%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1; 
+}
+@media (max-width: 1199px) {
+    .insurers-plan .insurers-plan-top .Plan-details-wrapper .Plan-details .product-actions {
+        width: calc(100% - 145px);
+    }
+}
+
+@media (max-width: 700px) {
+    .insurers-plan .insurers-plan-top {
+        flex-wrap: wrap;
+    }
+
+    .insurers-plan .insurers-plan-top .supp-holder {
+        width: auto;
+        padding: 0;
+    }
+
+    .insurers-plan[_ngcontent-qtw-c14] .insurers-plan-top[_ngcontent-qtw-c14] {
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        border-bottom: none;
+        -webkit-box-align: center;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 400px) {
+    .insurers-plan .insurers-plan-top {
+        .supp-holder {
+            margin: 1rem;
+        }
+
+        .Plan-details-wrapper .Plan-details {
+            flex-wrap: wrap;
+
+            .plan-info {
+                padding: 0 1rem 1rem;
+            }
+
+            .product-actions {
+                padding: 0 1rem 2rem;
+
+                .warper-top {
+                    flex-direction: row;
+                }
+            }
+
+        }
+    }
+}

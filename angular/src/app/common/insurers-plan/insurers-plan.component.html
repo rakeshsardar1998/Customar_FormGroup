@@ -1,0 +1,64 @@
+<div class="insurers-plan">
+  <div class="insurers-plan-top">
+    <div class="supp-holder">
+      <picture>
+        <img [alt]="premiumData.company_name" [src]="'assets/listing/company_logo/' + premiumData.company_logo">
+      </picture>
+
+      <!-- <div class="plan-label mobile hide-g-xs">
+          {{premiumData.product_name}}
+      </div> -->
+    </div>
+    <div class="Plan-details-wrapper">
+      <div class="Plan-details">
+        <div class="plan-info">
+          <div class="plan-label hide-l-xs">
+            <span>Plan name</span>
+            <p>
+              {{premiumData.product_name}}
+            </p>
+          </div>
+          <div class="product-feature">
+            <ul class="features-list">
+              <li><span>Plan Type:</span> {{ premiumData.db_type}}</li>
+              <li><span>Claim Settled:</span> {{ premiumData.claim_settled | number:'1.0-2'}}%</li>
+              <li>
+                <img src="assets\quote\img\brochure.png" alt="brochure icon">
+                <a (click)="showPdfFromUrl(premiumData.premium_pdf)"
+                  *ngIf="premiumData.premium_pdf && premiumData.premium_pdf !== ''"
+                 >
+                  {{ 'View Brochure' | titlecase }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-actions">
+          <div class="warper-top">
+            <div class="plan-label premium-label">
+              <span>Cover Upto</span>
+              {{ premiumData.cover_upto }} Yrs
+            </div>
+            <div class="plan-label premium-label" style="padding-left: 5px;">
+              <span>Sum insured</span>
+              {{ premiumData. sum_assured |
+              currency:'INR':'symbol-narrow':'1.0' }}
+            </div>
+          </div>
+          <div class="warper-middle">
+            <button mat-raised-button color="warn" class="insurers-plan-bottom" style="background-color: #cc0001;"
+              (click)="buyNow()" [disabled]="isLoading">
+                <span class="hide-l-xs" *ngIf="!isLoading">Buy for</span>
+                {{ premiumData.net_premium | currency:'Rs. ':'code':'1.0' }}
+              <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
+            </button>
+          </div>
+          <div class="warper-bottom">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- "This button how to desible when i click"  -->

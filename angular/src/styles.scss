@@ -1,0 +1,466 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@font-face {
+    font-family: 'Avenir-Book';
+    src: url('assets/quote/fonts/AvenirBook.ttf') format('truetype'), url('/assets/quote/fonts/avenirltstd-book-webfont.svg#AvenirLTStd45BookRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+   @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-ExtraLight.ttf") format('truetype');
+    font-weight: lighter;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Light.ttf") format('truetype');
+    font-weight: 300;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Regular.ttf") format('truetype');
+    font-weight: normal ;
+  } 
+  @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Regular.ttf") format('truetype');
+    font-weight: 400 ;
+  }  
+
+   @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Medium.ttf") format('truetype');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-SemiBold.ttf") format('truetype');
+    font-weight: 600;
+  }
+
+ @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-Bold.ttf") format('truetype');
+    font-weight: bold;
+  }
+ @font-face {
+    font-family: 'Poppins';
+    src: url("assets/quote/fonts/poppins/Poppins-ExtraBold.ttf") format('truetype');
+    font-weight: 800;
+  }
+  
+  
+body {
+    font-family: 'Poppins' !important;
+    background: #eee !important;
+}
+.mat-button,
+.mat-fab,
+.mat-flat-button,
+.mat-icon-button,
+.mat-mini-fab,
+.mat-raised-button,
+.mat-stroked-button {
+    font-family: 'Poppins' !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    // background: url(term-life-bg.jpg) #fff;
+    color: #000000;
+    font-size: 18px;
+    font-family: 'Poppins';
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.my-container {
+    width: min(100% - 1em, 64em);
+    margin-inline: auto;
+}
+
+
+.mat-card {
+    font-family: 'Poppins';
+    background-repeat: no-repeat;
+}
+
+.mat-form-field {
+    font-family: 'Poppins' !important;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+    // background: #ffffff !important;
+    // background: #055ba9 !important;
+}
+
+.mat-stepper-horizontal,
+.mat-stepper-vertical {
+    font-family: 'Poppins' !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mat-list-base .mat-list-item .mat-list-item-content-reverse,
+.mat-list-base .mat-list-option .mat-list-item-content-reverse {
+    flex-direction: row !important;
+    margin-right: 10px;
+}
+
+.mat-list-text {
+    padding-left: 10px !important;
+    font-family: 'Poppins' !important;
+}
+
+.gap-a {
+    margin-right: 30px
+}
+
+@media(max-width:599px) {
+    .mat-stepper-horizontal-line {
+        border: none !important;
+    }
+
+    .mat-step-icon-state-number,
+    .mat-step-icon mat-step-icon-selected {
+        display: none !important;
+    }
+
+    .mat-horizontal-stepper-header {
+        padding: 25px 0 10px !important;
+        height: 14px !important;
+    }
+
+    .mat-horizontal-stepper-header .mat-step-icon {
+        display: none !important;
+    }
+
+    .mat-horizontal-content-container {
+        padding: 9px 10px 24px 10px !important;
+    }
+}
+
+.mat-step-label-selected {
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 3px solid cadetblue;
+    color: #055ba9 !important;
+}
+
+.mat-list-base {
+    display: inline !important;
+}
+
+.mat-toolbar.mat-primary {
+    background: #055ba9 !important;
+    color: #fff !important;
+    padding: 4px 30px !important;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    height: auto !important;
+    padding: 0 !important;
+}
+
+.mat-stepper-horizontal,
+.mat-stepper-vertical {
+    display: block;
+    // box-shadow: 0px -1px 14px 0px #797676;
+}
+
+
+.mat-horizontal-content-container {
+    padding: 24px 24px 24px 24px;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+.mat-stepper-horizontal,
+.mat-stepper-vertical {
+    font-family: 'Poppins' !important;
+    margin: 10px !important;
+    padding: 0px 2px !important;
+}
+
+.mat-button-toggle-checked {
+    background-color: #cc0001;
+}
+
+.mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+    color: #fff;
+    font-family: 'Poppins' !important;
+}
+
+.ng-untouched h2 {
+    font-size: 13px !important;
+}
+
+.mat-horizontal-stepper-header {
+    display: none !important;
+}
+.proposal-header{
+    .mat-horizontal-stepper-header {
+        display: block !important;
+    }
+}
+.mat-stepper-vertical {
+    box-shadow: none !important;
+}
+
+.mat-step-label-selected {
+    font-size: 16px;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    font-family: 'Poppins' !important;
+}
+
+.mat-icon-face {
+    top: 0 !important;
+}
+
+.mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+    color: #fff;
+}
+
+.mat-button-toggle-checked .mat-icon-face {
+    color: #fff !important;
+}
+
+.mat-select-value-text {
+    font-weight: bold;
+    font-size: 12px;
+    font-family: 'Poppins' !important;
+}
+
+.mat-form-field-hide-placeholder .mat-select-placeholder {
+    font-family: 'Poppins' !important;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    font-size: 14px;
+}
+
+.mat-button-toggle-group-appearance-standard,
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+    border: solid 1px #cc0001;
+}
+
+@media(max-width:991px) {
+    .mat-vertical-stepper-header {
+        display: flex;
+        align-items: center;
+        padding: 8px 0px !important;
+        height: 24px;
+    }
+
+    .mat-vertical-content {
+        padding: 0 24px 24px 0px !important;
+    }
+
+    .mat-vertical-content-container {
+        margin-left: 3px !important;
+    }
+
+    .mat-stepper-vertical-line::before {
+        border: 0 !important;
+    }
+
+    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+        padding: 0 5px;
+    }
+
+    .mat-step-label-selected {
+        font-size: 14px;
+    }
+}
+
+// @media(min-width:992px) {
+//     .gap-no {
+//         margin: 5px 0;
+//         font-size: 16px;
+//         font-weight: 400;
+//         padding-top: 1%;
+//     }
+// }
+
+.mat-option,
+.mat-checkbox-label {
+    font-family: 'Poppins' !important;
+    font-weight: 600;
+}
+
+.mat-option-text {
+    font-size: 14px !important;
+}
+
+.mat-form-field-infix {
+    font-size: 14px !important;
+    // padding: 1.25em 0 0.75em 0 !important;
+}
+
+.proposal_container_dialog {
+    mat-dialog-container {
+        font-family: 'Poppins' !important;
+        position: relative;
+        width: 44% !important;
+        top: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+        margin: auto !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    .mat-dialog-container .mat-form-field-appearance-legacy .mat-form-field-infix {
+        padding: 1.3em 0 1em !important;
+    }
+}
+
+.proposal_container_dialog_confirm {
+    mat-dialog-container {
+        font-family: 'Poppins' !important;
+        position: relative;
+        width: 44% !important;
+        top: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+        margin: auto !important;
+        box-shadow: none !important;
+    }
+
+    .mat-dialog-container .mat-form-field-appearance-legacy .mat-form-field-infix {
+        padding: 0em 0 1em !important;
+    }
+}
+
+.proposal_containt_dialog {
+    display: block;
+    margin: -20px -39px !important;
+    padding: 00 !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+}
+
+.mat-dialog-container {
+    overflow-x: hidden !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    margin-right: 9px !important;
+}
+
+.contact100-form-btn {
+    padding: 8px 20px !important;
+    height: 36px !important;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    padding: 0 5px !important;
+}
+
+@media(max-width:991px) {
+    .proposal_containt_dialog {
+        margin: 10px 40px !important;
+    }
+
+    .mat-vertical-stepper-header .mat-step-icon {
+        margin-right: 5px;
+    }
+
+    .proposal_container_dialog .mat-dialog-container .mat-form-field-appearance-legacy .mat-form-field-infix {
+        padding: 1em 0 1em !important;
+    }
+
+    .proposal_containt_dialog {
+        margin: 10px 0 !important;
+    }
+
+    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+        padding: 0 11px !important;
+    }
+}
+
+.proposal_container_dialog .mat-dialog-container .mat-form-field-appearance-legacy .mat-form-field-infi {
+    padding: 1.6em 0 1.5em !important;
+}
+
+@media (min-width:1200px) {
+    .head-wrap.wrap-contact101 {
+        margin-top: 3%;
+    }
+
+    .mat-cell {
+        font-size: 13px !important;
+        font-family: 'Poppins';
+    }
+}
+
+
+ul.links_1 {
+    padding-left: 0;
+}
+
+.links_1 li {
+    list-style: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.links_1 li a {
+    color: #fff;
+    text-decoration: none !important;
+}
+
+.mat-expansion-panel-header {
+    text-transform: capitalize !important;
+    font-family: 'Poppins' !important;
+}
+
+.example-tooltip-green {
+    background: #cc0001;
+    white-space: pre-line;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.mat-tooltip-panel:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #cc0001;
+    margin: 15px 10px;
+    opacity: 1;
+    animation: 2s fadeIn;
+    animation-fill-mode: forwards;
+    transition: opacity 1.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.copy_rights p {
+    color: #000000;
+}

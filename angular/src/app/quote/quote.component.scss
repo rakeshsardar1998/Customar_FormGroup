@@ -1,0 +1,381 @@
+mat-form-field {
+    width: 100% !important;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+#quote .material-icons {
+    position: relative;
+    top: 12px;
+    margin-right: 9px;
+    color: #cc0001;
+}
+
+.contact100-form-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px !important;
+    background-color: #cc0001;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    border: 0;
+    margin: 1.5rem 0 1rem !important;
+    transition: all 0.4s;
+    height: 45px !important;
+    border-radius: 10px;
+    width: 100% !important;
+}
+
+.age .material-icons {
+    position: relative !important;
+    margin-left: 164px;
+    margin-top: -36px;
+    float: left;
+    top: 0 !important;
+    font-size: 18px;
+}
+
+@media(max-width:599px) {
+    .mat-step-label {
+        font-size: 14px !important;
+    }
+
+    #quote {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    h1 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width:991px) {
+    #quote .material-icons {
+        position: relative;
+        top: 8px !important;
+        margin-right: 9px;
+        color: #cc0001;
+        display: none !important;
+    }
+}
+
+.back {
+    position: relative !important;
+    top: 4px !important;
+    color: #5298d8 !important;
+    font-size: 14px !important;
+    margin-right: 0 !important;
+}
+
+.forward {
+    position: relative !important;
+    top: 4px !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    margin-right: 0 !important;
+}
+
+.mat-step-label-selected {
+    font-size: 18px !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.wrap-contact101 {
+    padding: 10px 20px !important;
+    background: #fff;
+}
+
+table {
+    width: 100%;
+}
+
+table th {
+    font-weight: bold;
+    font-size: small;
+}
+
+table td {
+    font-size: small;
+}
+
+.mat-cell,
+.mat-footer-cell {
+    font-size: 10px;
+}
+
+
+/* ----------------------- New CSS -------------------- */
+
+.top-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    .left-section {
+        width: 42%;
+        .left-section-inner{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            justify-content: center;
+        }
+        h4 {
+            font-weight: 500;
+            padding: 0;
+            margin: 0 0 10px;
+            font-size: 24px;
+            text-align: center;
+            .red-text {
+                color: #cc0001 !important;
+            }
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            width: 360px;
+            filter: drop-shadow(0px 0px 10px #ccc);
+        }
+    }
+
+    .right-section {
+        width: 48%;
+
+        .form-box {
+            position: relative;
+            // background-color: var(--white-color);
+            box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.11);
+            border-radius: 20px;
+            overflow: hidden;
+            // padding: 20px;
+            // margin-bottom: 30px;
+            // margin-left: 8%;
+
+            .form-title-box {
+               
+               
+
+                h4 {
+                    font-weight: 500;
+                    font-size: 20px;
+                    margin: 0px;
+                    padding: 0px;
+                }
+            }
+
+          
+
+            .gender-input {
+                margin-bottom: 20px;
+            }
+
+            .suffix-field-txt-dob {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 12px;
+                margin: -8px;
+                height: 41px;
+                width: 42px;
+                font-size: 14px;
+                border-radius: 0 10px 10px 0;
+                background-color: #cc0001;
+                color: #ffffff;
+                transition: all 0.4s;
+            }
+
+            .suffix-field-txt-mob {
+                position: absolute;
+                left: 0;
+                color: #606060;
+                display: none;
+            }
+        }
+
+    }
+}
+
+::ng-deep .quote-input-form-box {
+    mat-horizontal-stepper {
+        .mat-horizontal-stepper-header-container {
+            display: none;
+        }
+
+        .mat-horizontal-content-container {
+            padding: 10px 15px;
+            min-height: unset;
+
+            .mat-form-field-suffix-dob {
+                .mat-form-field-suffix {
+                    top: -6.5px;
+                    right: -5px;
+                }
+            }
+
+            .mat-form-field-suffix-mob {
+                .mat-input-element {
+                    margin-left: 35px !important;
+                    width: 80% !important;
+                    max-width: 80% !important;
+                }
+            }
+
+            .mat-form-field-suffix-mob.mat-form-field-should-float {
+                .suffix-field-txt-mob {
+                    display: unset !important;
+                }
+            }
+        }
+    }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.quote-input-form-box {
+    background-color: #ffffff;
+} .gender-img{
+            width: 20px;
+        }
+
+
+
+///customisation of button,input,select,stepper for quote component
+::ng-deep{
+    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+        padding: 0 0px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .mat-button-toggle-group-appearance-standard, 
+    .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+        border-radius: 10px !important;
+    } 
+   
+    .mat-form-field-outline-start {
+       border-radius: 10px 0 0 10px !important;    
+    }    
+    .mat-form-field-outline-end {
+        border-radius: 0 10px 10px 0 !important;   
+    }
+    .mat-form-field-appearance-outline 
+    {
+        .mat-form-field-label {
+        margin-top: 0.25em !important;
+        font-size: 14px !important;font-weight: 500 !important;
+        top: 1.1em;
+        }  
+        .mat-form-field-infix {
+        padding: 0.5rem 0;
+        }
+        
+        
+    }
+    .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+        color: #cc0001;
+        }
+    .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+        transform: translateY(-1.2em) scale(.75);
+        }
+    .mat-input-element {
+        font-size: 14px !important;    margin: 0 0 5px !important;
+    } 
+
+    .mat-hint {
+        font-size: 12px;
+        }  
+
+    .mat-form-field.mat-form-field-invalid .mat-form-field-label{
+        color: #cc0001;
+    }
+    .mat-error {
+        color: #cc0001;font-size: 12px;
+        display: inline-block;
+        margin: 0 10px 0 0;
+    }
+
+    .mat-step-header {
+        .mat-step-icon-selected, 
+        .mat-step-icon-state-done, 
+        .mat-step-icon-state-edit {
+            background-color: #cc0001;
+            color: #fff;
+        }
+        .mat-step-icon {
+            background-color: rgb(204 0 1 / 33%);
+            color: #fff;
+        }
+        .mat-step-icon-state-error {
+        
+            color: #cc0001;
+        }
+        .mat-step-label.mat-step-label-error {
+            color: #cc0001;
+        }
+    }
+
+    .mat-step-label-selected {
+        font-size: 14px;
+        font-weight: 500;
+        border-bottom: none;
+        color: #cc0001 !important;
+    }
+    .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+        color: #cc0001;
+    }
+
+}
+
+
+@media (max-width:991px) {
+
+    .my-container {
+        width: min(100% - 10em, 64em);
+        .top-section{
+            .left-section, .right-section{
+                width: 100%;
+            }
+            .left-section{
+                .img-fluid{
+                    display: none;
+                }
+                h4{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 599px) 
+{
+    .my-container {
+        width: min(100% - 1em, 64em);
+    }
+}

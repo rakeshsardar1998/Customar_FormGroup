@@ -1,0 +1,96 @@
+<div class="form-container">
+
+  <div  class="details-div">
+    <a class="back-btn">
+      <mat-icon> arrow_back </mat-icon>
+      Change details
+    </a>
+    <div class="details-inner-div">
+      <img src="assets/listing/company_logo/aegon-life.png" alt="">
+     
+        <p class="plan-name">Plan Name<span>{{premiumJson?.product_name}}</span></p>
+        <p>Plan Type<span>{{premiumJson?.db_type}}</span></p>
+        <p>Claim Settled<span>{{premiumJson?.claim_settled}}%</span></p>
+        <p>Cover Upto<span>{{premiumJson?.cover_upto}}Yrs</span></p>
+        <p>Sum insured<span>₹{{premiumJson?.sum_assured}}</span></p>
+      
+      <div class="total-premium">
+        <p>Total Premium:</p>
+        <p class="total-value">₹{{premiumJson?.total_premium}}</p>
+      </div>
+    </div>
+  </div>
+
+  <mat-card class="form-box">
+    <p class="form-text">Please provide the details to your <span>Life insurance</span></p>
+    <form *ngIf="dynamicForm" [formGroup]="dynamicForm" (ngSubmit)="submitProposalForm()">
+      <div class="form-row" *ngFor="let field of formFields">
+        <div class="form-group " [ngSwitch]="field.input_type">
+          <mat-form-field *ngSwitchCase="'text'" appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <input matInput
+                   [formControlName]="field.name"
+                   [placeholder]="field.placeHolder"
+                   [type]="field.input_type"
+                   id="{{field.name}}"/>
+            <mat-error *ngIf="dynamicForm.get(field.name)?.invalid && dynamicForm.get(field.name)?.touched">
+              <div *ngFor="let error of getValidationErrors(dynamicForm.get(field.name), field.validations)">
+                {{ error }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field *ngSwitchCase="'email'" appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <input matInput
+                   [formControlName]="field.name"
+                   [placeholder]="field.placeHolder"
+                   [type]="field.input_type"
+                   id="{{field.name}}"/>
+            <mat-error *ngIf="dynamicForm.get(field.name)?.invalid && dynamicForm.get(field.name)?.touched">
+              <div *ngFor="let error of getValidationErrors(dynamicForm.get(field.name), field.validations)">
+                {{ error }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field *ngSwitchCase="'number'" appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <input matInput
+                   [formControlName]="field.name"
+                   [placeholder]="field.placeHolder"
+                   [type]="field.input_type"
+                   id="{{field.name}}"/>
+            <mat-error *ngIf="dynamicForm.get(field.name).invalid && dynamicForm.get(field.name).touched">
+              <div *ngFor="let error of getValidationErrors(dynamicForm.get(field.name), field.validations)">
+                {{ error }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field *ngSwitchCase="'radio'" appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <mat-radio-group [formControlName]="field.name">
+              <mat-radio-button *ngFor="let option of field.options" [value]="option">
+                {{ option }}
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="dynamicForm.get(field.name).invalid && dynamicForm.get(field.name).touched">
+              <div *ngFor="let error of getValidationErrors(dynamicForm.get(field.name), field.validations)">
+                {{ error }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+          
+        </div>
+      </div>
+      <div class="form-actions">
+        <!-- <button mat-raised-button color="warn" type="button" (click)="NoThanks()">No Thanks</button> -->
+        <button mat-raised-button color="warn" type="submit" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Submit</span>
+          <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+
+</div>

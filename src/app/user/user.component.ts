@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
-import { FormService } from '../../app/from-service.service';
+import { FormService } from '../from-service.service'; // corrected import statement
 
 @Component({
   selector: 'app-user',
@@ -10,6 +10,7 @@ import { FormService } from '../../app/from-service.service';
 export class UserComponent implements OnInit {
   dynamicForm!: FormGroup;
   formFields: any[] = [];
+  isLoading = false;
 
   constructor(private fb: FormBuilder, private formService: FormService) { }
 
@@ -52,7 +53,6 @@ export class UserComponent implements OnInit {
     return validList;
   }
   
-
   exactLength(length: number): ValidatorFn {
     return (control: any): { [key: string]: any } | null => {
       return control.value && control.value.length === length
@@ -61,16 +61,33 @@ export class UserComponent implements OnInit {
     };
   }
 
+  getValidationErrors(control: any, validations: any[]): string[] {
+    const errors: string[] = [];
+    validations.forEach(validation => {
+      if (control.hasError(validation.validator)) {
+        errors.push(validation.message);
+      }
+    });
+    return errors;
+  }
   onSubmit() {
     if (this.dynamicForm.valid) {
+      this.isLoading = true;  // Set isLoading to true when submitting
       console.log(this.dynamicForm.value);
-      // Process the form data here
+      // Simulate a form submission
+      setTimeout(() => {
+        this.isLoading = false;  // Reset isLoading after submission
+      }, 2000); // Replace with actual submission logic
     } else {
-      // Trigger validation display for all fields
       Object.keys(this.dynamicForm.controls).forEach(field => {
         const control = this.dynamicForm.get(field);
         control?.markAsTouched({ onlySelf: true });
       });
     }
+  }
+
+  onNoThanks() {
+    console.log('No Thanks button clicked');
+    // You can add more logic here if needed, such as resetting the form or navigating away
   }
 }
